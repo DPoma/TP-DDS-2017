@@ -1,5 +1,8 @@
 package model;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class Cuenta {
 
 	private String empresa;
@@ -22,6 +25,18 @@ public class Cuenta {
 
 	public String getEmpresa() {
 		return empresa;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public int getAnio() {
+		return anio;
+	}
+	
+	public double getMonto() {
+		return monto;
 	}
 	
 	

@@ -1,6 +1,5 @@
 package repositories;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,6 +34,13 @@ public class RepositorioCuentas {
 	        this.agregarCuenta(unaCuenta);
 	     }
 	     reader.close();
+	}
+	
+	public List<Cuenta> filtrarPorEmpresaPeriodo(String empresa,String anio1, String anio2)
+	{
+		int iAnio1 = Integer.parseInt(anio1);
+		int iAnio2 = Integer.parseInt(anio2);
+		return cuentas.stream().filter(unaCuenta -> unaCuenta.getEmpresa().equals(empresa)).filter(unaCuenta -> unaCuenta.getAnio()>=iAnio1 && unaCuenta.getAnio()<=iAnio2 ).collect(Collectors.toList());
 	}
 	
 	public List<Cuenta> filtrarPorEmpresa(String empresa)
