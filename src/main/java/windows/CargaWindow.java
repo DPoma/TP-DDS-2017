@@ -2,21 +2,12 @@ package windows;
 
 
 import vm.CargaViewModel;
-
-import java.awt.FileDialog;
-import java.awt.Frame;
-
-import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.TextBox;
-import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
-
-import repositories.Repositorios;
 
 @SuppressWarnings("serial")
 public class CargaWindow extends SimpleWindow<CargaViewModel> {
@@ -26,7 +17,6 @@ public class CargaWindow extends SimpleWindow<CargaViewModel> {
 		super(parent, new CargaViewModel());
 	}
 	
-	//@Override
 	public void createFormPanel(Panel panelActions) {
 	new Panel(panelActions);
 	}
@@ -73,11 +63,6 @@ public class CargaWindow extends SimpleWindow<CargaViewModel> {
 	public void cargarCuentas() {
 		PathWindow dialog = new PathWindow(this);
 		dialog.open();
-		//System.out.println(Repositorios.repositorioCuentas.filtrarPorEmpresa("Facebook"));
-		/*FileDialog dialogoArchivo;
-		dialogoArchivo = new FileDialog(frame,"Lista de s desde Frame", FileDialog.LOAD); 
-		dialogoArchivo.setDirectory("C:\\");
-		dialogoArchivo.setFile("*.csv");*/
 	}
 	
 	public void cargarIndicadores() {

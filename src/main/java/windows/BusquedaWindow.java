@@ -2,8 +2,6 @@ package windows;
 
 
 import vm.BusquedaViewModel;
-
-import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
@@ -12,14 +10,8 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import model.Cuenta;
-
-//import model.Alumno;
 
 @SuppressWarnings("serial")
 public class BusquedaWindow extends SimpleWindow<BusquedaViewModel> {
@@ -29,7 +21,6 @@ public class BusquedaWindow extends SimpleWindow<BusquedaViewModel> {
 		super(parent, new BusquedaViewModel());
 	}
 	
-	//@Override
 	public void createFormPanel(Panel panelActions) {
 	new Panel(panelActions);
 	}
@@ -106,10 +97,4 @@ public class BusquedaWindow extends SimpleWindow<BusquedaViewModel> {
 			this.close();
 			dialog.open();
 	}
-		/*Alumno alumno = this.getModelObject().login();
-		Dialog<?> dialog = new MostrarAlumnoWindow(this, alumno);
-		dialog.open();
-		dialog.onAccept(() -> {});*/
-
-	
 }

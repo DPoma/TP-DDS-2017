@@ -42,9 +42,4 @@ public class RepositorioCuentas {
 		int iAnio2 = Integer.parseInt(anio2);
 		return cuentas.stream().filter(unaCuenta -> unaCuenta.getEmpresa().equals(empresa)).filter(unaCuenta -> unaCuenta.getAnio()>=iAnio1 && unaCuenta.getAnio()<=iAnio2 ).collect(Collectors.toList());
 	}
-	
-	public List<Cuenta> filtrarPorEmpresa(String empresa)
-	{
-		return cuentas.stream().filter(unaCuenta -> unaCuenta.getEmpresa().equals(empresa)).collect(Collectors.toList());
-	}
 }

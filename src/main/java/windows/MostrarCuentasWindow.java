@@ -3,14 +3,11 @@ package windows;
 import java.util.List;
 
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
-
 import model.Cuenta;
-import vm.CrearViewModel;
 import vm.MostrarCuentasViewModel;
 
 @SuppressWarnings("serial")

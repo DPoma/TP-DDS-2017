@@ -2,14 +2,10 @@ package windows;
 
 
 import vm.CrearViewModel;
-
-import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.TextBox;
-import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -21,7 +17,6 @@ public class CrearWindow extends SimpleWindow<CrearViewModel> {
 		super(parent, new CrearViewModel());
 	}
 	
-	//@Override
 	public void createFormPanel(Panel panelActions) {
 	new Panel(panelActions);
 	}

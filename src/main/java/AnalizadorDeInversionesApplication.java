@@ -15,6 +15,4 @@ public class AnalizadorDeInversionesApplication extends Application{
 		protected Window<?> createMainWindow() {
 			return new BusquedaWindow(this);
 		}
-			//Repositorios.repositorioCuentas.cargarCuentas("C:\\Users\\Diego\\Documents\\Git\\dds-tpa-clandestino\\src\\main\\java\\cuentas.csv");
-			//System.out.println(Repositorios.repositorioCuentas.filtrarPorEmpresa("Facebook"));
 }
