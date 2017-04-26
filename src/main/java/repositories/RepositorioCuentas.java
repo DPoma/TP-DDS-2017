@@ -11,7 +11,7 @@ import org.uqbar.commons.utils.Observable;
 import com.opencsv.CSVReader;
 
 import model.Cuenta;
-@Observable
+
 public class RepositorioCuentas {
 
 	private List<Cuenta> cuentas = new ArrayList<>();

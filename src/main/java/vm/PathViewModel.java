@@ -2,8 +2,11 @@ package vm;
 
 import java.io.IOException;
 
+import org.uqbar.commons.utils.Observable;
+
 import repositories.Repositorios;
 
+@Observable
 public class PathViewModel {
 	private String path = "";
 	
