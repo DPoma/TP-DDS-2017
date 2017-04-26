@@ -2,12 +2,13 @@ package vm;
 
 import repositories.Repositorios;
 import model.Cuenta;
-import model.Empresa;
+
 
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
 
+@Observable
 public class BusquedaViewModel {
 	private String empresa = "";
 	private String anio1 = "";

@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.uqbar.commons.utils.Observable;
+
 import com.opencsv.CSVReader;
 
 import model.Cuenta;
-
+@Observable
 public class RepositorioCuentas {
 
 	private List<Cuenta> cuentas = new ArrayList<>();
