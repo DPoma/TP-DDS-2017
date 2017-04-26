@@ -1,6 +1,8 @@
 package windows;
 
-import vm.PathViewModel;
+
+import vm.CrearViewModel;
+
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
@@ -10,11 +12,11 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 @SuppressWarnings("serial")
-public class PathWindow extends SimpleWindow<PathViewModel> {
+public class IndicadorWindow extends SimpleWindow<CrearViewModel> {
 	
 	
-	public PathWindow(WindowOwner parent) {
-		super(parent, new PathViewModel());
+	public IndicadorWindow(WindowOwner parent) {
+		super(parent, new CrearViewModel());
 	}
 	
 	public void createFormPanel(Panel panelActions) {
@@ -23,23 +25,23 @@ public class PathWindow extends SimpleWindow<PathViewModel> {
 	
 	@Override
 	public void createContents(Panel panelActions) {
-		this.setTitle("Cargar cuentas");
+		this.setTitle("Nuevo Indicador");
 		panelActions.setLayout(new VerticalLayout());
-		
-		new Label(panelActions).setText("			Ingrese la ruta del archivo			");
-		new TextBox(panelActions).bindValueToProperty("path");
-		
+		new Label(panelActions).setText("			Ingrese un indicador			");
+		new TextBox(panelActions);
 		new Button(panelActions)
 			.setCaption("Aceptar")
-			.onClick(this::aceptar);
+			
+			.onClick(this::crearNuevaMetodologia);
 		
 		new Label(panelActions).setText("");
+		
 	}
 	
 	protected void addActions(Panel actionsPanel) {}
 	
-	public void aceptar() {
-		this.getModelObject().cargarCuentas();
-		this.close();
+	public void crearNuevaMetodologia() {
+		  this.close();
 	}
+	
 }

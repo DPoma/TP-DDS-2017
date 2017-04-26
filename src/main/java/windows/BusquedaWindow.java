@@ -27,45 +27,34 @@ public class BusquedaWindow extends SimpleWindow<BusquedaViewModel> {
 	
 	@Override
 	public void createContents(Panel panelActions) {
-		this.setTitle("Analizador de Inversiones");
+		this.setTitle("Busqueda");
 		panelActions.setLayout(new VerticalLayout());
 
-		new Label(panelActions).setText("Nombre de empresa:                                                                          ");
+		new Label(panelActions).setText("		Nombre de empresa		");
 		new TextBox(panelActions).bindValueToProperty("empresa");
 		
-		new Label(panelActions).setText("");
 		
-		new Label(panelActions).setText("Periodo:                                  desde                                                    ");
+		new Label(panelActions).setText("		Año inicial		 ");
 		new TextBox(panelActions).bindValueToProperty("anio1");
-		new Label(panelActions).setText("             hasta            ");
+		new Label(panelActions).setText("		Año final		 ");
 		new TextBox(panelActions).bindValueToProperty("anio2");
 		
 		new Label(panelActions).setText("");
 		
-		new Label(panelActions).setText("             Indicadores añadidos a la busqueda:             ");
 		new Button(panelActions)
-		.setCaption("Ver")
+		.setCaption("Buscar")
+		.onClick(this::mostrarResultados);
+		
+		new Button(panelActions)
+		.setCaption("Ver indicadores")
+		.onClick(this::VerIndicadores);
+	
+		new Button(panelActions)
+		.setCaption("Ver grafico")
 		.onClick(this::VerIndicadores);
 		
 		new Label(panelActions).setText("");
 		
-		new Button(panelActions)
-			.setCaption("Buscar")
-			.onClick(this::mostrarResultados);
-		
-		new Label(panelActions).setText("");
-		
-		new Button(panelActions)
-			.setCaption("Ventana Analisis")
-			.onClick(this::ventanaAnalisis);
-		
-		new Button(panelActions)
-			.setCaption("Ventana Carga")
-			.onClick(this::ventanaCarga);
-		
-		new Button(panelActions)
-			.setCaption("Ventana Crear")
-			.onClick(this::ventanaCrear);
 	}
 	
 	protected void addActions(Panel actionsPanel) {}

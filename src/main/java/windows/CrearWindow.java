@@ -2,10 +2,12 @@ package windows;
 
 
 import vm.CrearViewModel;
+
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -23,49 +25,23 @@ public class CrearWindow extends SimpleWindow<CrearViewModel> {
 	
 	@Override
 	public void createContents(Panel panelActions) {
-		this.setTitle("Analizador de Inversiones");
+		this.setTitle("Nueva Metodologia");
 		panelActions.setLayout(new VerticalLayout());
-
+		new Label(panelActions).setText("		Ingrese una metodologia		");
+		new TextBox(panelActions);
 		new Button(panelActions)
-			.setCaption("Crear Nueva Metodologia")
+			.setCaption("Aceptar")
+			
 			.onClick(this::crearNuevaMetodologia);
 		
 		new Label(panelActions).setText("");
 		
-		new Button(panelActions)
-			.setCaption("Ventana Busqueda")
-			.onClick(this::ventanaBusqueda);
-		
-		new Button(panelActions)
-			.setCaption("Ventana Analisis")
-			.onClick(this::ventanaAnalisis);
-		
-		new Button(panelActions)
-			.setCaption("Ventana Carga")
-			.onClick(this::ventanaCarga);
 	}
 	
 	protected void addActions(Panel actionsPanel) {}
 	
 	public void crearNuevaMetodologia() {
-		  
+		  this.close();
 	}
 	
-	public void ventanaBusqueda() {
-		BusquedaWindow dialog = new BusquedaWindow(this);
-		this.close();
-		dialog.open();
-	}
-	
-	public void ventanaAnalisis() {
-		AnalisisWindow dialog = new AnalisisWindow(this);
-		this.close();
-		dialog.open();
-	}
-	
-	public void ventanaCarga() {
-		CargaWindow dialog = new CargaWindow(this);
-		this.close();
-		dialog.open();
-	}
 }

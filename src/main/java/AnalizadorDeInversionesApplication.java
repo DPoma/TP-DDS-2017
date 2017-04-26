@@ -1,8 +1,10 @@
 import java.io.IOException;
+
 import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
 
 import windows.BusquedaWindow;
+import windows.CargaWindow;
 import repositories.Repositorios;
 
 public class AnalizadorDeInversionesApplication extends Application{
@@ -13,6 +15,6 @@ public class AnalizadorDeInversionesApplication extends Application{
 		
 		@Override
 		protected Window<?> createMainWindow() {
-			return new BusquedaWindow(this);
+			return new CargaWindow(this);
 		}
 }

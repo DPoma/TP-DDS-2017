@@ -25,37 +25,30 @@ public class CargaWindow extends SimpleWindow<CargaViewModel> {
 	public void createContents(Panel panelActions) {
 		this.setTitle("Analizador de Inversiones");
 		panelActions.setLayout(new VerticalLayout());
-
+		
+		new Label(panelActions).setText("															");
+		
 		new Button(panelActions)
 			.setCaption("Cargar Cuentas")
 			.onClick(this::cargarCuentas);
-		
-		
-		new Label(panelActions).setText("");
 		
 		new Button(panelActions)
 			.setCaption("Cargar Indicadores")
 			.onClick(this::cargarIndicadores);
 		
-		new Label(panelActions).setText("");
-		
 		new Button(panelActions)
 			.setCaption("Cargar Metodologias")
-			.onClick(this::cargarMetodologias);
+			.onClick(this::ventanaCrear);
+		
+		new Button(panelActions)
+		.setCaption("Analizar por periodo")
+		.onClick(this::ventanaBusqueda);
+		
+		new Button(panelActions)
+		.setCaption("Analizar por metodologia")
+		.onClick(this::ventanaAnalisis);
 		
 		new Label(panelActions).setText("");
-		
-		new Button(panelActions)
-			.setCaption("Ventana Busqueda")
-			.onClick(this::ventanaBusqueda);
-		
-		new Button(panelActions)
-			.setCaption("Ventana Analisis")
-			.onClick(this::ventanaAnalisis);
-		
-		new Button(panelActions)
-			.setCaption("Ventana Crear")
-			.onClick(this::ventanaCrear);
 	}
 	
 	protected void addActions(Panel actionsPanel) {}
@@ -66,7 +59,8 @@ public class CargaWindow extends SimpleWindow<CargaViewModel> {
 	}
 	
 	public void cargarIndicadores() {
-		  
+		IndicadorWindow dialog = new IndicadorWindow(this);
+		dialog.open();
 	}
 	
 	public void cargarMetodologias() {
@@ -75,19 +69,16 @@ public class CargaWindow extends SimpleWindow<CargaViewModel> {
 	
 	public void ventanaBusqueda() {
 		BusquedaWindow dialog = new BusquedaWindow(this);
-		this.close();
 		dialog.open();
 	}
 	
 	public void ventanaAnalisis() {
 		AnalisisWindow dialog = new AnalisisWindow(this);
-		this.close();
 		dialog.open();
 	}
 	
 	public void ventanaCrear() {
 		CrearWindow dialog = new CrearWindow(this);
-		this.close();
 		dialog.open();
 }
 	
