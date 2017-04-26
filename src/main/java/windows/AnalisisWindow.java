@@ -24,7 +24,7 @@ public class AnalisisWindow extends SimpleWindow<AnalisisViewModel> {
 	
 	@Override
 	public void createContents(Panel panelActions) {
-		this.setTitle("Analizador de Inversiones");
+		this.setTitle("Analizar por metodologia");
 		panelActions.setLayout(new VerticalLayout());
 
 		new Label(panelActions).setText("Nombre de empresa:                                                                          ");
