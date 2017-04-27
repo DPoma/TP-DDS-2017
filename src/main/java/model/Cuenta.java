@@ -12,7 +12,7 @@ public class Cuenta {
 	
 	public Cuenta(String empresa, String nombre, int anio, double monto)
 	{
-		this.empresa = empresa;
+		this.empresa = empresa.toLowerCase();
 		this.nombre = nombre;
 		this.anio = anio;
 		this.monto = monto;

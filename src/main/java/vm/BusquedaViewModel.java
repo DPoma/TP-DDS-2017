@@ -15,7 +15,7 @@ public class BusquedaViewModel {
 	private String anio2 = "";
 
 	public List<Cuenta> consultaCuentas(){
-		List<Cuenta> ListaCuentas = Repositorios.repositorioCuentas.filtrarPorEmpresaPeriodo(empresa,anio1,anio2);		
+		List<Cuenta> ListaCuentas = Repositorios.repositorioCuentas.filtrarPorEmpresaPeriodo(empresa.toLowerCase(),anio1,anio2);		
 		return ListaCuentas;
 	}	
 	
