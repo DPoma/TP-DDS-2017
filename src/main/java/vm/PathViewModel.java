@@ -10,13 +10,8 @@ import repositories.Repositorios;
 public class PathViewModel {
 	private String path = "";
 	
-	public void cargarCuentas(){
-		try {
-			Repositorios.repositorioCuentas.cargarCuentas(path);
-		} catch (IOException e) {
-			System.out.println("Error al cargar el archivo");
-			e.printStackTrace();
-		}	
+	public void cargarCuentas() throws IOException{
+		Repositorios.repositorioCuentas.cargarCuentas(path);
 	}
 
 	public String getPath() {

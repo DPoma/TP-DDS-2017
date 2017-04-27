@@ -6,15 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.uqbar.commons.utils.Observable;
-
 import com.opencsv.CSVReader;
 
 import model.Cuenta;
 
 public class RepositorioCuentas {
 
-	private List<Cuenta> cuentas = new ArrayList<>();
+	private List<Cuenta> cuentas;
+	
+	public RepositorioCuentas()
+	{
+		this.cuentas = new ArrayList<Cuenta>();
+	}
 
 	public List<Cuenta> getCuentas() {
 		return cuentas;
@@ -25,23 +28,28 @@ public class RepositorioCuentas {
 		this.cuentas.add(unaCuenta);
 	}
 	
-	public void cargarCuentas(String path) throws IOException
+	public void eliminarCuenta(Cuenta unaCuenta)
 	{
-	     CSVReader reader = new CSVReader(new FileReader(path), ';');
-	     String [] linea;
-	     while ((linea = reader.readNext()) != null) {
-	    	int anio = Integer.parseInt(linea[2]);
-	    	double monto = Double.parseDouble(linea[3]);
-	        Cuenta unaCuenta = new Cuenta(linea[0], linea[1], anio, monto);
-	        this.agregarCuenta(unaCuenta);
-	     }
-	     reader.close();
+		this.cuentas.remove(unaCuenta);
 	}
 	
-	public List<Cuenta> filtrarPorEmpresaPeriodo(String empresa,String anio1, String anio2)
+	public void cargarCuentas(String path) throws IOException
 	{
-		int iAnio1 = Integer.parseInt(anio1);
-		int iAnio2 = Integer.parseInt(anio2);
-		return cuentas.stream().filter(unaCuenta -> unaCuenta.getEmpresa().equals(empresa)).filter(unaCuenta -> unaCuenta.getAnio()>=iAnio1 && unaCuenta.getAnio()<=iAnio2 ).collect(Collectors.toList());
+	    CSVReader reader = new CSVReader(new FileReader(path), ';');
+	    String [] linea;
+	    while ((linea = reader.readNext()) != null) {
+	       int anio = Integer.parseInt(linea[2]);
+	       Cuenta unaCuenta = new Cuenta(linea[0], linea[1], anio, linea[3]);
+	       this.agregarCuenta(unaCuenta);
+	       
+	    }
+	    reader.close();
+	}
+	
+	public List<Cuenta> filtrarPorEmpresaPeriodo(String empresa,String anioMin, String anioMax)
+	{
+		int unAnio = Integer.parseInt(anioMin);
+		int otroAnio = Integer.parseInt(anioMax);
+		return cuentas.stream().filter(unaCuenta -> unaCuenta.perteneceA(empresa, unAnio, otroAnio)).collect(Collectors.toList());
 	}
 }

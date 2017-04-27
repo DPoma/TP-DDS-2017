@@ -69,21 +69,5 @@ public class BusquedaWindow extends SimpleWindow<BusquedaViewModel> {
 		dialog.onAccept(() -> {});
 	}
 	
-	public void ventanaAnalisis() {
-		AnalisisWindow dialog = new AnalisisWindow(this);
-		this.close();
-		dialog.open();
-	}
-	
-	public void ventanaCarga() {
-		CargaWindow dialog = new CargaWindow(this);
-		this.close();
-		dialog.open();
-	}
-	
-	public void ventanaCrear() {
-			CrearWindow dialog = new CrearWindow(this);
-			this.close();
-			dialog.open();
-	}
+
 }

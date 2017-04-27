@@ -12,10 +12,10 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 @SuppressWarnings("serial")
-public class CrearWindow extends SimpleWindow<CrearViewModel> {
+public class MetodologiaWindow extends SimpleWindow<CrearViewModel> {
 	
 	
-	public CrearWindow(WindowOwner parent) {
+	public MetodologiaWindow(WindowOwner parent) {
 		super(parent, new CrearViewModel());
 	}
 	

@@ -4,7 +4,8 @@ import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
 
 import windows.BusquedaWindow;
-import windows.CargaWindow;
+import windows.PrincipalWindow;
+import windows.PathWindow;
 import repositories.Repositorios;
 
 public class AnalizadorDeInversionesApplication extends Application{
@@ -15,6 +16,6 @@ public class AnalizadorDeInversionesApplication extends Application{
 		
 		@Override
 		protected Window<?> createMainWindow() {
-			return new CargaWindow(this);
+			return new PathWindow(this);
 		}
 }
