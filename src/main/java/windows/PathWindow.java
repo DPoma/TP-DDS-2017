@@ -1,6 +1,9 @@
 package windows;
 
 import vm.PathViewModel;
+
+import java.io.IOException;
+
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
@@ -39,7 +42,19 @@ public class PathWindow extends SimpleWindow<PathViewModel> {
 	protected void addActions(Panel actionsPanel) {}
 	
 	public void aceptar() {
-		this.getModelObject().cargarCuentas();
-		this.close();
+		try {
+			this.getModelObject().cargarCuentas();
+			this.close();
+			PrincipalWindow dialog = new PrincipalWindow(this);
+			dialog.open();
+
+		}
+		catch(IOException e)
+		{
+			ErrorWindow dialog = new ErrorWindow(this);
+			dialog.open();
+		}
+		
+		
 	}
 }

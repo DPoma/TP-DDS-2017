@@ -10,10 +10,10 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 @SuppressWarnings("serial")
-public class CargaWindow extends SimpleWindow<CargaViewModel> {
+public class PrincipalWindow extends SimpleWindow<CargaViewModel> {
 	
 	
-	public CargaWindow(WindowOwner parent) {
+	public PrincipalWindow(WindowOwner parent) {
 		super(parent, new CargaViewModel());
 	}
 	
@@ -25,13 +25,8 @@ public class CargaWindow extends SimpleWindow<CargaViewModel> {
 	public void createContents(Panel panelActions) {
 		this.setTitle("Analizador de Inversiones");
 		panelActions.setLayout(new VerticalLayout());
-		
-		new Label(panelActions).setText("															");
-		
-		new Button(panelActions)
-			.setCaption("Cargar Cuentas")
-			.onClick(this::cargarCuentas);
-		
+		new Label(panelActions).setText("Menu Principal");
+			
 		new Button(panelActions)
 			.setCaption("Cargar Indicadores")
 			.onClick(this::cargarIndicadores);
@@ -53,11 +48,6 @@ public class CargaWindow extends SimpleWindow<CargaViewModel> {
 	
 	protected void addActions(Panel actionsPanel) {}
 	
-	public void cargarCuentas() {
-		PathWindow dialog = new PathWindow(this);
-		dialog.open();
-	}
-	
 	public void cargarIndicadores() {
 		IndicadorWindow dialog = new IndicadorWindow(this);
 		dialog.open();
@@ -78,7 +68,7 @@ public class CargaWindow extends SimpleWindow<CargaViewModel> {
 	}
 	
 	public void ventanaCrear() {
-		CrearWindow dialog = new CrearWindow(this);
+		MetodologiaWindow dialog = new MetodologiaWindow(this);
 		dialog.open();
 }
 	

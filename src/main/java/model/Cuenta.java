@@ -1,6 +1,9 @@
 package model;
 
+import java.math.BigDecimal;
+
 import org.uqbar.commons.utils.Observable;
+
 
 @Observable
 public class Cuenta {
@@ -8,14 +11,14 @@ public class Cuenta {
 	private String empresa;
 	private String nombre;
 	private int anio;
-	private double monto;
+	private BigDecimal monto;
 	
-	public Cuenta(String empresa, String nombre, int anio, double monto)
+	public Cuenta(String empresa, String nombre, int anio, String monto)
 	{
 		this.empresa = empresa;
 		this.nombre = nombre;
 		this.anio = anio;
-		this.monto = monto;
+		this.monto = new BigDecimal(monto);
 	}
 
 	@Override
@@ -35,9 +38,20 @@ public class Cuenta {
 		return anio;
 	}
 	
-	public double getMonto() {
+	public BigDecimal getMonto() {
 		return monto;
 	}
+	
+	private boolean periodoEntre(int anioMin, int anioMax)
+	{
+		return anio >= anioMin && anio <=anioMax;
+	}
+
+	public boolean perteneceA(String empresa, int anioMin, int anioMax)
+	{
+		return this.empresa.equals(empresa) && this.periodoEntre(anioMin, anioMax);
+	}
+	
 	
 	
 }
