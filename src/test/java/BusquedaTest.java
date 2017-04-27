@@ -22,7 +22,7 @@ public class BusquedaTest{
 	@Test
 	public void repositorioCuentasFiltraLasCuentas() {
 		
-		Assert.assertEquals(unaCuenta,Repositorios.repositorioCuentas.filtrarPorEmpresaPeriodo("Facebook","2013","2016").get(0));
+		Assert.assertEquals(unaCuenta,Repositorios.repositorioCuentas.filtrarPorEmpresaPeriodo("facebook","2013","2016").get(0));
 		
 	}
 	
