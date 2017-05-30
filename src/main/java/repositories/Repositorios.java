@@ -1,6 +1,11 @@
 package repositories;
 
+import java.util.List;
+
+import model.Empresa;
+
 public class Repositorios {
 
-	public static RepositorioCuentas repositorioCuentas = new RepositorioCuentas();
+	public static RepositorioEmpresas repositorioEmpresas = new RepositorioEmpresas();
+	
 }

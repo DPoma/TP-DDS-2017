@@ -8,14 +8,12 @@ import org.uqbar.commons.utils.Observable;
 @Observable
 public class Cuenta {
 
-	private String empresa;
 	private String nombre;
 	private int anio;
 	private BigDecimal monto;
 	
-	public Cuenta(String empresa, String nombre, int anio, String monto)
+	public Cuenta(String nombre, int anio, String monto)
 	{
-		this.empresa = empresa.toLowerCase();
 		this.nombre = nombre;
 		this.anio = anio;
 		this.monto = new BigDecimal(monto);
@@ -23,11 +21,7 @@ public class Cuenta {
 
 	@Override
 	public String toString() {
-		return "Cuenta [empresa=" + empresa + ", nombre=" + nombre + ", anio=" + anio + ", monto=" + monto + "]";
-	}
-
-	public String getEmpresa() {
-		return empresa;
+		return "Cuenta [nombre=" + nombre + ", anio=" + anio + ", monto=" + monto + "]";
 	}
 	
 	public String getNombre() {
@@ -42,14 +36,9 @@ public class Cuenta {
 		return monto;
 	}
 	
-	private boolean periodoEntre(int anioMin, int anioMax)
+	public boolean periodoEntre(int anioMin, int anioMax)
 	{
 		return anio >= anioMin && anio <=anioMax;
-	}
-
-	public boolean perteneceA(String empresa, int anioMin, int anioMax)
-	{
-		return this.empresa.equals(empresa) && this.periodoEntre(anioMin, anioMax);
 	}
 	
 	

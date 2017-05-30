@@ -1,17 +1,17 @@
 package vm;
 
 import java.io.IOException;
+import model.LectorCSV;
 
 import org.uqbar.commons.utils.Observable;
-
-import repositories.Repositorios;
 
 @Observable
 public class PathViewModel {
 	private String path = "";
 	
 	public void cargarCuentas() throws IOException{
-		Repositorios.repositorioCuentas.cargarCuentas(path);
+		LectorCSV lector= new LectorCSV();
+		lector.leerArchivoCuentas(path);
 	}
 
 	public String getPath() {

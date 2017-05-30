@@ -1,8 +1,9 @@
 package vm;
 
+import repositories.RepositorioEmpresas;
 import repositories.Repositorios;
 import model.Cuenta;
-
+import model.Empresa;
 
 import java.util.List;
 
@@ -15,8 +16,7 @@ public class BusquedaViewModel {
 	private String anio2 = "";
 
 	public List<Cuenta> consultaCuentas(){
-		List<Cuenta> ListaCuentas = Repositorios.repositorioCuentas.filtrarPorEmpresaPeriodo(empresa.toLowerCase(),anio1,anio2);		
-		return ListaCuentas;
+		return Repositorios.repositorioEmpresas.filtrarPorEmpresaPeriodo(empresa, anio1, anio2);
 	}	
 	
 	public String getEmpresa() {
