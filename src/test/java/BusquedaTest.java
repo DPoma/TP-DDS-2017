@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import repositories.Repositorios;
 import model.Cuenta;
+import model.Empresa;
 
 
 public class BusquedaTest{
@@ -13,24 +14,24 @@ public class BusquedaTest{
 	
 	@Before
 	public void init() {
-		unaCuenta = new Cuenta("Facebook","PDS",2015,"200000");
-		otraCuenta = new Cuenta("Facebook","PDS",2015,"200000");
-		Repositorios.repositorioCuentas.agregarCuenta(unaCuenta);
-		Repositorios.repositorioCuentas.agregarCuenta(otraCuenta);
+		unaCuenta = new Cuenta("PDS",2015,"200000");
+		otraCuenta = new Cuenta("PDS",2015,"200000");
+		Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook", unaCuenta);
+		Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook",otraCuenta);
 	}
 	
 	@Test
-	public void repositorioCuentasFiltraLasCuentas() {
+	public void repositorioCuentasFiltraLasEmpresas() {
 		
-		Assert.assertEquals(unaCuenta,Repositorios.repositorioCuentas.filtrarPorEmpresaPeriodo("facebook","2013","2016").get(0));
+		Assert.assertEquals(unaCuenta,Repositorios.repositorioEmpresas.filtrarPorEmpresaPeriodo("facebook","2013","2016").get(0));
 		
 	}
 	
 	@After
 	public void end()
 	{
-		Repositorios.repositorioCuentas.eliminarCuenta(unaCuenta);
-		Repositorios.repositorioCuentas.eliminarCuenta(otraCuenta);
+		Repositorios.repositorioEmpresas.eliminarEmpresa("Facebook");
+		Repositorios.repositorioEmpresas.eliminarEmpresa("Facebook");
 		
 	}
 	
