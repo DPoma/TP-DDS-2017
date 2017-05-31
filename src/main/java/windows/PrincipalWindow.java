@@ -49,7 +49,7 @@ public class PrincipalWindow extends SimpleWindow<CargaViewModel> {
 	protected void addActions(Panel actionsPanel) {}
 	
 	public void cargarIndicadores() {
-		IndicadorWindow dialog = new IndicadorWindow(this);
+		AgregarIndicadorWindow dialog = new AgregarIndicadorWindow(this);
 		dialog.open();
 	}
 	

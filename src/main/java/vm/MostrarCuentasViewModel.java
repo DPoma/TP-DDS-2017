@@ -6,28 +6,27 @@ import model.Cuenta;
 
 @Observable
 public class MostrarCuentasViewModel {
+	private String empresa;
 	private List<Cuenta> cuentas;
-	private List<String> empresas ;
 	private List<String> nombres ;
 	private List<Integer> anios ;
 	private List<Double> montos ;
 	private Cuenta cuentaSeleccionada;
 	
-	public MostrarCuentasViewModel(List<Cuenta> cuentas) {
+	public MostrarCuentasViewModel(List<Cuenta> cuentas, String empresa) {
 		this.cuentas = cuentas;
+		this.empresa = empresa;
 	}
 	
+	public String getEmpresa() {
+		return empresa;
+	}
+
 	public List<Cuenta> getCuentas() {
 		return cuentas;
 	}
 	public void setCuentas(List<Cuenta> cuentas) {
 		this.cuentas = cuentas;
-	}
-	public List<String> getEmpresa() {
-		return empresas;
-	}
-	public void setEmpresa(List<String> empresa) {
-		this.empresas = empresa;
 	}
 	public List<String> getNombre() {
 		return nombres;

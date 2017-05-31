@@ -1,6 +1,7 @@
 package windows;
 
 
+import vm.AgregarIndicadorViewModel;
 import vm.CrearViewModel;
 
 import org.uqbar.arena.layout.VerticalLayout;
@@ -12,11 +13,11 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 @SuppressWarnings("serial")
-public class IndicadorWindow extends SimpleWindow<CrearViewModel> {
+public class AgregarIndicadorWindow extends SimpleWindow<AgregarIndicadorViewModel> {
 	
 	
-	public IndicadorWindow(WindowOwner parent) {
-		super(parent, new CrearViewModel());
+	public AgregarIndicadorWindow(WindowOwner parent) {
+		super(parent, new AgregarIndicadorViewModel());
 	}
 	
 	public void createFormPanel(Panel panelActions) {
@@ -28,11 +29,14 @@ public class IndicadorWindow extends SimpleWindow<CrearViewModel> {
 		this.setTitle("Nuevo Indicador");
 		panelActions.setLayout(new VerticalLayout());
 		new Label(panelActions).setText("			Ingrese un indicador			");
-		new TextBox(panelActions);
+		new Label(panelActions).setText("			Ingrese el nombre			");
+		new TextBox(panelActions).bindValueToProperty("nombreIndicador");
+		new Label(panelActions).setText("			Ingrese la formula		");
+		new TextBox(panelActions).bindValueToProperty("formulaIndicador");
 		new Button(panelActions)
 			.setCaption("Aceptar")
 			
-			.onClick(this::crearNuevaMetodologia);
+			.onClick(this::crearIndicador);
 		
 		new Label(panelActions).setText("");
 		
@@ -40,8 +44,9 @@ public class IndicadorWindow extends SimpleWindow<CrearViewModel> {
 	
 	protected void addActions(Panel actionsPanel) {}
 	
-	public void crearNuevaMetodologia() {
-		  this.close();
+	public void crearIndicador() {
+		this.getModelObject().guardarIndicador();
+		this.close();
 	}
 	
 }

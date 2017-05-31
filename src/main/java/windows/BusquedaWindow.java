@@ -60,11 +60,12 @@ public class BusquedaWindow extends SimpleWindow<BusquedaViewModel> {
 	protected void addActions(Panel actionsPanel) {}
 	
 	public void VerIndicadores() {
-	 
+		Dialog <?> dialog = new VerIndicadoresWindow(this, this.getModelObject().getEmpresa());
+		dialog.open();
 	}
 	public void mostrarResultados() {
 		List<Cuenta> ListaCuentas = this.getModelObject().consultaCuentas();
-		Dialog<?> dialog = new MostrarCuentasWindow(this, ListaCuentas);
+		Dialog<?> dialog = new MostrarCuentasWindow(this, ListaCuentas, this.getModelObject().getEmpresa());
 		dialog.open();
 		dialog.onAccept(() -> {});
 	}
