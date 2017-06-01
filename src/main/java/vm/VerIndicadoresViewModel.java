@@ -1,8 +1,11 @@
 package vm;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
+
+
 
 import model.Empresa;
 import model.Indicador;
@@ -12,9 +15,24 @@ import repositories.Repositorios;
 public class VerIndicadoresViewModel {
 	
 	private List<Indicador> indicadores;
+	private BigDecimal resultado;
+	private Empresa empresa;
+	private String anio;
 	private Indicador indicadorSeleccionado;
-	public int getAnio() {
+	
+	public VerIndicadoresViewModel(Empresa unaEmpresa)
+	{
+		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
+		this.empresa = unaEmpresa;
+	}
+	
+	
+	public String getAnio() {
 		return anio;
+	}
+	
+	public void setAnio(String anio) {
+		this.anio = anio;
 	}
 
 	public void setIndicadorSeleccionado(Indicador indicadorSeleccionado) {
@@ -29,23 +47,13 @@ public class VerIndicadoresViewModel {
 		return indicadorSeleccionado;
 	}
 
-	public double getResultado() {
+	public BigDecimal getResultado() {
 		return resultado;
-	}
+	}		
 
-	private double resultado;
-	private String empresa;
-	private int anio;
-	
-	public VerIndicadoresViewModel(String unaEmpresa)
+	public void aplicarIndicador() throws NullPointerException
 	{
-		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
-		this.empresa = unaEmpresa;
-	}
-	
-	public void aplicarIndicador()
-	{
-		this.resultado = this.indicadorSeleccionado.monto(empresa, anio);
+		this.resultado = this.indicadorSeleccionado.calcularMonto(empresa, anio);
 	}
 
 }

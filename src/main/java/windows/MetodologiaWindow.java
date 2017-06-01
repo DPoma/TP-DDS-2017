@@ -1,7 +1,8 @@
 package windows;
 
 
-import vm.CrearViewModel;
+
+import vm.MetodologiaViewModel;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -12,11 +13,11 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 @SuppressWarnings("serial")
-public class MetodologiaWindow extends SimpleWindow<CrearViewModel> {
+public class MetodologiaWindow extends SimpleWindow<MetodologiaViewModel> {
 	
 	
 	public MetodologiaWindow(WindowOwner parent) {
-		super(parent, new CrearViewModel());
+		super(parent, new MetodologiaViewModel());
 	}
 	
 	public void createFormPanel(Panel panelActions) {

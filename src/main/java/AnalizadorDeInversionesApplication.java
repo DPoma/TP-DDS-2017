@@ -3,7 +3,7 @@ import java.io.IOException;
 import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
 
-import windows.BusquedaWindow;
+import windows.AnalisisEmpresaWindow;
 import windows.PrincipalWindow;
 import windows.PathWindow;
 import repositories.Repositorios;

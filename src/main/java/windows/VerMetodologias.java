@@ -1,7 +1,7 @@
 package windows;
 
 
-import vm.AnalisisViewModel;
+import vm.VerMetodologiasViewModel;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
@@ -11,11 +11,11 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 @SuppressWarnings("serial")
-public class AnalisisWindow extends SimpleWindow<AnalisisViewModel> {
+public class VerMetodologias extends SimpleWindow<VerMetodologiasViewModel> {
 	
 	
-	public AnalisisWindow(WindowOwner parent) {
-		super(parent, new AnalisisViewModel());
+	public VerMetodologias(WindowOwner parent) {
+		super(parent, new VerMetodologiasViewModel());
 	}
 	
 	public void createFormPanel(Panel panelActions) {

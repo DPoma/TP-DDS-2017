@@ -10,8 +10,8 @@ import vm.ErrorViewModel;
 
 public class ErrorWindow extends Dialog<ErrorViewModel>{
 
-	public ErrorWindow(WindowOwner parent) {
-		super(parent, new ErrorViewModel());
+	public ErrorWindow(WindowOwner parent, String texto) {
+		super(parent, new ErrorViewModel(texto));
 	}
 	
 	public void createFormPanel(Panel panelActions) {
@@ -22,7 +22,7 @@ public class ErrorWindow extends Dialog<ErrorViewModel>{
 	public void createContents(Panel panelActions) {
 		this.setTitle("Error");
 		panelActions.setLayout(new VerticalLayout());
-		new Label(panelActions).setText("Ruta incorrecta");
+		new Label(panelActions).bindValueToProperty("texto");
 		new Button(panelActions)
 		.setCaption("Aceptar")
 		.onClick(this::close);

@@ -1,20 +1,47 @@
 package model;
 
-public class Indicador {
+import java.io.FileNotFoundException;
+import java.math.BigDecimal;
+import java.util.List;
+
+import parserIndicador.ParsearIndicador;
+import repositories.Repositorios;
+
+public class Indicador implements OperandoDeIndicador {
 	private String nombre;
-	private String texto;
+	private String formula;
 	
-	public Indicador(String nombre, String texto)
+	public Indicador(String nombre, String formula)
 	{
 		this.nombre = nombre;
-		this.texto = texto;
+		this.formula = formula;
 	}
 	
-	public double monto(String unaEmpresa, int anio)
+	public BigDecimal calcularMonto(Empresa unaEmpresa, String anio)
 	{
-		return 0.0;
+		ParsearIndicador parser = new ParsearIndicador();
+		return parser.reducirIndicador(this.formula, unaEmpresa, anio);
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getFormula() {
+		return formula;
+	}
+	public void agregarARepositorio()
+	{
+		Repositorios.repositorioIndicadores.agregarIndicador(this);
+	}
+	
+	public void guardar()
+	{
+		this.agregarARepositorio();
+		FileHandler csv = new FileHandler();
+		csv.guardarIndicador("indicadores.csv", this);
+	}
+
 	@Override
 	public String toString()
 	{

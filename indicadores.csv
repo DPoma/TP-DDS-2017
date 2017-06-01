@@ -1,0 +1,3 @@
+ingresoNeto;ingresoNetoOperacionesContinuas+ingresoNetoOperacionesDiscontinuas
+ROIC;(ingresoNeto-dividendos)/capitalTotal
+IndicadorLoco;2*(EBITDA+2000)

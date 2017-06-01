@@ -1,7 +1,7 @@
 package vm;
 
 import java.io.IOException;
-import model.LectorCSV;
+import model.FileHandler;
 
 import org.uqbar.commons.utils.Observable;
 
@@ -10,8 +10,9 @@ public class PathViewModel {
 	private String path = "";
 	
 	public void cargarCuentas() throws IOException{
-		LectorCSV lector= new LectorCSV();
+		FileHandler lector= new FileHandler();
 		lector.leerArchivoCuentas(path);
+		lector.leerArchivoIndicadores("indicadores.csv");
 	}
 
 	public String getPath() {

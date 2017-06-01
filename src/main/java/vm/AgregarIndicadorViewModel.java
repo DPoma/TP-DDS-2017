@@ -1,8 +1,10 @@
 package vm;
 
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.uqbar.commons.utils.Observable;
 
 import model.Indicador;
+import parserIndicador.ParsearIndicador;
 import repositories.Repositorios;
 
 @Observable
@@ -26,9 +28,13 @@ public class AgregarIndicadorViewModel {
 		this.formulaIndicador = formulaIndicador;
 	}
 
-	public void guardarIndicador()
+	public void guardarIndicador() throws ParseCancellationException
 	{
+		ParsearIndicador parser = new ParsearIndicador();
+		if(formulaIndicador.contains(nombreIndicador))
+			throw new ParseCancellationException("Se llama a si mismo");
+		parser.generarArbol(formulaIndicador);
 		Indicador indicador = new Indicador(nombreIndicador, formulaIndicador);
-		Repositorios.repositorioIndicadores.agregarIndicador(indicador);
+		indicador.guardar();
 	}
 }

@@ -51,7 +51,7 @@ public class PathWindow extends SimpleWindow<PathViewModel> {
 		}
 		catch(IOException e)
 		{
-			ErrorWindow dialog = new ErrorWindow(this);
+			ErrorWindow dialog = new ErrorWindow(this, "Ruta incorrecta");
 			dialog.open();
 		}
 		

@@ -6,7 +6,7 @@ import org.uqbar.commons.utils.Observable;
 
 
 @Observable
-public class Cuenta {
+public class Cuenta implements OperandoDeIndicador{
 
 	private String nombre;
 	private int anio;
@@ -33,6 +33,11 @@ public class Cuenta {
 	}
 	
 	public BigDecimal getMonto() {
+		return monto;
+	}
+	
+	public BigDecimal calcularMonto(Empresa empresa, String anio)
+	{
 		return monto;
 	}
 	

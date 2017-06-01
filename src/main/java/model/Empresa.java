@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Empresa {
@@ -23,7 +24,7 @@ public class Empresa {
 		return this.nombre;
 	}
 	
-	public boolean nameEqualsCI(String compare){
+	public boolean equals(String compare){
 		return this.getNombre().toLowerCase().equals(compare.toLowerCase());
 	}
 	
@@ -31,7 +32,27 @@ public class Empresa {
 		return this.cuentas;
 	}
 	
-	public List<Cuenta> periodoEntre(int anio1, int anio2){
-		return this.cuentas.stream().filter(x->x.periodoEntre(anio1, anio2)).collect(Collectors.toList());
+	public List<Cuenta> periodoEntre(String anio1, String anio2) throws NumberFormatException {
+		int unAnio = Integer.parseInt(anio1);
+		int otroAnio = Integer.parseInt(anio2);
+		return this.cuentas.stream().filter(x->x.periodoEntre(unAnio, otroAnio)).collect(Collectors.toList());
+	}
+	
+	private Cuenta find(Predicate<? super Cuenta> criterio)
+	{
+		return this.cuentas.stream().filter(criterio).findFirst().get();
+	}
+	
+	public Cuenta encontrarCuenta(String nombre, String anio)
+	{
+		int anioNumerico = Integer.parseInt(anio);
+		return this.find(unaCuenta -> unaCuenta.getNombre().equals(nombre) && unaCuenta.getAnio() == anioNumerico);
+	}
+	
+	@Override
+	public String toString()
+	{
+		return this.nombre;
 	}
 }
+

@@ -3,7 +3,7 @@ package vm;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class AnalisisViewModel {
+public class VerMetodologiasViewModel {
 	private String empresa = "";
 	private String metodologia = "";
 

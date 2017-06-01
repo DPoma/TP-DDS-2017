@@ -2,13 +2,14 @@ package windows;
 
 
 import vm.AgregarIndicadorViewModel;
-import vm.CrearViewModel;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
+import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -28,10 +29,10 @@ public class AgregarIndicadorWindow extends SimpleWindow<AgregarIndicadorViewMod
 	public void createContents(Panel panelActions) {
 		this.setTitle("Nuevo Indicador");
 		panelActions.setLayout(new VerticalLayout());
-		new Label(panelActions).setText("			Ingrese un indicador			");
-		new Label(panelActions).setText("			Ingrese el nombre			");
+		new Label(panelActions).setText("Ingrese un indicador");
+		new Label(panelActions).setText("Ingrese el nombre");
 		new TextBox(panelActions).bindValueToProperty("nombreIndicador");
-		new Label(panelActions).setText("			Ingrese la formula		");
+		new Label(panelActions).setText("Ingrese la formula");
 		new TextBox(panelActions).bindValueToProperty("formulaIndicador");
 		new Button(panelActions)
 			.setCaption("Aceptar")
@@ -45,7 +46,17 @@ public class AgregarIndicadorWindow extends SimpleWindow<AgregarIndicadorViewMod
 	protected void addActions(Panel actionsPanel) {}
 	
 	public void crearIndicador() {
-		this.getModelObject().guardarIndicador();
+		try {
+			
+			this.getModelObject().guardarIndicador();
+		}
+		catch(ParseCancellationException e)
+		{
+			Dialog <?> dialog = new ErrorWindow(this, "Indicador Incorrecto");
+			dialog.open();
+		}
+		
+		
 		this.close();
 	}
 	

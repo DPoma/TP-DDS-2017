@@ -1,25 +1,33 @@
 package parserIndicador;
+import java.math.BigDecimal;
+
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
+import model.Empresa;
+
 public class ParsearIndicador {
-	public double reducirIndicador() {
+
+	public BigDecimal reducirIndicador(String formula, Empresa unaEmpresa, String anio) {
+		ParseTree tree = generarArbol(formula);
+		Visitador visitador = new Visitador(unaEmpresa, anio);
+		BigDecimal calculo = visitador.visit(tree);
+		return calculo;
 		
-		String query = "4/(10*(2+8))+";
-		CharStream input = CharStreams.fromString(query);
+	}
+	
+	
+	public ParseTree generarArbol(String formula)
+	{
+		CharStream input = CharStreams.fromString(formula);
 		IndicadorLexer lexer = new IndicadorLexer(input);
+		lexer.removeErrorListeners();
+		lexer.addErrorListener(new ParserErrorListener());
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		IndicadorParser parser = new IndicadorParser(tokens);
 		parser.removeErrorListeners();
 		parser.addErrorListener(new ParserErrorListener());
-		ParseTree tree = parser.indicador(); 
-		Visitador visitador = new Visitador();
-		Double calculo = visitador.visit(tree);
-		System.out.println(query + " = " + calculo.toString());
-		System.out.println(tree.toStringTree(parser)); 
-		return calculo;
-
-		
+		ParseTree tree = parser.indicador();
+		return tree;
 	}
-	
 }

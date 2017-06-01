@@ -26,7 +26,11 @@ public class PrincipalWindow extends SimpleWindow<CargaViewModel> {
 		this.setTitle("Analizador de Inversiones");
 		panelActions.setLayout(new VerticalLayout());
 		new Label(panelActions).setText("Menu Principal");
-			
+		
+		new Button(panelActions)
+		.setCaption("Cargar Cuentas")
+		.onClick(this::cargarCuentas); 
+		
 		new Button(panelActions)
 			.setCaption("Cargar Indicadores")
 			.onClick(this::cargarIndicadores);
@@ -36,12 +40,8 @@ public class PrincipalWindow extends SimpleWindow<CargaViewModel> {
 			.onClick(this::ventanaCrear);
 		
 		new Button(panelActions)
-		.setCaption("Analizar por periodo")
+		.setCaption("Analizar Empresas")
 		.onClick(this::ventanaBusqueda);
-		
-		new Button(panelActions)
-		.setCaption("Analizar por metodologia")
-		.onClick(this::ventanaAnalisis);
 		
 		new Label(panelActions).setText("");
 	}
@@ -57,13 +57,13 @@ public class PrincipalWindow extends SimpleWindow<CargaViewModel> {
 		  
 	}
 	
-	public void ventanaBusqueda() {
-		BusquedaWindow dialog = new BusquedaWindow(this);
+	public void cargarCuentas() {
+		PathWindow dialog = new PathWindow(this);
 		dialog.open();
 	}
 	
-	public void ventanaAnalisis() {
-		AnalisisWindow dialog = new AnalisisWindow(this);
+	public void ventanaBusqueda() {
+		AnalisisEmpresaWindow dialog = new AnalisisEmpresaWindow(this);
 		dialog.open();
 	}
 	
