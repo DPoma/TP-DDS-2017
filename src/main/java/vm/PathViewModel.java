@@ -32,6 +32,9 @@ public class PathViewModel {
 	
 	public void agregarMetodologiasPersonalizadas() {
 		Repositorios.repositorioMetodologiasPersonalizadas.agregarMetodologia((new Metodologia("mayorValor", "5")));
-		Repositorios.repositorioMetodologiasPersonalizadas.agregarMetodologia((new Metodologia("mayorPromedio", "6")));
+		Repositorios.repositorioMetodologiasPersonalizadas.agregarMetodologia((new Metodologia("menorValor", "6")));
+		Repositorios.repositorioMetodologiasPersonalizadas.agregarMetodologia((new Metodologia("valorPromedio", "7")));
+		Repositorios.repositorioMetodologiasPersonalizadas.agregarMetodologia((new Metodologia("valorCreciente", "7")));
+		Repositorios.repositorioMetodologiasPersonalizadas.agregarMetodologia((new Metodologia("valorDecreciente", "7")));
 	}
 }

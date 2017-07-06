@@ -100,6 +100,11 @@ public class VerMetodologiasViewModel {
 		empresasOrdenadas = Lists.reverse(empresas.stream().sorted((e1,e2)-> this.compararValoresIndicador(e1, e2, anio)).collect(Collectors.toList()));
 	}
 	
+	public void ordenarPorValorMenor(String anio) {
+		empresasOrdenadas = empresas.stream().sorted((e1,e2)-> this.compararValoresIndicador(e1, e2, anio)).collect(Collectors.toList());
+	}
+	
+	
 	
 	//------------------------REALIZAR CALCULO--------------------------------
 	
@@ -197,7 +202,7 @@ public class VerMetodologiasViewModel {
 		case "3": this.ordenarEmpresasPorMargen(); break;
 		case "4": this.ordenarEmpresasPorAntiguedad(); break;
 		case "5": this.ordenarPorValor(anioElegido); break;
-		//case "6": this.ordenarPorPromedio(anioElegido); break;
+		case "6": this.ordenarPorValorMenor(anioElegido); break;
 		}
 	}
 	
