@@ -63,5 +63,36 @@ public class FileHandler {
 		}
 	}
 	
+	
+	public void leerArchivoMetodologias(String path)
+	{
+		CSVReader reader;
+		try {
+			reader = this.leer(path);
+			String [] linea;
+			while ((linea = reader.readNext()) != null) {
+	        
+	        Metodologia unaMetodologia = new Metodologia(linea[0], linea[1]);
+	    	Repositorios.repositorioMetodologias.agregarMetodologia(unaMetodologia);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void guardarMetodologia(String path, Metodologia metodologia)
+	{
+		File archivo = new File(path);
+		PrintWriter escritor;
+		try {
+			escritor = new PrintWriter(new FileOutputStream(archivo, true));
+			escritor.append(metodologia.getNombre() + ";" + metodologia.getOperacion() + "\n");
+			escritor.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 }

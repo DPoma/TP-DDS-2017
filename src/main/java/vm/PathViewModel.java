@@ -13,6 +13,7 @@ public class PathViewModel {
 		FileHandler lector= new FileHandler();
 		lector.leerArchivoCuentas(path);
 		lector.leerArchivoIndicadores("indicadores.csv");
+		lector.leerArchivoMetodologias("metodologias.csv");
 	}
 
 	public String getPath() {

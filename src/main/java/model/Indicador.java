@@ -1,9 +1,7 @@
 package model;
 
-import java.io.FileNotFoundException;
 import java.math.BigDecimal;
-import java.util.List;
-
+import java.util.NoSuchElementException;
 import parserIndicador.ParsearIndicador;
 import repositories.Repositorios;
 
@@ -19,8 +17,14 @@ public class Indicador implements OperandoDeIndicador {
 	
 	public BigDecimal calcularMonto(Empresa unaEmpresa, String anio)
 	{
-		ParsearIndicador parser = new ParsearIndicador();
-		return parser.reducirIndicador(this.formula, unaEmpresa, anio);
+		try {
+			ParsearIndicador parser = new ParsearIndicador();
+			return parser.reducirIndicador(this.formula, unaEmpresa, anio);
+		}
+		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
+			return new BigDecimal(0);
+		}
+
 	}
 	
 	public String getNombre() {

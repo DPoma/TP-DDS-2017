@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class Empresa {
 
 	private String nombre;
@@ -30,6 +33,10 @@ public class Empresa {
 	
 	public List<Cuenta> getCuentas(){
 		return this.cuentas;
+	}
+	
+	public void setCuentas(List<Cuenta> unasCuentas) {
+		this.cuentas = unasCuentas;
 	}
 	
 	public List<Cuenta> periodoEntre(String anio1, String anio2) throws NumberFormatException {

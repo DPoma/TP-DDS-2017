@@ -40,7 +40,7 @@ public class VerIndicadoresWindow extends Dialog<VerIndicadoresViewModel> {
 		selector.allowNull(false);
 		selector.bindValueToProperty("indicadorSeleccionado");
 		selector.bindItemsToProperty("indicadores");
-		new Label(panelActions).setText("Seleccionar año");		
+		new Label(panelActions).setText("Seleccionar anio");		
 		new TextBox(panelActions).bindValueToProperty("anio");
 		new Label(panelActions).setText("Resultado del indicador: ");
 		new Label(panelActions).bindValueToProperty("resultado");

@@ -3,6 +3,7 @@ package parserIndicador;
 
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.NoSuchElementException;
 
 import model.Cuenta;
@@ -44,7 +45,7 @@ public class Visitador extends IndicadorBaseVisitor<BigDecimal>{
 			operando = Repositorios.repositorioIndicadores.find(unIndicador -> unIndicador.getNombre().equals(ctx.getText()));
 			
 		}
-		System.out.println(operando);
+		//System.out.println(operando);
 		return operando.calcularMonto(this.empresa, this.anio);
 		}
 	/**
@@ -59,7 +60,7 @@ public class Visitador extends IndicadorBaseVisitor<BigDecimal>{
 	     String op = ctx.op.getText();
 	     switch (op.charAt(0)) {
 	     	case '*': return left.multiply(right);
-	        case '/': return left.divide(right);
+	        case '/': return left.divide(right, 2, RoundingMode.HALF_UP);
 	        case '+': return left.add(right);
 	        case '-': return left.subtract(right);
 	        default: throw new IllegalArgumentException("Operador desconocido " + op);
