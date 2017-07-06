@@ -2,6 +2,7 @@ package model;
 
 import java.math.BigDecimal;
 import java.util.NoSuchElementException;
+
 import parserIndicador.ParsearIndicador;
 import repositories.Repositorios;
 
@@ -22,6 +23,9 @@ public class Indicador implements OperandoDeIndicador {
 			return parser.reducirIndicador(this.formula, unaEmpresa, anio);
 		}
 		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
+			return new BigDecimal(0);
+		}
+		catch(ArithmeticException ae) {
 			return new BigDecimal(0);
 		}
 

@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.ibm.icu.math.BigDecimal;
 import com.opencsv.CSVReader;
 
 import repositories.Repositorios;
@@ -87,7 +86,7 @@ public class FileHandler {
 		PrintWriter escritor;
 		try {
 			escritor = new PrintWriter(new FileOutputStream(archivo, true));
-			escritor.append(metodologia.getNombre() + ";" + metodologia.getOperacion() + "\n");
+			escritor.append(metodologia.getNombre() + ";" + metodologia.getOperacion()  + "\n");
 			escritor.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

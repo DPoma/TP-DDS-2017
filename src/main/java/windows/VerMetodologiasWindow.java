@@ -10,6 +10,7 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Dialog;
@@ -42,6 +43,9 @@ public class VerMetodologiasWindow extends SimpleWindow<VerMetodologiasViewModel
 		selector.allowNull(false);
 		selector.bindValueToProperty("metodologiaSeleccionada");
 		selector.bindItemsToProperty("metodologias");
+		new Label(panelActions).setText("Elegir un anio");
+		new TextBox(panelActions).bindValueToProperty("anioElegido");
+		
 		new Button(panelActions)
 		.setCaption("Aplicar Metodologia")
 		.onClick(this::aplicarMetodologia);		

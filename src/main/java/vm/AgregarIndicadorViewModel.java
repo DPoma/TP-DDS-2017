@@ -5,7 +5,6 @@ import org.uqbar.commons.utils.Observable;
 
 import model.Indicador;
 import parserIndicador.ParsearIndicador;
-import repositories.Repositorios;
 
 @Observable
 public class AgregarIndicadorViewModel {

@@ -2,7 +2,6 @@ package vm;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import org.uqbar.commons.utils.Observable;
@@ -22,6 +21,7 @@ public class VerMetodologiasViewModel {
 	private List<Indicador> indicadores;
 	private List<Empresa> empresas;
 	private List<Empresa> empresasOrdenadas;
+	private String anioElegido;
 	
 	public VerMetodologiasViewModel()
 	{
@@ -67,6 +67,10 @@ public class VerMetodologiasViewModel {
 		return this.margenUltimosAnios(unaEmpresa).compareTo(this.margenUltimosAnios(otraEmpresa));
 	}
 	
+	public int compararValoresIndicador(Empresa unaEmpresa, Empresa otraEmpresa, String anio) {
+		return this.valorDeUnIndicador(unaEmpresa, anio).compareTo(this.valorDeUnIndicador(otraEmpresa, anio));
+	}
+	
 	
 	//------------------------ORDENAR LISTAS--------------------------------
 	
@@ -92,22 +96,18 @@ public class VerMetodologiasViewModel {
 		empresasOrdenadas = empresas.stream().filter(e-> this.esAntigua(e)).collect(Collectors.toList());
 	}
 	
+	public void ordenarPorValor(String anio) {
+		empresasOrdenadas = Lists.reverse(empresas.stream().sorted((e1,e2)-> this.compararValoresIndicador(e1, e2, anio)).collect(Collectors.toList()));
+	}
+	
 	
 	//------------------------REALIZAR CALCULO--------------------------------
 	
 	
 	public BigDecimal realizarCalculo(Empresa unaEmpresa, String anio, int indicador) {
-		
-		try {
 			return this.indicadores.get(indicador).calcularMonto(unaEmpresa, anio);
 		}
-		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
-			return new BigDecimal(0);
-		}
-		catch(ArithmeticException ae) {
-			return new BigDecimal(0);
-		}
-	}
+
 	
 	public BigDecimal obtenerROIC(Empresa unaEmpresa, String anio) {
 		return this.realizarCalculo(unaEmpresa, anio, 1);
@@ -121,9 +121,16 @@ public class VerMetodologiasViewModel {
 		return this.realizarCalculo(unaEmpresa, anio, 3);
 	}
 	
+	public BigDecimal valorDeUnIndicador(Empresa unaEmpresa, String anio) {
+		BigDecimal bd = this.metodologiaSeleccionada.getIndicador().calcularMonto(unaEmpresa, anio);
+		System.out.println(unaEmpresa.getNombre() + ": " + bd);
+		return bd ;
+	}
+	
 	public boolean esAntigua(Empresa unaEmpresa) {
 		return unaEmpresa.getCuentas().stream().anyMatch(c-> c.getAnio() <= 2007);
 	}
+	
 	
 	
 	//------------------------SUMAR ULTIMOS ANIOS--------------------------------
@@ -189,14 +196,24 @@ public class VerMetodologiasViewModel {
 		case "2": this.ordenarEmpresasPorProporcionDeuda(); break;
 		case "3": this.ordenarEmpresasPorMargen(); break;
 		case "4": this.ordenarEmpresasPorAntiguedad(); break;
-		//case "5": this.ordenarPorValor(); break;
-		//case "6" this.ordenarPorPromedio(); break;
+		case "5": this.ordenarPorValor(anioElegido); break;
+		//case "6": this.ordenarPorPromedio(anioElegido); break;
 		}
 	}
 	
 	public void aplicarMetodologia() throws NullPointerException
 	{
 		this.aplicar();
+	}
+
+
+	public String getAnioElegido() {
+		return anioElegido;
+	}
+
+
+	public void setAnioElegido(String anioElegido) {
+		this.anioElegido = anioElegido;
 	}
 	
 }
