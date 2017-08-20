@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import model.Empresa;
-import model.Metodologia;;
+import model.Metodologia;
+import model.NuevaMetodologia;;
 
 public class RepositorioMetodologias{
 

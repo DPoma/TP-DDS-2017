@@ -91,6 +91,36 @@ public class FileHandler {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}	
+	
+	public void leerArchivoNuevasMetodologias(String path)
+	{
+		CSVReader reader;
+		try {
+			reader = this.leer(path);
+			String [] linea;
+			while ((linea = reader.readNext()) != null) {
+	        
+	        NuevaMetodologia unaMetodologia = new NuevaMetodologia(linea[0], linea[1]);
+	    	Repositorios.repositorioNuevasMetodologias.agregarMetodologia(unaMetodologia);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void guardarNuevasMetodologia(String path, NuevaMetodologia nuevaMetodologia)
+	{
+		File archivo = new File(path);
+		PrintWriter escritor;
+		try {
+			escritor = new PrintWriter(new FileOutputStream(archivo, true));
+			escritor.append(nuevaMetodologia.getNombre() + ";" + nuevaMetodologia.getOperacion()  + "\n");
+			escritor.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 

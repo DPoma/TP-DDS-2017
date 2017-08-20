@@ -26,14 +26,14 @@ public String getNombre() {
 
 public void agregarARepositorio()
 {
-	Repositorios.repositorioMetodologias.agregarMetodologia(this);
+	Repositorios.repositorioNuevasMetodologias.agregarMetodologia(this);
 }
 
 public void guardar()
 {
 	this.agregarARepositorio();
 	FileHandler csv = new FileHandler();
-	csv.guardarMetodologia("metodologias.csv", this);
+	csv.guardarNuevasMetodologia("metodologias.csv", this);
 }
 
 @Override
@@ -69,8 +69,9 @@ public void addCondicion(Condicion condicion){
 	this.condiciones.add(condicion);
 }
 
-public boolean aplicarMetodologia(){
-	
+public List<Empresa> aplicarMetodologia( List<Empresa> e){
+	this.condiciones.forEach(x ->e.sort(x.esMejor(e.get(0), e.get(1))));
+	return e;
 }
 
 }

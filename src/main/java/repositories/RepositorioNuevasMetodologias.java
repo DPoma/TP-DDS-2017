@@ -6,11 +6,11 @@ import java.util.function.Predicate;
 import model.Empresa;
 import model.NuevaMetodologia;
 
-public class RepositorioNuevasMetodogias {
+public class RepositorioNuevasMetodologias {
 
 	private List<NuevaMetodologia> metodologias;
 	
-	public RepositorioNuevasMetodogias() {
+	public RepositorioNuevasMetodologias() {
 		this.metodologias = new ArrayList<NuevaMetodologia>();
 		
 	}
