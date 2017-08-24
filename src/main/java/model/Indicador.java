@@ -1,6 +1,7 @@
 package model;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import parserIndicador.ParsearIndicador;
@@ -29,6 +30,18 @@ public class Indicador implements OperandoDeIndicador {
 			return new BigDecimal(0);
 		}
 
+	}
+	
+	public boolean montoCumpleOperacionEnPeriodo(OperacionIndicador operacion, Empresa unaEmpresa, BigDecimal valor, List<String> anios)
+	{
+		// TODO
+		return true;
+	}
+	
+	public boolean sigueTendencia(OperacionIndicador operacion, List<String> anios)
+	{
+		// TODO
+		return true;
 	}
 	
 	public String getNombre() {

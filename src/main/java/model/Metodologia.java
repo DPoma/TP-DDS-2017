@@ -9,7 +9,6 @@ public class Metodologia {
 	
 	private String nombre;
 	private String operacion;
-	private Indicador indicador;
 	
 	public Metodologia(String nombre, String operacion)
 	{
@@ -50,17 +49,6 @@ public class Metodologia {
 		this.operacion = operacion;
 	}
 
-
-	public Indicador getIndicador() {
-		return indicador;
-	}
-
-
-	public void setIndicador(Indicador indicador) {
-		this.indicador = indicador;
-	}
-
-	
 
 
 }

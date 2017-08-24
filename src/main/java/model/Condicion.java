@@ -1,12 +1,23 @@
 package model;
 
 import java.util.Comparator;
+import java.util.List;
 
-//este diseño se queda corto con el tema de taxativas vs por prioridad vs combinacion de ambas
-//lo veo después con diego porque me quede sin tiempo
 
-public interface Condicion {
+public abstract class Condicion {
 	
-	public Comparator<? super Empresa> esMejor(Empresa a, Empresa b);
-
+	protected Indicador indicador;
+	protected OperacionIndicador operacion;
+	
+	public void evaluarEmpresas(List<Empresa> empresas)
+	{
+		// TO DO
+	}
+	
+	public abstract void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa);
+	
+	public Indicador getIndicador()
+	{
+		return indicador;
+	}
 }

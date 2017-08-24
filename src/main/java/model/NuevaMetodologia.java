@@ -69,9 +69,9 @@ public void addCondicion(Condicion condicion){
 	this.condiciones.add(condicion);
 }
 
-public List<Empresa> aplicarMetodologia( List<Empresa> e){
-	this.condiciones.forEach(x ->e.sort(x.esMejor(e.get(0), e.get(1))));
-	return e;
+public List<Empresa> aplicarMetodologia( List<Empresa> empresas){
+	this.condiciones.forEach(unaCondicion -> unaCondicion.evaluarEmpresas(empresas));
+	return empresas;
 }
 
 }

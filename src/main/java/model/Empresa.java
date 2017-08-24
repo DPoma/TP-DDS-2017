@@ -12,6 +12,7 @@ public class Empresa {
 
 	private String nombre;
 	private List<Cuenta> cuentas;
+	private int puntuacion;
 	
 	public Empresa(String empresa, Cuenta cuenta){
 		this.nombre= empresa;
@@ -54,6 +55,16 @@ public class Empresa {
 	{
 		int anioNumerico = Integer.parseInt(anio);
 		return this.find(unaCuenta -> unaCuenta.getNombre().equals(nombre) && unaCuenta.getAnio() == anioNumerico);
+	}
+	
+	public void aumentarPuntuacion()
+	{
+		puntuacion++;
+	}
+	
+	public int getPuntacion()
+	{
+		return puntuacion;
 	}
 	
 	@Override

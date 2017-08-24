@@ -67,10 +67,10 @@ public class VerMetodologiasViewModel {
 		return this.margenUltimosAnios(unaEmpresa).compareTo(this.margenUltimosAnios(otraEmpresa));
 	}
 	
-	public int compararValoresIndicador(Empresa unaEmpresa, Empresa otraEmpresa, String anio) {
+/*	public int compararValoresIndicador(Empresa unaEmpresa, Empresa otraEmpresa, String anio) {
 		return this.valorDeUnIndicador(unaEmpresa, anio).compareTo(this.valorDeUnIndicador(otraEmpresa, anio));
 	}
-	
+	*/
 	
 	//------------------------ORDENAR LISTAS--------------------------------
 	
@@ -96,13 +96,13 @@ public class VerMetodologiasViewModel {
 		empresasOrdenadas = empresas.stream().filter(e-> this.esAntigua(e)).collect(Collectors.toList());
 	}
 	
-	public void ordenarPorValor(String anio) {
+/*	public void ordenarPorValor(String anio) {
 		empresasOrdenadas = Lists.reverse(empresas.stream().sorted((e1,e2)-> this.compararValoresIndicador(e1, e2, anio)).collect(Collectors.toList()));
 	}
 	
 	public void ordenarPorValorMenor(String anio) {
 		empresasOrdenadas = empresas.stream().sorted((e1,e2)-> this.compararValoresIndicador(e1, e2, anio)).collect(Collectors.toList());
-	}
+	}*/
 	
 	
 	
@@ -126,11 +126,11 @@ public class VerMetodologiasViewModel {
 		return this.realizarCalculo(unaEmpresa, anio, 3);
 	}
 	
-	public BigDecimal valorDeUnIndicador(Empresa unaEmpresa, String anio) {
-		BigDecimal bd = this.metodologiaSeleccionada.getIndicador().calcularMonto(unaEmpresa, anio);
+/*	public BigDecimal valorDeUnIndicador(Empresa unaEmpresa, String anio) {
+	//	BigDecimal bd = this.metodologiaSeleccionada.getIndicador().calcularMonto(unaEmpresa, anio);
 		System.out.println(unaEmpresa.getNombre() + ": " + bd);
-		return bd ;
-	}
+	//	return bd ;
+	}*/
 	
 	public boolean esAntigua(Empresa unaEmpresa) {
 		return unaEmpresa.getCuentas().stream().anyMatch(c-> c.getAnio() <= 2007);
@@ -201,8 +201,8 @@ public class VerMetodologiasViewModel {
 		case "2": this.ordenarEmpresasPorProporcionDeuda(); break;
 		case "3": this.ordenarEmpresasPorMargen(); break;
 		case "4": this.ordenarEmpresasPorAntiguedad(); break;
-		case "5": this.ordenarPorValor(anioElegido); break;
-		case "6": this.ordenarPorValorMenor(anioElegido); break;
+	/*	case "5": this.ordenarPorValor(anioElegido); break;
+		case "6": this.ordenarPorValorMenor(anioElegido); break;*/
 		}
 	}
 	
