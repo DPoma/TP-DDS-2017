@@ -93,24 +93,8 @@ public class FileHandler {
 		}
 	}	
 	
-	public void leerArchivoNuevasMetodologias(String path)
-	{
-		CSVReader reader;
-		try {
-			reader = this.leer(path);
-			String [] linea;
-			while ((linea = reader.readNext()) != null) {
-	        
-	        NuevaMetodologia unaMetodologia = new NuevaMetodologia(linea[0], linea[1]);
-	    	Repositorios.repositorioNuevasMetodologias.agregarMetodologia(unaMetodologia);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
-	public void guardarNuevasMetodologia(String path, NuevaMetodologia nuevaMetodologia)
+	public void guardarNuevasMetodologia(String path, Metodologia nuevaMetodologia)
 	{
 		File archivo = new File(path);
 		PrintWriter escritor;

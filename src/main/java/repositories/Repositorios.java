@@ -10,5 +10,5 @@ public class Repositorios {
 	public static RepositorioIndicadores repositorioIndicadores = new RepositorioIndicadores();
 	public static RepositorioMetodologias repositorioMetodologias = new RepositorioMetodologias();
 	public static RepositorioMetodologias repositorioMetodologiasPersonalizadas = new RepositorioMetodologias();
-	public static RepositorioNuevasMetodologias repositorioNuevasMetodologias = new RepositorioNuevasMetodologias();
+
 }

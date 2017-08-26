@@ -3,6 +3,8 @@ package model;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import parserIndicador.ParsearIndicador;
 import repositories.Repositorios;
@@ -34,7 +36,8 @@ public class Indicador implements OperandoDeIndicador {
 	
 	public boolean montoCumpleOperacionEnPeriodo(OperacionIndicador operacion, Empresa unaEmpresa, BigDecimal valor, List<String> anios)
 	{
-		// TODO
+		Stream<Boolean> resultados = anios.stream().map(unAnio -> operacion.operar(this.calcularMonto(unaEmpresa, unAnio), valor));
+		resultados.allMatch(unBool -> unBool.booleanValue() == true);
 		return true;
 	}
 	

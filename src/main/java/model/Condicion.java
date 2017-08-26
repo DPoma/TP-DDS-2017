@@ -2,6 +2,7 @@ package model;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 
 public abstract class Condicion {
@@ -11,7 +12,10 @@ public abstract class Condicion {
 	
 	public void evaluarEmpresas(List<Empresa> empresas)
 	{
-		// TO DO
+		IntStream.range(0, empresas.size() - 1)
+		.filter(i -> i % 2 == 0)
+		.forEach(i -> this.compararEmpresas(empresas.get(i), empresas.get(i+1)));
+		
 	}
 	
 	public abstract void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa);
