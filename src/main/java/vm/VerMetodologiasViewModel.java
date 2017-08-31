@@ -196,14 +196,8 @@ public class VerMetodologiasViewModel {
 	//------------------------APLICACION METODOLOGIA--------------------------------
 
 	public void aplicar() {
-		switch(metodologiaSeleccionada.getOperacion()) {
-		case "1": this.ordenarEmpresasPorROIC(); break;
-		case "2": this.ordenarEmpresasPorProporcionDeuda(); break;
-		case "3": this.ordenarEmpresasPorMargen(); break;
-		case "4": this.ordenarEmpresasPorAntiguedad(); break;
-	/*	case "5": this.ordenarPorValor(anioElegido); break;
-		case "6": this.ordenarPorValorMenor(anioElegido); break;*/
-		}
+
+
 	}
 	
 	public void aplicarMetodologia() throws NullPointerException

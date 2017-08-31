@@ -18,6 +18,8 @@ public class CondicionTipo2 extends Condicion {
 		BigDecimal otroMonto = indicador.calcularMonto(otraEmpresa, anio);
 		if(operacion.operar(unMonto, otroMonto))
 			unaEmpresa.aumentarPuntuacion();
+		else
+			otraEmpresa.aumentarPuntuacion();
 	}
 	
 	

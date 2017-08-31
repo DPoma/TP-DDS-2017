@@ -13,6 +13,8 @@ public class CondicionTipo3 extends Condicion {
 		BigDecimal total = operacion.calcular(indicador, unaEmpresa);
 		if(operacionIndicador.operar(total, valor))
 			unaEmpresa.aumentarPuntuacion();
+		else
+			otraEmpresa.aumentarPuntuacion();
 			
 		
 	}

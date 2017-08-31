@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import parserIndicador.ParsearIndicador;
@@ -34,16 +35,18 @@ public class Indicador implements OperandoDeIndicador {
 
 	}
 	
-	public boolean montoCumpleOperacionEnPeriodo(OperacionIndicador operacion, Empresa unaEmpresa, BigDecimal valor, List<String> anios)
+	public boolean montoCumpleOperacionEnPeriodo(OperacionIndicador operacion, Empresa unaEmpresa, Empresa otraEmpresa, List<String> anios)
 	{
-		Stream<Boolean> resultados = anios.stream().map(unAnio -> operacion.operar(this.calcularMonto(unaEmpresa, unAnio), valor));
+		Stream<Boolean> resultados = anios.stream().map(unAnio -> operacion.operar(this.calcularMonto(unaEmpresa, unAnio), this.calcularMonto(otraEmpresa, unAnio)));
 		resultados.allMatch(unBool -> unBool.booleanValue() == true);
 		return true;
 	}
 	
-	public boolean sigueTendencia(OperacionIndicador operacion, List<String> anios)
+	public boolean sigueTendencia(OperacionIndicador operacion, Empresa unaEmpresa, List<String> anios)
 	{
-		// TODO
+		IntStream.range(0, anios.size() - 1)
+		.filter(i -> i % 2 == 0)
+		.allMatch(i -> operacion.operar(this.calcularMonto(unaEmpresa, anios.get(i)), this.calcularMonto(unaEmpresa, anios.get(i+1))));
 		return true;
 	}
 	

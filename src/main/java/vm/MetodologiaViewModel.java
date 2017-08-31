@@ -55,9 +55,8 @@ public class MetodologiaViewModel {
 	
 	
 	public void crearMetodologia() {
-		Metodologia metodologia = new Metodologia(this.nombreNuevaMetodologia, this.metodologiaSeleccionada.getOperacion());
-	//	metodologia.setIndicador(indicadorSeleccionado);
-		metodologia.guardar();
+
+
 	}
 
 

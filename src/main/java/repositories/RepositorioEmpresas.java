@@ -43,6 +43,11 @@ public class RepositorioEmpresas {
 		return empresas.stream().anyMatch(x->x.getNombre().equals(empresa));
 	}
 	
+	public void borrarTodo()
+	{
+		empresas.clear();
+	}
+	
 /*	public List<Cuenta> filtrarPorEmpresaPeriodo(String empresa, String anioMin, String anioMax){
 		Empresa e= this.empresas.stream().filter(x->x.nameEqualsCI(empresa)).findFirst().get();
 		return e.periodoEntre(anioMin, anioMax);

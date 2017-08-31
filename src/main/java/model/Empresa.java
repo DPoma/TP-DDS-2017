@@ -13,11 +13,22 @@ public class Empresa {
 	private String nombre;
 	private List<Cuenta> cuentas;
 	private int puntuacion;
+	private int anioFundacion;
 	
+
+
+	public void setAnioFundacion(int anioFundacion) {
+		this.anioFundacion = anioFundacion;
+	}
+
 	public Empresa(String empresa, Cuenta cuenta){
 		this.nombre= empresa;
 		this.cuentas= new ArrayList<Cuenta>();
 		agregarCuenta(cuenta);
+	}
+	
+	public int getAnioFundacion() {
+		return anioFundacion;
 	}
 	
 	public void agregarCuenta(Cuenta cuenta){

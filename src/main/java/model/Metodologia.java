@@ -11,14 +11,12 @@ import repositories.Repositorios;
 public class Metodologia {
 
 private String nombre;
-private String operacion;
-private Indicador indicador;
 private List<Condicion> condiciones;
 
-public Metodologia(String nombre, String operacion)
+public Metodologia(String nombre, List<Condicion> condiciones)
 {
 	this.nombre = nombre;
-	this.operacion = operacion;
+	this.condiciones = condiciones;
 }
 
 
@@ -31,12 +29,7 @@ public void agregarARepositorio()
 	Repositorios.repositorioMetodologias.agregarMetodologia(this);
 }
 
-public void guardar()
-{
-	this.agregarARepositorio();
-	FileHandler csv = new FileHandler();
-	csv.guardarNuevasMetodologia("metodologias.csv", this);
-}
+
 
 @Override
 public String toString()
@@ -44,24 +37,6 @@ public String toString()
 	return this.nombre;
 }
 
-
-public String getOperacion() {
-	return operacion;
-}
-
-
-public void setOperacion(String operacion) {
-	this.operacion = operacion;
-}
-
-
-public Indicador getIndicador() {
-	return indicador;
-}
-
-public void setIndicador(Indicador indicador) {
-	this.indicador = indicador;
-}
 
 public List<Condicion> getCondicion(){
 	return this.condiciones;
@@ -73,7 +48,8 @@ public void addCondicion(Condicion condicion){
 
 public List<Empresa> aplicarMetodologia( List<Empresa> empresas){
 	this.condiciones.forEach(unaCondicion -> unaCondicion.evaluarEmpresas(empresas));
-	empresas.sort(Comparator.comparingInt(Empresa::getPuntacion)); 
+	empresas.sort(Comparator.comparingInt(Empresa::getPuntacion));
+	Collections.reverse(empresas);
 	return empresas;
 }
 
