@@ -75,8 +75,13 @@ public class Empresa {
 	
 	public int getPuntacion()
 	{
-		return puntuacion;
+		return this.puntuacion;
 	}
+	
+	public void setPuntacion(int  puntuacion) {
+		this. puntuacion =  puntuacion;
+	}
+	
 	
 	@Override
 	public String toString()

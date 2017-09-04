@@ -1,6 +1,7 @@
 package vm;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,8 +10,13 @@ import org.uqbar.commons.utils.Observable;
 import com.google.common.collect.Lists;
 
 import repositories.Repositorios;
+import model.Condicion;
+import model.CondicionTipo1;
+import model.CondicionTipo2;
+import model.CondicionTipo4;
 import model.Empresa;
 import model.Indicador;
+import model.Longevidad;
 import model.Metodologia;
 
 @Observable
@@ -20,12 +26,32 @@ public class VerMetodologiasViewModel {
 	private Metodologia metodologiaSeleccionada;
 	private List<Indicador> indicadores;
 	private List<Empresa> empresas;
+	private Empresa empresaSeleccionada;
 	private List<Empresa> empresasOrdenadas;
+	private List<Empresa> empresasAComparar = new ArrayList<Empresa>();
 	private String anioElegido;
+	
 	
 	public VerMetodologiasViewModel()
 	{
+		//Warren Buffet hardcodeado
+		Indicador ROE = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("ROE"));
+		Indicador proporcionDeDeuda = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("ProporcionDeuda"));
+		Indicador margen = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("Margen"));
+		Longevidad longevidad = new Longevidad("Longevidad", "");
+		Condicion condicionROE = new CondicionTipo1(ROE,  (a,b) -> a.compareTo(b) > 0, 10);
+		Condicion condicionDeuda = new CondicionTipo2("2017", (a,b) -> a.compareTo(b) < 0,proporcionDeDeuda);
+		Condicion condicionMargen = new CondicionTipo4(margen, (a,b) -> a.compareTo(b) > 0,10);
+		Condicion condicionLongevidad = new CondicionTipo2("", (a, b) -> a.compareTo(b) > 0,longevidad);
+		List<Condicion> condiciones = new ArrayList<Condicion>();
+		condiciones.add(condicionROE);
+		condiciones.add(condicionDeuda);
+		condiciones.add(condicionMargen);
+		condiciones.add(condicionLongevidad);
+		Metodologia warrenBuffet = new Metodologia("Warren Buffet", condiciones);
+		
 		this.metodologias = Repositorios.repositorioMetodologias.getMetodologias();
+		this.metodologias.add(warrenBuffet);
 		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
 		this.empresas = Repositorios.repositorioEmpresas.getEmpresas();
 	}
@@ -38,7 +64,20 @@ public class VerMetodologiasViewModel {
 	public List<Metodologia> getMetodologias() {
 		return metodologias;
 	}
+	
+	public List<Empresa> getEmpresas() {
+		return empresas;
+	}
 
+
+	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
+		this.empresaSeleccionada = empresaSeleccionada;
+	}
+	
+	public Empresa getEmpresaSeleccionada() {
+		return empresaSeleccionada;
+	}
+	
 	public Metodologia getMetodologiaSeleccionada() {
 		return metodologiaSeleccionada;
 	}
@@ -50,6 +89,15 @@ public class VerMetodologiasViewModel {
 	public void setEmpresasOrdenadas(List<Empresa> empresasOrdenadas) {
 		this.empresasOrdenadas = empresasOrdenadas;
 	}
+	
+	public List<Empresa> getEmpresasAComparar() {
+		return empresasAComparar;
+	}
+
+	public void setEmpresasAComparar(List<Empresa> empresasAComparar) {
+		this.empresasAComparar = empresasAComparar;
+	}
+
 
 
 	
@@ -196,13 +244,18 @@ public class VerMetodologiasViewModel {
 	//------------------------APLICACION METODOLOGIA--------------------------------
 
 	public void aplicar() {
-
+		empresasOrdenadas= metodologiaSeleccionada.aplicarMetodologia(empresasAComparar);
 
 	}
 	
 	public void aplicarMetodologia() throws NullPointerException
 	{
 		this.aplicar();
+	}
+	
+	public void agregarEmpresaAComparar() throws NullPointerException
+	{
+		this.empresasAComparar.add(empresaSeleccionada);
 	}
 
 
