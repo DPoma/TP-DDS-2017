@@ -5,9 +5,13 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import javax.persistence.*;
+
 import org.uqbar.commons.utils.Observable;
 
 @Observable
+@Entity
+@Table (name = "Empresa")
 public class Empresa {
 
 	private String nombre;

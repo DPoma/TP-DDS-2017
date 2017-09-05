@@ -28,6 +28,16 @@
 			<artifactId>antlr4-runtime</artifactId>
 			<version>4.7</version>
 		</dependency>
+		<dependency>
+			<groupId>org.uqbar-project</groupId>
+			<artifactId>jpa-java8-extras</artifactId>
+			<version>1.0-alpha-1</version>
+		</dependency>
+		<dependency>
+			<groupId> com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>6.1.0.jre8</version>
+		</dependency>
 	</dependencies>
 	
   <build>
