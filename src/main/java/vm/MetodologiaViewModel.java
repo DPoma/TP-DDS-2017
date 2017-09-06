@@ -14,7 +14,7 @@ public class MetodologiaViewModel {
 	
 	private List<Metodologia> metodologias;
 	private List<Metodologia> metodologiasPersonalizadas;
-	private Metodologia metodologiaSeleccionada;
+	private Metodologia metodologia;
 	private Indicador indicadorSeleccionado;
 	private List<Indicador> indicadores;
 	private List<Empresa> empresasOrdenadas;
@@ -27,13 +27,13 @@ public class MetodologiaViewModel {
 	}
 	
 
-	public void setMetodologiaSeleccionada(Metodologia metodologiaSeleccionada) {
+	/*public void setMetodologiaSeleccionada(Metodologia metodologiaSeleccionada) {
 		this.metodologiaSeleccionada = metodologiaSeleccionada;
 	}
 
 	public Metodologia getMetodologiaSeleccionada() {
 		return metodologiaSeleccionada;
-	}
+	}*/
 	
 	public List<Empresa> getEmpresasOrdenadas() {
 		return empresasOrdenadas;
@@ -55,8 +55,8 @@ public class MetodologiaViewModel {
 	
 	
 	public void crearMetodologia() {
-
-
+		//metodologia = new Metodologia(nombreNuevaMetodologia,);
+		//TODO
 	}
 
 

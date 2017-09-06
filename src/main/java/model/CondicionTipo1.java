@@ -6,9 +6,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+<<<<<<< HEAD
 import javax.persistence.Entity;
 
 @Entity
+=======
+import windows.AgregarCondicionTipo1o4Window;
+import windows.AgregarCondicionTipo3Window;
+
+>>>>>>> 21b09211646e9f0acfd3b3b816e354454f8ba6de
 public class CondicionTipo1 extends Condicion {
 
 	private List<String> anios;
@@ -31,6 +37,13 @@ public class CondicionTipo1 extends Condicion {
 			unaEmpresa.aumentarPuntuacion();
 		else
 			otraEmpresa.aumentarPuntuacion();
+		
+	}
+	
+	@Override
+	public void abrirWindowAgregarCondicion() {
+		AgregarCondicionTipo1o4Window dialog = new AgregarCondicionTipo1o4Window(this);
+		dialog.open();
 		
 	}
 	

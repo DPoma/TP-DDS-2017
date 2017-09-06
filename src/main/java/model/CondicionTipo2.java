@@ -2,9 +2,15 @@ package model;
 
 import java.math.BigDecimal;
 
+<<<<<<< HEAD
 import javax.persistence.Entity;
 
 @Entity
+=======
+import windows.AgregarCondicionTipo1o4Window;
+import windows.AgregarCondicionTipo2Window;
+
+>>>>>>> 21b09211646e9f0acfd3b3b816e354454f8ba6de
 public class CondicionTipo2 extends Condicion {
 	private String anio;
 
@@ -25,6 +31,11 @@ public class CondicionTipo2 extends Condicion {
 			otraEmpresa.aumentarPuntuacion();
 	}
 	
-	
+	@Override
+	public void abrirWindowAgregarCondicion() {
+		AgregarCondicionTipo2Window dialog = new AgregarCondicionTipo2Window(this);
+		dialog.open();
+		
+	}
 
 }
