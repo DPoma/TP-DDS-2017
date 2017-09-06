@@ -4,9 +4,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import javax.persistence.*;
 
+@Entity
+@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Condicion {
-	
+	@Id @GeneratedValue
+	protected int id;
 	protected Indicador indicador;
 	protected OperacionIndicador operacion;
 	

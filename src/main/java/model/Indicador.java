@@ -7,10 +7,14 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import javax.persistence.*;
+
 import parserIndicador.ParsearIndicador;
 import repositories.Repositorios;
 
+@Entity
 public class Indicador implements OperandoDeIndicador {
+	@Id
 	private String nombre;
 	private String formula;
 	

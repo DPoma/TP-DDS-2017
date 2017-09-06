@@ -13,8 +13,11 @@ import org.uqbar.commons.utils.Observable;
 @Entity
 @Table (name = "Empresa")
 public class Empresa {
-
+	@Id @GeneratedValue
+	private int id;
 	private String nombre;
+	@OneToMany(fetch = FetchType.LAZY,
+				cascade = CascadeType.PERSIST)
 	private List<Cuenta> cuentas;
 	private int puntuacion;
 	private int anioFundacion;

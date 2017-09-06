@@ -2,6 +2,9 @@ package model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
+
+@Entity
 public class CondicionTipo2 extends Condicion {
 	private String anio;
 
