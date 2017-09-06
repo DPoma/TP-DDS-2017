@@ -2,6 +2,8 @@ package model;
 
 import java.math.BigDecimal;
 
+import windows.AgregarCondicionTipo3Window;
+
 public class CondicionTipo3 extends Condicion {
 
 	private BigDecimal valor;
@@ -16,6 +18,10 @@ public class CondicionTipo3 extends Condicion {
 		else
 			otraEmpresa.aumentarPuntuacion();
 			
+		
+	}
+	
+	public void abrirWindowAgregarCondicion() {
 		
 	}
 

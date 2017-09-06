@@ -2,6 +2,9 @@ package model;
 
 import java.math.BigDecimal;
 
+import windows.AgregarCondicionTipo1o4Window;
+import windows.AgregarCondicionTipo2Window;
+
 public class CondicionTipo2 extends Condicion {
 	private String anio;
 
@@ -22,6 +25,11 @@ public class CondicionTipo2 extends Condicion {
 			otraEmpresa.aumentarPuntuacion();
 	}
 	
-	
+	@Override
+	public void abrirWindowAgregarCondicion() {
+		AgregarCondicionTipo2Window dialog = new AgregarCondicionTipo2Window(this);
+		dialog.open();
+		
+	}
 
 }

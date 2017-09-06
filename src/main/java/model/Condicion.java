@@ -4,6 +4,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import windows.AgregarCondicionTipo3Window;
+
+
 
 public abstract class Condicion {
 	
@@ -23,5 +26,11 @@ public abstract class Condicion {
 	public Indicador getIndicador()
 	{
 		return indicador;
+	}
+
+	public void abrirWindowAgregarCondicion() {
+		AgregarCondicionTipo3Window dialog = new AgregarCondicionTipo3Window(this);
+		dialog.open();
+		
 	}
 }

@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import windows.AgregarCondicionTipo1o4Window;
+import windows.AgregarCondicionTipo3Window;
+
 public class CondicionTipo1 extends Condicion {
 
 	private List<String> anios;
@@ -28,6 +31,13 @@ public class CondicionTipo1 extends Condicion {
 			unaEmpresa.aumentarPuntuacion();
 		else
 			otraEmpresa.aumentarPuntuacion();
+		
+	}
+	
+	@Override
+	public void abrirWindowAgregarCondicion() {
+		AgregarCondicionTipo1o4Window dialog = new AgregarCondicionTipo1o4Window(this);
+		dialog.open();
 		
 	}
 	

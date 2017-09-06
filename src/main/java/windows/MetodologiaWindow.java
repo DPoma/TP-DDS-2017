@@ -37,6 +37,7 @@ public class MetodologiaWindow extends SimpleWindow<MetodologiaViewModel> {
 		
 		new Label(panelActions).setText("Nombre");
 		new TextBox(panelActions).bindValueToProperty("nombreNuevaMetodologia");
+		/*
 		new Label(panelActions).setText("            Seleccione una operacion             ");
 		Selector<Metodologia> selector1 = new Selector<Metodologia>(panelActions);
 		selector1.allowNull(false);
@@ -47,7 +48,14 @@ public class MetodologiaWindow extends SimpleWindow<MetodologiaViewModel> {
 		Selector<Indicador> selector2 = new Selector<Indicador>(panelActions);
 		selector2.allowNull(false);
 		selector2.bindValueToProperty("indicadorSeleccionado");
-		selector2.bindItemsToProperty("indicadores");
+		selector2.bindItemsToProperty("indicadores");*/
+		
+		new Button(panelActions)
+		.setCaption("Agregar Condicion")
+		.onClick(this:: agregarCondicion);
+		
+		new Label(panelActions).setText("");
+		
 
 		new Button(panelActions)
 			.setCaption("Crear metodologia")
@@ -68,6 +76,12 @@ public class MetodologiaWindow extends SimpleWindow<MetodologiaViewModel> {
 			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 			dialog.open();
 		}
+		}
+	
+	
+	public void agregarCondicion() {
+		ElegirTipoCondicionWindow dialog = new ElegirTipoCondicionWindow(this);
+		dialog.open();
 	
 	}
 	
