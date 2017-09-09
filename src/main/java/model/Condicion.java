@@ -11,7 +11,9 @@ import windows.AgregarCondicionTipo3Window;
 public abstract class Condicion {
 	@Id @GeneratedValue
 	protected int id;
+	@ManyToOne
 	protected Indicador indicador;
+	@ManyToOne
 	protected OperacionIndicador operacion;
 	
 	public void evaluarEmpresas(List<Empresa> empresas)

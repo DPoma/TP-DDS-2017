@@ -15,8 +15,11 @@ import model.CondicionTipo4;
 import model.Cuenta;
 import model.Empresa;
 import model.FileHandler;
+import model.IgualA;
 import model.Indicador;
 import model.Longevidad;
+import model.MayorA;
+import model.MenorA;
 import model.Metodologia;
 
 public class MetodlogiasTest {
@@ -33,7 +36,7 @@ public class MetodlogiasTest {
 			Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook", unaCuenta);
 			Repositorios.repositorioEmpresas.trabajarEmpresa("Twitter",otraCuenta);
 			indicador = new Indicador("humo", "2*(EBITDA+2000)");
-			unaCondicion = new CondicionTipo2("2015", (a ,b) -> a.compareTo(b) == 1, indicador);
+			unaCondicion = new CondicionTipo2("2015", new IgualA(), indicador);
 			unaEmpresa = Repositorios.repositorioEmpresas.find(empresa -> empresa.getNombre().equals("Facebook"));
 			otraEmpresa = Repositorios.repositorioEmpresas.find(empresa -> empresa.getNombre().equals("Twitter"));
 			FileHandler lector= new FileHandler();
@@ -63,10 +66,10 @@ public class MetodlogiasTest {
 			Indicador proporcionDeDeuda = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("ProporcionDeuda"));
 			Indicador margen = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("Margen"));
 			Longevidad longevidad = new Longevidad("Longevidad", "");
-			Condicion condicionROE = new CondicionTipo1(ROE,  (a,b) -> a.compareTo(b) > 0, 10);
-			Condicion condicionDeuda = new CondicionTipo2("2017", (a,b) -> a.compareTo(b) < 0,proporcionDeDeuda);
-			Condicion condicionMargen = new CondicionTipo4(margen, (a,b) -> a.compareTo(b) > 0,10);
-			Condicion condicionLongevidad = new CondicionTipo2("", (a, b) -> a.compareTo(b) > 0,longevidad);
+			Condicion condicionROE = new CondicionTipo1(ROE,  new MayorA(), 10);
+			Condicion condicionDeuda = new CondicionTipo2("2017", new MenorA(),proporcionDeDeuda);
+			Condicion condicionMargen = new CondicionTipo4(margen, new MayorA(),10);
+			Condicion condicionLongevidad = new CondicionTipo2("", new MayorA(),longevidad);
 			List<Condicion> condiciones = new ArrayList<Condicion>();
 			condiciones.add(condicionROE);
 			condiciones.add(condicionDeuda);

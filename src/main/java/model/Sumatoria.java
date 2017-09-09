@@ -2,9 +2,11 @@ package model;
 
 import java.math.BigDecimal;
 
-import repositories.Repositorios;
+import javax.persistence.Entity;
 
-public class Sumatoria implements Operacion {
+import repositories.Repositorios;
+@Entity
+public class Sumatoria extends Operacion {
 
 	@Override
 	public BigDecimal calcular(Indicador indicador, Empresa empresa) {

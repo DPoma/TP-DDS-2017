@@ -4,24 +4,24 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-<<<<<<< HEAD
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
-@Entity
-=======
 import windows.AgregarCondicionTipo1o4Window;
 
->>>>>>> 21b09211646e9f0acfd3b3b816e354454f8ba6de
+@Entity
 public class CondicionTipo4 extends Condicion {
 
+	@Transient
 	private List<String> anios;
+	private Integer cantidadAnios;
 	
 	public CondicionTipo4(Indicador indicador, OperacionIndicador operacion, Integer anios)
 	{
 		Integer anio = Calendar.getInstance().get(Calendar.YEAR);
 		this.indicador = indicador;
 		this.operacion = operacion;
+		this.cantidadAnios = anios;
 		this.anios  = IntStream.rangeClosed(anio-anios, anio)
 			    .boxed()
 			    .map(unAnio -> unAnio.toString())

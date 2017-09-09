@@ -16,7 +16,6 @@ public class Cuenta implements OperandoDeIndicador{
 	private int id;
 	private String nombre;
 	private int anio;
-	@Convert(converter = BigDecimalConverter.class)
 	private BigDecimal monto;
 	
 	public Cuenta(String nombre, int anio, String monto)

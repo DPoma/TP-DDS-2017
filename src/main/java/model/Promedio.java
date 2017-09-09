@@ -2,7 +2,10 @@ package model;
 
 import java.math.BigDecimal;
 
-public class Promedio implements Operacion {
+import javax.persistence.Entity;
+
+@Entity
+public class Promedio extends Operacion {
 
 	@Override
 	public BigDecimal calcular(Indicador indicador, Empresa empresa) {

@@ -7,9 +7,25 @@
   
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
-    	<class>jacklow.model.vehiculo</class>
-    	<class>jacklow.model.robo</class>
+    	<class>model.Condicion</class>
+    	<class>model.Empresa</class>
+    	<class>model.Cuenta</class>
+    	<class>model.Indicador</class>
+    	<class>model.OperacionIndicador</class>
+    	<class>model.Operacion</class>
+    	<class>model.CondicionTipo1</class>
+    	<class>model.CondicionTipo2</class>
+    	<class>model.CondicionTipo3</class>
+    	<class>model.CondicionTipo4</class>
+    	<class>model.Promedio</class>
+    	<class>model.Sumatoria</class>
+    	<class>model.Mediana</class>
+
+    	<class>model.MayorA</class>
+    	<class>model.MenorA</class>
+    	<class>model.IgualA</class>
     	
+    		
     	
     	 
         <properties> 
@@ -17,7 +33,7 @@
         
        
             <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" /> 
-            <property name="hibernate.connection.url" value="jdbc:sqlserver://localhost:1433;databaseName=prueba" /> 
+            <property name="hibernate.connection.url" value="jdbc:sqlserver://localhost:1433;databaseName=tpdds" /> 
             <property name="hibernate.connection.username" value="root" /> 
             <property name="hibernate.connection.password" value="1234" /> 
 
