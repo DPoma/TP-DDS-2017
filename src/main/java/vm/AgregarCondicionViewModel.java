@@ -21,6 +21,11 @@ public class AgregarCondicionViewModel {
 	private String nombreNuevaMetodologia;
 	private String operador;
 	
+	public AgregarCondicionViewModel()
+	{
+		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
+		
+	}
 	
 	public void agregarCondicion() {
 		// TODO Auto-generated method stub

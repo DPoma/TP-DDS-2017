@@ -53,14 +53,31 @@ public class ElegirTipoCondicionWindow extends SimpleWindow<ElegirTipoCondicionV
 
 	
 	public void agregarCondicion() {
-		try {
+		/*try {
 			this.getModelObject().agregarCondicion();
 			this.close();
 		}
 		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
 			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 			dialog.open();
-		}
+		}*/
+		switch(ElegirTipoCondicionViewModel.condicionSeleccionada){
+		case "Condicion tipo 2":
+			AgregarCondicionTipo2Window dialog = new AgregarCondicionTipo2Window(this);
+			dialog.open();
+			break;
+		
+		case "Condicion tipo 3":
+			AgregarCondicionTipo3Window dialog1 = new AgregarCondicionTipo3Window(this);
+			dialog1.open();
+			break;
+			
+		default: 
+			AgregarCondicionTipo1o4Window dialog2 = new AgregarCondicionTipo1o4Window(this);
+			dialog2.open();
+			break;
+			
+			}
 		}
 	
 	public void cerrar(){

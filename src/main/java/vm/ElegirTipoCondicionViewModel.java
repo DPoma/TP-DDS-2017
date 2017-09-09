@@ -3,9 +3,14 @@ package vm;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.arena.windows.Dialog;
+import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.utils.Observable;
 
 import repositories.Repositorios;
+import windows.AgregarCondicionTipo1o4Window;
+import windows.AgregarCondicionTipo2Window;
+import windows.AgregarCondicionTipo3Window;
 import model.Condicion;
 import model.CondicionTipo1;
 import model.CondicionTipo2;
@@ -26,40 +31,53 @@ public class ElegirTipoCondicionViewModel {
 	private List<Empresa> empresasOrdenadas;
 	private String nombreNuevaMetodologia;
 	
-	public Condicion condicionSeleccionada;
-	public List<Condicion> condiciones = new ArrayList<Condicion>();
-	public Condicion condicionTipo1 = new CondicionTipo1(null,null,1);
-	public Condicion condicionTipo2 = new CondicionTipo2("1",null,null);
-	public Condicion condicionTipo3 = new CondicionTipo3();
-	public Condicion condicionTipo4 = new CondicionTipo4(null,null,1);
+	@Observable
+	public static String condicionSeleccionada;
+	
+	public List<String> condiciones = new ArrayList<String>();
 	
 	public ElegirTipoCondicionViewModel(){
-		condiciones.add(condicionTipo1);
-		condiciones.add(condicionTipo2);
-		condiciones.add(condicionTipo3);
-		condiciones.add(condicionTipo4);
+		condiciones.add("Condicion tipo 1");
+		condiciones.add("Condicion tipo 2");
+		condiciones.add("Condicion tipo 3");
+		condiciones.add("Condicion tipo 4");
 	}
 	
-	public void setCondiciones(List<Condicion> condiciones){
+	public void setCondiciones(List<String> condiciones){
 		this.condiciones =condiciones;
 	}
 	
-	public List<Condicion> getCondiciones(){
+	public List<String> getCondiciones(){
 		return condiciones;
 	}
 	
-	public void setcondicionSeleccionada(Condicion condicionSeleccionada){
+	public void setcondicionSeleccionada(String condicionSeleccionada){
 		this.condicionSeleccionada =condicionSeleccionada;
 	}
 	
-	public Condicion getcondicionSeleccionada(){
+	public String getcondicionSeleccionada(){
 		return condicionSeleccionada;
 	}
 	
-	public void agregarCondicion() {
-		//Estoy mandando al objeto abrir una ventana, no se si esta bien, asi se me hacia q tenia mas polimorfismo
-		condicionSeleccionada.abrirWindowAgregarCondicion();
+	/*public void agregarCondicion() {
+		switch(condicionSeleccionada){
+		case "Condicion tipo 2":
+			Dialog <?> dialog = new AgregarCondicionTipo2Window(this);
+			dialog.open();
+			break;
 		
-	}
+		case "Condicion tipo 3":
+			Dialog <?> dialog1 = new AgregarCondicionTipo3Window(this);
+			dialog1.open();
+			break;
+			
+		default: 
+			Dialog <?> dialog2 = new AgregarCondicionTipo1o4Window(this);
+			dialog2.open();
+			break;
+			
+			}
+		
+	}*/
 	
 }

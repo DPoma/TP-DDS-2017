@@ -31,9 +31,5 @@ public abstract class Condicion {
 		return indicador;
 	}
 
-	public void abrirWindowAgregarCondicion() {
-		AgregarCondicionTipo3Window dialog = new AgregarCondicionTipo3Window(this);
-		dialog.open();
-		
-	}
+
 }

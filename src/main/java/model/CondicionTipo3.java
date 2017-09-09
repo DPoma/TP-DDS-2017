@@ -24,8 +24,5 @@ public class CondicionTipo3 extends Condicion {
 		
 	}
 	
-	public void abrirWindowAgregarCondicion() {
-		
-	}
 
 }

@@ -28,11 +28,4 @@ public class CondicionTipo2 extends Condicion {
 			otraEmpresa.aumentarPuntuacion();
 	}
 	
-	@Override
-	public void abrirWindowAgregarCondicion() {
-		AgregarCondicionTipo2Window dialog = new AgregarCondicionTipo2Window(this);
-		dialog.open();
-		
-	}
-
 }

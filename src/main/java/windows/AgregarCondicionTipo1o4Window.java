@@ -24,8 +24,8 @@ import org.uqbar.arena.windows.WindowOwner;
 public class AgregarCondicionTipo1o4Window extends SimpleWindow<AgregarCondicionViewModel> {
 	
 	
-	public AgregarCondicionTipo1o4Window(Condicion condicion) {
-		super((WindowOwner) condicion, new AgregarCondicionViewModel());
+	public AgregarCondicionTipo1o4Window(WindowOwner parent) {
+		super( parent, new AgregarCondicionViewModel());
 	}
 
 	@Override

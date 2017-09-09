@@ -38,11 +38,6 @@ public class CondicionTipo4 extends Condicion {
 		
 	}
 	
-	@Override
-	public void abrirWindowAgregarCondicion() {
-		AgregarCondicionTipo1o4Window dialog = new AgregarCondicionTipo1o4Window(this);
-		dialog.open();
-		
-	}
+
 
 }
