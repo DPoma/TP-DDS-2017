@@ -1,16 +1,21 @@
 package vm;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.utils.Observable;
+import org.uqbar.lacar.ui.model.WindowFactory;
 
 import repositories.Repositorios;
+import windows.ErrorWindow;
+import model.Condicion;
 import model.Empresa;
 import model.Indicador;
 import model.Metodologia;
 
 @Observable
-public class MetodologiaViewModel {
+public class MetodologiaViewModel implements WindowOwner {
 	
 	private List<Metodologia> metodologias;
 	private List<Metodologia> metodologiasPersonalizadas;
@@ -19,6 +24,7 @@ public class MetodologiaViewModel {
 	private List<Indicador> indicadores;
 	private List<Empresa> empresasOrdenadas;
 	private String nombreNuevaMetodologia;
+	private static List<Condicion> condicionesDeLaMetodologia = new ArrayList<Condicion>();
 	
 	public MetodologiaViewModel()
 	{
@@ -55,8 +61,16 @@ public class MetodologiaViewModel {
 	
 	
 	public void crearMetodologia() {
-		//metodologia = new Metodologia(nombreNuevaMetodologia,);
-		//TODO
+		if(condicionesDeLaMetodologia.size()<2){ErrorWindow dialog = new ErrorWindow(this, "Ruta incorrecta");
+		dialog.open();}
+		else{
+		metodologia = new Metodologia(nombreNuevaMetodologia,condicionesDeLaMetodologia);
+		}
+		//TODO persistir esto
+	}
+	
+	public static void agregarAListaCondiciones(Condicion condicion){
+		condicionesDeLaMetodologia.add(condicion);
 	}
 
 
@@ -98,6 +112,13 @@ public class MetodologiaViewModel {
 
 	public void setNombreNuevaMetodologia(String nombreNuevaMetodologia) {
 		this.nombreNuevaMetodologia = nombreNuevaMetodologia;
+	}
+
+
+	@Override
+	public WindowFactory getDelegate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

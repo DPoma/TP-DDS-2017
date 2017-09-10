@@ -19,6 +19,7 @@ import model.CondicionTipo4;
 import model.Empresa;
 import model.Indicador;
 import model.Metodologia;
+import model.OperacionIndicador;
 
 @Observable
 public class ElegirTipoCondicionViewModel {
@@ -30,6 +31,8 @@ public class ElegirTipoCondicionViewModel {
 	private List<Indicador> indicadores;
 	private List<Empresa> empresasOrdenadas;
 	private String nombreNuevaMetodologia;
+	private static Condicion condicion;
+	
 	
 	@Observable
 	public static String condicionSeleccionada;
@@ -57,6 +60,16 @@ public class ElegirTipoCondicionViewModel {
 	
 	public String getcondicionSeleccionada(){
 		return condicionSeleccionada;
+	}
+	
+	public static void crearCondicion(String anio, Integer anios, Indicador indicador, OperacionIndicador operacion){
+		switch(condicionSeleccionada){
+		case "Condicion tipo 1": condicion =new CondicionTipo1(indicador,operacion,anios);break;
+		case "Condicion tipo 2": condicion =new CondicionTipo2(anio,operacion,indicador);break;
+		case "Condicion tipo 3":condicion =new CondicionTipo3();break;
+		case "Condicion tipo 4": condicion =new CondicionTipo4(indicador,operacion,anios);break;
+		}
+		MetodologiaViewModel.agregarAListaCondiciones(condicion);
 	}
 	
 	/*public void agregarCondicion() {

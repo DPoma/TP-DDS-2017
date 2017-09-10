@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 import vm.ElegirTipoCondicionViewModel;
 import model.Indicador;
 import model.Metodologia;
+import model.OperacionIndicador;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -79,6 +80,7 @@ public class ElegirTipoCondicionWindow extends SimpleWindow<ElegirTipoCondicionV
 			
 			}
 		}
+	
 	
 	public void cerrar(){
 		this.close();

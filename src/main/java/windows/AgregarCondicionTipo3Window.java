@@ -9,6 +9,7 @@ import vm.ElegirTipoCondicionViewModel;
 import model.Condicion;
 import model.Indicador;
 import model.Metodologia;
+import model.OperacionIndicador;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -39,8 +40,11 @@ public class AgregarCondicionTipo3Window extends SimpleWindow<AgregarCondicionVi
 		selector2.bindValueToProperty("indicadorSeleccionado");
 		selector2.bindItemsToProperty("indicadores");
 		
-		new Label(panelActions).setText("Operador");
-		new TextBox(panelActions).bindValueToProperty("operador");
+		new Label(panelActions).setText("Seleccione una operacion");
+		Selector<OperacionIndicador> selector = new Selector<OperacionIndicador>(panelActions);
+		selector.allowNull(false);
+		selector.bindValueToProperty("operacionSeleccionada");
+		selector.bindItemsToProperty("operaciones");
 		
 		new Label(panelActions).setText("");
 		
