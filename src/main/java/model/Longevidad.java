@@ -5,10 +5,13 @@ import java.util.Calendar;
 
 public class Longevidad extends Indicador {
 
+	//------------------------------------ CONSTRUCTORES --------------------------------
+	
 	public Longevidad(String nombre, String formula) {
 		super(nombre, formula);
-		// TODO Auto-generated constructor stub
 	}
+	
+	//------------------------------------ METODOS --------------------------------
 	
 	@Override
 	public BigDecimal calcularMonto(Empresa unaEmpresa, String anio)

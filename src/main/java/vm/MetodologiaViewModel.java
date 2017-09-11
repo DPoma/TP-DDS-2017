@@ -17,6 +17,8 @@ import model.Metodologia;
 @Observable
 public class MetodologiaViewModel implements WindowOwner {
 	
+	//------------------------------------- ATRIBUTOS ----------------------------------
+	
 	private List<Metodologia> metodologias;
 	private List<Metodologia> metodologiasPersonalizadas;
 	private Metodologia metodologia;
@@ -25,22 +27,17 @@ public class MetodologiaViewModel implements WindowOwner {
 	private List<Empresa> empresasOrdenadas;
 	private String nombreNuevaMetodologia;
 	private static List<Condicion> condicionesDeLaMetodologia = new ArrayList<Condicion>();
+
+	//----------------------------------- CONSTRUCTORES --------------------------------
 	
 	public MetodologiaViewModel()
 	{
 		this.metodologiasPersonalizadas = Repositorios.repositorioMetodologiasPersonalizadas.getMetodologias();
 		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
 	}
-	
 
-	/*public void setMetodologiaSeleccionada(Metodologia metodologiaSeleccionada) {
-		this.metodologiaSeleccionada = metodologiaSeleccionada;
-	}
+	//------------------------------- GETTERS Y SETTERS --------------------------------
 
-	public Metodologia getMetodologiaSeleccionada() {
-		return metodologiaSeleccionada;
-	}*/
-	
 	public List<Empresa> getEmpresasOrdenadas() {
 		return empresasOrdenadas;
 	}
@@ -114,14 +111,21 @@ public class MetodologiaViewModel implements WindowOwner {
 		this.nombreNuevaMetodologia = nombreNuevaMetodologia;
 	}
 
-
+	//--------------------------------------- METODOS ----------------------------------
+	
 	@Override
 	public WindowFactory getDelegate() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 	
+	/*public void setMetodologiaSeleccionada(Metodologia metodologiaSeleccionada) {
+		this.metodologiaSeleccionada = metodologiaSeleccionada;
+	}
+
+	public Metodologia getMetodologiaSeleccionada() {
+		return metodologiaSeleccionada;
+	}*/
+
 }
 
 

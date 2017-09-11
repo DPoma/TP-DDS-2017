@@ -24,6 +24,8 @@ import model.OperacionIndicador;
 @Observable
 public class ElegirTipoCondicionViewModel {
 	
+	//------------------------------------- ATRIBUTOS ----------------------------------
+	
 	private List<Metodologia> metodologias;
 	private List<Metodologia> metodologiasPersonalizadas;
 	private Metodologia metodologiaSeleccionada;
@@ -32,19 +34,13 @@ public class ElegirTipoCondicionViewModel {
 	private List<Empresa> empresasOrdenadas;
 	private String nombreNuevaMetodologia;
 	private static Condicion condicion;
-	
-	
 	@Observable
 	public static String condicionSeleccionada;
-	
-	public List<String> condiciones = new ArrayList<String>();
-	
-	public ElegirTipoCondicionViewModel(){
-		condiciones.add("Condicion tipo 1");
-		condiciones.add("Condicion tipo 2");
-		condiciones.add("Condicion tipo 3");
-		condiciones.add("Condicion tipo 4");
-	}
+	private List<String> condiciones = new ArrayList<String>();
+
+	//----------------------------------- CONSTRUCTORES --------------------------------
+
+	//------------------------------- GETTERS Y SETTERS --------------------------------
 	
 	public void setCondiciones(List<String> condiciones){
 		this.condiciones =condiciones;
@@ -53,14 +49,21 @@ public class ElegirTipoCondicionViewModel {
 	public List<String> getCondiciones(){
 		return condiciones;
 	}
-	
-	public void setcondicionSeleccionada(String condicionSeleccionada){
-		this.condicionSeleccionada =condicionSeleccionada;
-	}
+
 	
 	public String getcondicionSeleccionada(){
 		return condicionSeleccionada;
 	}
+
+	//--------------------------------------- METODOS ----------------------------------
+	
+	public ElegirTipoCondicionViewModel(){
+		condiciones.add("Condicion tipo 1");
+		condiciones.add("Condicion tipo 2");
+		condiciones.add("Condicion tipo 3");
+		condiciones.add("Condicion tipo 4");
+	}
+	
 	
 	public static void crearCondicion(String anio, Integer anios, Indicador indicador, OperacionIndicador operacion){
 		switch(condicionSeleccionada){

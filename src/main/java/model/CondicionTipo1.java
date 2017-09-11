@@ -1,15 +1,11 @@
 package model;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
-
-import windows.AgregarCondicionTipo1o4Window;
-import windows.AgregarCondicionTipo3Window;
 
 @Entity
 public class CondicionTipo1 extends Condicion {
@@ -40,6 +36,9 @@ public class CondicionTipo1 extends Condicion {
 		
 	}
 	
+	public CondicionTipo1() {
+		
+	}
 
 	
 

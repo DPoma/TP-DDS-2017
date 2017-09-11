@@ -24,6 +24,8 @@ import model.Metodologia;
 @Observable
 public class VerMetodologiasViewModel {
 	
+	//------------------------------------- ATRIBUTOS ----------------------------------
+	
 	private List<Metodologia> metodologias;
 	private Metodologia metodologiaSeleccionada;
 	private List<Indicador> indicadores;
@@ -33,6 +35,8 @@ public class VerMetodologiasViewModel {
 	private List<Empresa> empresasAComparar = new ArrayList<Empresa>();
 	private String anioElegido;
 	
+
+	//----------------------------------- CONSTRUCTORES --------------------------------
 	
 	public VerMetodologiasViewModel()
 	{
@@ -57,8 +61,9 @@ public class VerMetodologiasViewModel {
 		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
 		this.empresas = Repositorios.repositorioEmpresas.getEmpresas();
 	}
-	
 
+	//------------------------------- GETTERS Y SETTERS --------------------------------
+	
 	public void setMetodologiaSeleccionada(Metodologia metodologiaSeleccionada) {
 		this.metodologiaSeleccionada = metodologiaSeleccionada;
 	}
@@ -84,6 +89,7 @@ public class VerMetodologiasViewModel {
 		return metodologiaSeleccionada;
 	}
 	
+	
 	public List<Empresa> getEmpresasOrdenadas() {
 		return empresasOrdenadas;
 	}
@@ -99,10 +105,17 @@ public class VerMetodologiasViewModel {
 	public void setEmpresasAComparar(List<Empresa> empresasAComparar) {
 		this.empresasAComparar = empresasAComparar;
 	}
-
-
-
 	
+	public String getAnioElegido() {
+		return anioElegido;
+	}
+
+	public void setAnioElegido(String anioElegido) {
+		this.anioElegido = anioElegido;
+	}
+
+	//--------------------------------------- METODOS ----------------------------------
+
 	//------------------------COMPARACIONES--------------------------------
 	
 	public int compararValoresROIC(Empresa unaEmpresa, Empresa otraEmpresa) {
@@ -187,7 +200,6 @@ public class VerMetodologiasViewModel {
 	}
 	
 	
-	
 	//------------------------SUMAR ULTIMOS ANIOS--------------------------------
 	
 	public BigDecimal obtener(Empresa unaEmpresa, String anio, int operacion) {
@@ -260,15 +272,6 @@ public class VerMetodologiasViewModel {
 		this.empresasAComparar.add(empresaSeleccionada);
 	}
 
-
-	public String getAnioElegido() {
-		return anioElegido;
-	}
-
-
-	public void setAnioElegido(String anioElegido) {
-		this.anioElegido = anioElegido;
-	}
 	
 }
 

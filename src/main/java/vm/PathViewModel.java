@@ -3,22 +3,18 @@ package vm;
 import java.io.IOException;
 
 import model.FileHandler;
-import model.Metodologia;
 
 import org.uqbar.commons.utils.Observable;
 
-import repositories.Repositorios;
 
 @Observable
 public class PathViewModel {
+	
+	//------------------------------------- ATRIBUTOS ----------------------------------
+	
 	private String path = "";
 	
-	public void cargarCuentas() throws IOException{
-		FileHandler lector= new FileHandler();
-		lector.leerArchivoCuentas(path);
-		lector.leerArchivoIndicadores("indicadores.csv");
-	}
-	
+	//------------------------------- GETTERS Y SETTERS --------------------------------
 
 	public String getPath() {
 		return path;
@@ -26,6 +22,14 @@ public class PathViewModel {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	//--------------------------------------- METODOS ----------------------------------
+	
+	public void cargarCuentas() throws IOException{
+		FileHandler lector= new FileHandler();
+		lector.leerArchivoCuentas(path);
+		//lector.leerArchivoIndicadores("indicadores.csv");
 	}
 	
 }

@@ -8,9 +8,14 @@ import parserIndicador.ParsearIndicador;
 
 @Observable
 public class AgregarIndicadorViewModel {
+	
+	//------------------------------------ ATRIBUTOS --------------------------------
+	
 	private String nombreIndicador;
 	private String formulaIndicador;
 
+	//------------------------------------ GETTERS Y SETTERS --------------------------------
+	
 	public String getFormulaIndicador() {
 		return formulaIndicador;
 	}
@@ -26,7 +31,9 @@ public class AgregarIndicadorViewModel {
 	public void setFormulaIndicador(String formulaIndicador) {
 		this.formulaIndicador = formulaIndicador;
 	}
-
+	
+	//------------------------------------ METODOS --------------------------------
+	
 	public void guardarIndicador() throws ParseCancellationException
 	{
 		ParsearIndicador parser = new ParsearIndicador();

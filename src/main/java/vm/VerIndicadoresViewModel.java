@@ -14,11 +14,16 @@ import repositories.Repositorios;
 @Observable
 public class VerIndicadoresViewModel {
 	
+	//------------------------------------- ATRIBUTOS ----------------------------------
+	
 	private List<Indicador> indicadores;
 	private BigDecimal resultado;
 	private Empresa empresa;
 	private String anio;
 	private Indicador indicadorSeleccionado;
+
+	//----------------------------------- CONSTRUCTORES --------------------------------
+	
 	
 	public VerIndicadoresViewModel(Empresa unaEmpresa)
 	{
@@ -26,6 +31,8 @@ public class VerIndicadoresViewModel {
 		this.empresa = unaEmpresa;
 	}
 	
+
+	//------------------------------- GETTERS Y SETTERS --------------------------------
 	
 	public String getAnio() {
 		return anio;
@@ -51,6 +58,8 @@ public class VerIndicadoresViewModel {
 		return resultado;
 	}		
 
+	//--------------------------------------- METODOS ----------------------------------
+	
 	public void aplicarIndicador() throws NullPointerException
 	{
 		this.resultado = this.indicadorSeleccionado.calcularMonto(empresa, anio);

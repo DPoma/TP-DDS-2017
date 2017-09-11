@@ -6,10 +6,17 @@ import javax.persistence.Entity;
 
 @Entity
 public class Mediana extends Operacion {
-
+	
+	//------------------------------------ CONSTRUCTORES --------------------------------
+	
+	public Mediana() {
+		
+	}
+	
+	//------------------------------------ METODOS --------------------------------
+	
 	@Override
 	public BigDecimal calcular(Indicador indicador, Empresa empresa) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

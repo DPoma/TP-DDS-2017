@@ -1,14 +1,10 @@
 package windows;
 
-
-
 import java.util.NoSuchElementException;
 
 import vm.AgregarCondicionViewModel;
-import vm.ElegirTipoCondicionViewModel;
-import model.Condicion;
+
 import model.Indicador;
-import model.Metodologia;
 import model.OperacionIndicador;
 
 import org.uqbar.arena.layout.VerticalLayout;

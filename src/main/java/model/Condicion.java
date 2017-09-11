@@ -1,10 +1,8 @@
 package model;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 import javax.persistence.*;
-import windows.AgregarCondicionTipo3Window;
 
 @Entity
 @Inheritance (strategy = InheritanceType.SINGLE_TABLE)
@@ -29,6 +27,10 @@ public abstract class Condicion {
 	public Indicador getIndicador()
 	{
 		return indicador;
+	}
+	
+	public Condicion() {
+		
 	}
 
 

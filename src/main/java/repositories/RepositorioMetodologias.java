@@ -3,22 +3,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import model.Empresa;
 import model.Metodologia;
-import model.Metodologia;;
+
 
 public class RepositorioMetodologias{
-
+	
+	//------------------------------------- ATRIBUTOS ----------------------------------
+	
 	private List<Metodologia> metodologias;
+	
+	//----------------------------------- CONSTRUCTORES --------------------------------
 	
 	public RepositorioMetodologias() {
 		this.metodologias = new ArrayList<Metodologia>();
 		
 	}
+
+	//------------------------------- GETTERS Y SETTERS --------------------------------
 	
 	public List<Metodologia> getMetodologias() {
 		return metodologias;
 	}
+
+	//--------------------------------------- METODOS ----------------------------------
 
 	public void agregarMetodologia(Metodologia metodologia)
 	{

@@ -10,8 +10,14 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance (strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Operacion {
-	@Id @GeneratedValue
+
+	//------------------------------------ ATRIBUTOS --------------------------------
+	
+	@Id @GeneratedValue()
 	protected int id;
+	
+	//------------------------------------ METODOS --------------------------------
+	
 	public BigDecimal calcular(Indicador indicador, Empresa empresa)
 	{
 		return new BigDecimal(0);

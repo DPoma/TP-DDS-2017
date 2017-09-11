@@ -4,32 +4,46 @@ import java.math.BigDecimal;
 
 import javax.persistence.*;
 
-import org.apache.commons.beanutils.converters.BigDecimalConverter;
 import org.uqbar.commons.utils.Observable;
-import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 
 
 @Observable
 @Entity
+@Table(name = "Cuenta")
 public class Cuenta implements OperandoDeIndicador{
+	
+	//------------------------------------ ATRIBUTOS --------------------------------
+	
 	@Id @GeneratedValue
-	private int id;
+	@Column(name="idCuenta")
+	private int idCuenta;
+	
+	@Column(name = "nombre")
 	private String nombre;
+	
 	private int anio;
+	
 	private BigDecimal monto;
 	
-	public Cuenta(String nombre, int anio, String monto)
-	{
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idEmpresa")
+	private Empresa empresa;
+	
+	//------------------------------------ CONSTRUCTORES --------------------------------
+	
+	public Cuenta(String nombre, int anio, String monto, Empresa unaEmpresa) {
 		this.nombre = nombre;
 		this.anio = anio;
 		this.monto = new BigDecimal(monto);
-	}
-
-	@Override
-	public String toString() {
-		return "Cuenta [nombre=" + nombre + ", anio=" + anio + ", monto=" + monto + "]";
+		this.empresa = unaEmpresa;
 	}
 	
+	public Cuenta() {
+		
+	}
+	
+	//------------------------------------ GETTERS Y SETTERS --------------------------------
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -42,16 +56,28 @@ public class Cuenta implements OperandoDeIndicador{
 		return monto;
 	}
 	
-	public BigDecimal calcularMonto(Empresa empresa, String anio)
-	{
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+	
+	//------------------------------------ METODOS --------------------------------
+	
+	@Override
+	public String toString() {
+		return "Cuenta [nombre=" + nombre + ", anio=" + anio + ", monto=" + monto + "]";
+	}
+	
+	public BigDecimal calcularMonto(Empresa empresa, String anio) {
 		return monto;
 	}
 	
-	public boolean periodoEntre(int anioMin, int anioMax)
-	{
+	public boolean periodoEntre(int anioMin, int anioMax) {
 		return anio >= anioMin && anio <=anioMax;
 	}
-	
-	
-	
+
+
 }

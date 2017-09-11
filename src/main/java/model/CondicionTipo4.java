@@ -7,8 +7,6 @@ import java.util.stream.IntStream;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
-import windows.AgregarCondicionTipo1o4Window;
-
 @Entity
 public class CondicionTipo4 extends Condicion {
 
@@ -38,6 +36,9 @@ public class CondicionTipo4 extends Condicion {
 		
 	}
 	
+	public CondicionTipo4() {
+		
+	}
 
 
 }

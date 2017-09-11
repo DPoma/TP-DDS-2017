@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-import windows.AgregarCondicionTipo3Window;
-
 @Entity
 public class CondicionTipo3 extends Condicion {
 

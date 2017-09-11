@@ -3,7 +3,6 @@ package model;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -14,14 +13,48 @@ import repositories.Repositorios;
 
 @Entity
 public class Indicador implements OperandoDeIndicador {
+	
+	//------------------------------------ ATRIBUTOS --------------------------------
+	
 	@Id
 	private String nombre;
 	private String formula;
+	
+	//------------------------------------ CONSTRUCTORES --------------------------------
 	
 	public Indicador(String nombre, String formula)
 	{
 		this.nombre = nombre;
 		this.formula = formula;
+	}
+	
+	public Indicador() {
+		
+	}
+		
+	//------------------------------------ GETTERS Y SETTERS --------------------------------
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getFormula() {
+		return formula;
+	}
+	
+	//------------------------------------ METODOS --------------------------------
+	
+	public void agregarARepositorio()
+	{
+		Repositorios.repositorioIndicadores.agregarIndicador(this);
+	}
+	
+	public void guardar()
+	{
+		Repositorios.repositorioIndicadores.persistirIndicador(this);
+		//this.agregarARepositorio();
+		//FileHandler csv = new FileHandler();
+		//csv.guardarIndicador("indicadores.csv", this);
 	}
 	
 	public BigDecimal calcularMonto(Empresa unaEmpresa, String anio)
@@ -53,29 +86,11 @@ public class Indicador implements OperandoDeIndicador {
 		.allMatch(i -> operacion.operar(this.calcularMonto(unaEmpresa, anios.get(i)), this.calcularMonto(unaEmpresa, anios.get(i+1))));
 		return true;
 	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public String getFormula() {
-		return formula;
-	}
-	public void agregarARepositorio()
-	{
-		Repositorios.repositorioIndicadores.agregarIndicador(this);
-	}
-	
-	public void guardar()
-	{
-		this.agregarARepositorio();
-		FileHandler csv = new FileHandler();
-		csv.guardarIndicador("indicadores.csv", this);
-	}
 
 	@Override
 	public String toString()
 	{
 		return this.nombre;
 	}
+	
 }

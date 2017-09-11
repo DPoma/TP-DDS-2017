@@ -11,9 +11,13 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance (strategy = InheritanceType.SINGLE_TABLE)
 public abstract class OperacionIndicador {
+	
+	//------------------------------------ ATRIBUTOS --------------------------------
+	
 	@Id @GeneratedValue
 	protected int id;
 
+	//------------------------------------ METODOS --------------------------------
 	
 	public boolean operar(BigDecimal unMonto, BigDecimal otroMonto) {
 		return true;

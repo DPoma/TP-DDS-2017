@@ -18,6 +18,8 @@ import model.OperacionIndicador;
 @Observable
 public class AgregarCondicionViewModel {
 	
+	//------------------------------------- ATRIBUTOS ----------------------------------
+	
 	private List<Metodologia> metodologias;
 	private List<Metodologia> metodologiasPersonalizadas;
 	private Metodologia metodologiaSeleccionada;
@@ -29,6 +31,8 @@ public class AgregarCondicionViewModel {
 	private OperacionIndicador operacionSeleccionada;
 	private String anio;
 	private Integer anios;
+
+	//----------------------------------- CONSTRUCTORES --------------------------------
 	
 	public AgregarCondicionViewModel()
 	{
@@ -39,6 +43,8 @@ public class AgregarCondicionViewModel {
 		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
 		
 	}
+
+	//------------------------------- GETTERS Y SETTERS --------------------------------
 	
 	public void setIndicadores(List<Indicador> indicadores){
 		this.indicadores = indicadores;
@@ -48,12 +54,6 @@ public class AgregarCondicionViewModel {
 		return this.indicadores;
 	} 
 	
-	public void agregarCondicion() {
-		ElegirTipoCondicionViewModel.crearCondicion(anio,anios,indicadorSeleccionado,operacionSeleccionada);
-		
-		
-	}
-
 	public Integer getAnios() {
 		return anios;
 	}
@@ -92,6 +92,12 @@ public class AgregarCondicionViewModel {
 
 	public void setIndicadorSeleccionado(Indicador indicadorSeleccionado) {
 		this.indicadorSeleccionado = indicadorSeleccionado;
+	}
+	
+	//--------------------------------------- METODOS ----------------------------------
+
+	public void agregarCondicion() {
+		ElegirTipoCondicionViewModel.crearCondicion(anio,anios,indicadorSeleccionado,operacionSeleccionada);
 	}
 	
 }

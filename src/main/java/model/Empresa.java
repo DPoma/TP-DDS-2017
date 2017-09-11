@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
@@ -11,43 +10,39 @@ import org.uqbar.commons.utils.Observable;
 
 @Observable
 @Entity
-@Table (name = "Empresa")
+@Table(name="Empresa")
 public class Empresa {
+	
+	//------------------------------------ ATRIBUTOS --------------------------------
+	
 	@Id @GeneratedValue
-	private int id;
+	private int idEmpresa;
+	
 	private String nombre;
-	@OneToMany(fetch = FetchType.LAZY,
-				cascade = CascadeType.PERSIST)
+	
+	@OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Cuenta> cuentas;
+	
 	private int puntuacion;
+	
 	private int anioFundacion;
 	
-
-
-	public void setAnioFundacion(int anioFundacion) {
-		this.anioFundacion = anioFundacion;
-	}
-
-	public Empresa(String empresa, Cuenta cuenta){
+	//------------------------------------ CONSTRUCTORES --------------------------------
+	
+	public Empresa(String empresa, int anio){
 		this.nombre= empresa;
+		this.anioFundacion = anio;
 		this.cuentas= new ArrayList<Cuenta>();
-		agregarCuenta(cuenta);
+	}
+
+	public Empresa() {
+		
 	}
 	
-	public int getAnioFundacion() {
-		return anioFundacion;
-	}
-	
-	public void agregarCuenta(Cuenta cuenta){
-		cuentas.add(cuenta);
-	}
+	//------------------------------------ GETTERS Y SETTERS --------------------------------
 	
 	public String getNombre(){
 		return this.nombre;
-	}
-	
-	public boolean equals(String compare){
-		return this.getNombre().toLowerCase().equals(compare.toLowerCase());
 	}
 	
 	public List<Cuenta> getCuentas(){
@@ -58,30 +53,15 @@ public class Empresa {
 		this.cuentas = unasCuentas;
 	}
 	
-	public List<Cuenta> periodoEntre(String anio1, String anio2) throws NumberFormatException {
-		int unAnio = Integer.parseInt(anio1);
-		int otroAnio = Integer.parseInt(anio2);
-		return this.cuentas.stream().filter(x->x.periodoEntre(unAnio, otroAnio)).collect(Collectors.toList());
+	public int getAnioFundacion() {
+		return anioFundacion;
 	}
 	
-	private Cuenta find(Predicate<? super Cuenta> criterio)
-	{
-		return this.cuentas.stream().filter(criterio).findFirst().get();
+	public void setAnioFundacion(int anioFundacion) {
+		this.anioFundacion = anioFundacion;
 	}
-	
-	public Cuenta encontrarCuenta(String nombre, String anio)
-	{
-		int anioNumerico = Integer.parseInt(anio);
-		return this.find(unaCuenta -> unaCuenta.getNombre().equals(nombre) && unaCuenta.getAnio() == anioNumerico);
-	}
-	
-	public void aumentarPuntuacion()
-	{
-		puntuacion++;
-	}
-	
-	public int getPuntacion()
-	{
+
+	public int getPuntacion() {
 		return this.puntuacion;
 	}
 	
@@ -89,11 +69,42 @@ public class Empresa {
 		this. puntuacion =  puntuacion;
 	}
 	
+	public int getIdEmpresa() {
+		return idEmpresa;
+	}
+
+	public void setIdEmpresa(int idEmpresa) {
+		this.idEmpresa = idEmpresa;
+	}
+	
+	//------------------------------------ METODOS --------------------------------
+	
+	public void agregarCuenta(Cuenta cuenta){
+		cuentas.add(cuenta);
+	}
+		
+	private Cuenta find(Predicate<? super Cuenta> criterio) {
+		return this.cuentas.stream().filter(criterio).findFirst().get();
+	}
+	
+	public Cuenta encontrarCuenta(String nombre, String anio) {
+		int anioNumerico = Integer.parseInt(anio);
+		return this.find(unaCuenta -> unaCuenta.getNombre().equals(nombre) && unaCuenta.getAnio() == anioNumerico);
+	}
+	
+	public void aumentarPuntuacion() {
+		puntuacion++;
+	}
+	
+	public boolean equals(String compare){
+		return this.getNombre().toLowerCase().equals(compare.toLowerCase());
+	}
 	
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return this.nombre;
 	}
+	
+
 }
 

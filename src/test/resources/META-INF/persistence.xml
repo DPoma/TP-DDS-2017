@@ -20,14 +20,13 @@
     	<class>model.Promedio</class>
     	<class>model.Sumatoria</class>
     	<class>model.Mediana</class>
-
     	<class>model.MayorA</class>
     	<class>model.MenorA</class>
     	<class>model.IgualA</class>
     	
     		
     	
-    	 
+ 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         

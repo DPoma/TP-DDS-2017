@@ -7,11 +7,16 @@ import javax.persistence.Entity;
 @Entity
 public class MayorA extends OperacionIndicador {
 
-	@Override
-	public boolean operar(BigDecimal unMonto, BigDecimal otroMonto) {
+	//------------------------------------ CONSTRUCTORES --------------------------------
+	
+	public MayorA() {
 		
-		return unMonto.compareTo(otroMonto) > 0;
 	}
 	
-
+	//------------------------------------ METODOS --------------------------------
+	
+	@Override
+	public boolean operar(BigDecimal unMonto, BigDecimal otroMonto) {
+		return unMonto.compareTo(otroMonto) > 0;
+	}
 }

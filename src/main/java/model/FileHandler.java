@@ -13,30 +13,37 @@ import repositories.Repositorios;
 
 public class FileHandler {
 	
+	//------------------------------------ CONSTRUCTORES --------------------------------
+	
 	public FileHandler(){
 		
 	}
 	
-	public CSVReader leer(String path) throws IOException {
+	//------------------------------------ METODOS --------------------------------
+	
+	public CSVReader crearReader(String path) throws IOException {
 		return new CSVReader(new FileReader(path), ';');
 	}
 	
-	public void leerArchivoCuentas(String path) throws IOException{
-		CSVReader reader= this.leer(path);
+	public void leerArchivoCuentas(String path) throws IOException {
+		CSVReader reader= this.crearReader(path);
 	    String [] linea;
-	    while ((linea = reader.readNext()) != null) {
-	        int anio = Integer.parseInt(linea[2]);
-	        Cuenta unaCuenta = new Cuenta(linea[1], anio, linea[3]);
-	    	Repositorios.repositorioEmpresas.trabajarEmpresa(linea[0], unaCuenta);
-	    }
-		
+	    while ((linea = reader.readNext()) != null)
+	    	Repositorios.repositorioEmpresas.guardarCuenta(linea);
+	}
+	
+	public void importarArchivoCuentas(String path) throws IOException  {
+		Repositorios.repositorioEmpresas.obtenerEmpresas();
+		leerArchivoCuentas(path);
+	    Repositorios.repositorioEmpresas.persistirEmpresas();
+	    Repositorios.repositorioEmpresas.limpiar();
 	}
 	
 	public void leerArchivoIndicadores(String path)
 	{
 		CSVReader reader;
 		try {
-			reader = this.leer(path);
+			reader = this.crearReader(path);
 			String [] linea;
 			while ((linea = reader.readNext()) != null) {
 	        
@@ -44,7 +51,6 @@ public class FileHandler {
 	    	Repositorios.repositorioIndicadores.agregarIndicador(unIndicador);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -59,11 +65,6 @@ public class FileHandler {
 			escritor.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
+		}	
 	}
-	
-
-
-	
-
 }

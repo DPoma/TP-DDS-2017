@@ -31,10 +31,10 @@ public class MetodlogiasTest {
 		
 		@Before
 		public void init() {
-			Cuenta unaCuenta = new Cuenta("EBITDA",2015,"200000");
-			Cuenta otraCuenta = new Cuenta("EBITDA",2015,"100000");
-			Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook", unaCuenta);
-			Repositorios.repositorioEmpresas.trabajarEmpresa("Twitter",otraCuenta);
+			//Cuenta unaCuenta = new Cuenta("EBITDA",2015,"200000");
+			//Cuenta otraCuenta = new Cuenta("EBITDA",2015,"100000");
+			//Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook", unaCuenta);
+			//Repositorios.repositorioEmpresas.trabajarEmpresa("Twitter",otraCuenta);
 			indicador = new Indicador("humo", "2*(EBITDA+2000)");
 			unaCondicion = new CondicionTipo2("2015", new IgualA(), indicador);
 			unaEmpresa = Repositorios.repositorioEmpresas.find(empresa -> empresa.getNombre().equals("Facebook"));
@@ -94,7 +94,7 @@ public class MetodlogiasTest {
 		@After
 		public void end()
 		{
-			Repositorios.repositorioEmpresas.borrarTodo();
+			Repositorios.repositorioEmpresas.limpiar();
 			
 		}
 

@@ -4,9 +4,6 @@ import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 
-import windows.AgregarCondicionTipo1o4Window;
-import windows.AgregarCondicionTipo2Window;
-
 @Entity
 public class CondicionTipo2 extends Condicion {
 	private String anio;
@@ -26,6 +23,10 @@ public class CondicionTipo2 extends Condicion {
 			unaEmpresa.aumentarPuntuacion();
 		else
 			otraEmpresa.aumentarPuntuacion();
+	}
+	
+	public CondicionTipo2() {
+		
 	}
 	
 }

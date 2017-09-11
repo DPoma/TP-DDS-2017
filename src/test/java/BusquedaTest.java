@@ -14,10 +14,10 @@ public class BusquedaTest{
 	
 	@Before
 	public void init() {
-		unaCuenta = new Cuenta("PDS",2015,"200000");
-		otraCuenta = new Cuenta("PDS",2015,"200000");
-		Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook", unaCuenta);
-		Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook",otraCuenta);
+		//unaCuenta = new Cuenta("PDS",2015,"200000");
+		//otraCuenta = new Cuenta("PDS",2015,"200000");
+		//Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook", unaCuenta);
+		//Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook",otraCuenta);
 	}
 	
 	/*@Test
