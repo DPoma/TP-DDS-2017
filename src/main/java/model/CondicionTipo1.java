@@ -4,14 +4,17 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
+@SuppressWarnings("unused")
 @Entity
 public class CondicionTipo1 extends Condicion {
 
 	@Transient
 	private List<String> anios;
+
 	private Integer cantidadAnios;
 	
 	public CondicionTipo1(Indicador indicador, OperacionIndicador operacion, Integer anios)

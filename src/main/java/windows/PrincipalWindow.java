@@ -1,13 +1,11 @@
 package windows;
 
-
 import vm.CargaViewModel;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -17,6 +15,7 @@ public class PrincipalWindow extends SimpleWindow<CargaViewModel> {
 	
 	public PrincipalWindow(WindowOwner parent) {
 		super(parent, new CargaViewModel());
+		this.getModelObject().cargarOperaciones();
 	}
 	
 	public void createFormPanel(Panel panelActions) {
@@ -65,21 +64,13 @@ public class PrincipalWindow extends SimpleWindow<CargaViewModel> {
 	}
 	
 	public void ventanaBusqueda() {
-		if(this.getModelObject().hayEmpresasCargadas()) {
-			AnalisisEmpresaWindow dialog = new AnalisisEmpresaWindow(this);
-			dialog.open();
-		} else
-			this.mostrarMensajeDerror("No hay empresas cargadas");
+		AnalisisEmpresaWindow dialog = new AnalisisEmpresaWindow(this);
+		dialog.open();
+
 	}
 	
 	public void ventanaCrear() {
 		MetodologiaWindow dialog = new MetodologiaWindow(this);
-		dialog.open();
-	}
-	
-	private void mostrarMensajeDerror(String texto)
-	{
-		Dialog <?> dialog = new ErrorWindow(this, texto);
 		dialog.open();
 	}
 	

@@ -72,8 +72,7 @@ public class AnalisisEmpresaWindow extends SimpleWindow<AnalisisEmpresaViewModel
 		.onClick(this::verMetodologias);
 		
 		new Button(panelActions)
-		.setCaption("Ver grafico")
-		.onClick(this::verIndicadores);
+		.setCaption("Ver grafico");
 		
 		new Label(panelActions).setText("");
 		

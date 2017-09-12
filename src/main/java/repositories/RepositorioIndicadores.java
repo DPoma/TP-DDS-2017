@@ -8,8 +8,15 @@ import javax.persistence.EntityManager;
 import org.hibernate.HibernateException;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import model.Empresa;
+import model.IgualA;
 import model.Indicador;
+import model.MayorA;
+import model.Mediana;
+import model.MenorA;
+import model.Operacion;
+import model.OperacionIndicador;
+import model.Promedio;
+import model.Sumatoria;
 
 public class RepositorioIndicadores {
 
@@ -58,5 +65,33 @@ public class RepositorioIndicadores {
 	    } finally {
 	    	entity.close();
 	    }
+	}
+	
+	@SuppressWarnings("unchecked")
+	public boolean hayOperacionesSinCargar() {
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+		List<Operacion> operaciones = (List<Operacion>)entity.createQuery("FROM Operacion").getResultList();
+		List<OperacionIndicador> operacionesInd = (List<OperacionIndicador>)entity.createQuery("FROM OperacionIndicador").getResultList();
+		return operaciones.isEmpty() && operacionesInd.isEmpty();
+	}
+	
+	public void cargarOperaciones() {
+		if(hayOperacionesSinCargar())
+			this.persistirOperaciones();
+	}
+	
+	public void persistirOperaciones() {
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+		entity.getTransaction().begin();
+		entity.persist(new MayorA());
+		entity.persist(new MenorA());
+		entity.persist(new IgualA());
+		entity.getTransaction().commit();
+		// Para que el contador se reinicie
+		entity.getTransaction().begin();
+		entity.persist(new Promedio());
+		entity.persist(new Sumatoria());
+		entity.persist(new Mediana());
+		entity.getTransaction().commit();
 	}
 }

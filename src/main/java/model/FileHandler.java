@@ -15,7 +15,7 @@ public class FileHandler {
 	
 	//------------------------------------ CONSTRUCTORES --------------------------------
 	
-	public FileHandler(){
+	public FileHandler() {
 		
 	}
 	

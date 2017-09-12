@@ -4,9 +4,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
+@SuppressWarnings("unused")
 @Entity
 public class CondicionTipo4 extends Condicion {
 

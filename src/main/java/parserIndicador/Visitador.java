@@ -1,16 +1,12 @@
 package parserIndicador;
 
-
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.NoSuchElementException;
 
-import model.Cuenta;
 import model.Empresa;
-import model.Indicador;
 import model.OperandoDeIndicador;
-import repositories.RepositorioIndicadores;
+
 import repositories.Repositorios;
 
 public class Visitador extends IndicadorBaseVisitor<BigDecimal>{

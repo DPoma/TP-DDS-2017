@@ -15,6 +15,7 @@ import model.MenorA;
 import model.Metodologia;
 import model.OperacionIndicador;
 
+@SuppressWarnings("unused")
 @Observable
 public class AgregarCondicionViewModel {
 	

@@ -14,6 +14,7 @@ import model.Empresa;
 import model.Indicador;
 import model.Metodologia;
 
+@SuppressWarnings("unused")
 @Observable
 public class MetodologiaViewModel implements WindowOwner {
 	
@@ -21,6 +22,7 @@ public class MetodologiaViewModel implements WindowOwner {
 	
 	private List<Metodologia> metodologias;
 	private List<Metodologia> metodologiasPersonalizadas;
+	
 	private Metodologia metodologia;
 	private Indicador indicadorSeleccionado;
 	private List<Indicador> indicadores;

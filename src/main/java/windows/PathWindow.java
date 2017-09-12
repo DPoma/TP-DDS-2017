@@ -3,7 +3,6 @@ package windows;
 import vm.PathViewModel;
 
 import java.io.IOException;
-import java.util.NoSuchElementException;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -50,10 +49,6 @@ public class PathWindow extends SimpleWindow<PathViewModel> {
 		catch(IOException e)
 		{
 			ErrorWindow dialog = new ErrorWindow(this, "Ruta incorrecta");
-			dialog.open();
-		}
-		catch(NoSuchElementException e) {
-			ErrorWindow dialog = new ErrorWindow(this, "El archivo contiene empresas que no fueron cargadas");
 			dialog.open();
 		}
 		

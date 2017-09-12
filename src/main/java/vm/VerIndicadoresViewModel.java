@@ -27,6 +27,7 @@ public class VerIndicadoresViewModel {
 	
 	public VerIndicadoresViewModel(Empresa unaEmpresa)
 	{
+		Repositorios.repositorioIndicadores.obtenerIndicadores();
 		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
 		this.empresa = unaEmpresa;
 	}

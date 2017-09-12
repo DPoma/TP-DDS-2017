@@ -28,8 +28,7 @@ public class PathViewModel {
 	
 	public void cargarCuentas() throws IOException{
 		FileHandler lector= new FileHandler();
-		lector.leerArchivoCuentas(path);
-		//lector.leerArchivoIndicadores("indicadores.csv");
+		lector.importarArchivoCuentas(path);
 	}
 	
 }

@@ -21,6 +21,7 @@ import model.Indicador;
 import model.Metodologia;
 import model.OperacionIndicador;
 
+@SuppressWarnings("unused")
 @Observable
 public class ElegirTipoCondicionViewModel {
 	
