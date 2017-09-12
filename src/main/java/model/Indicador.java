@@ -17,18 +17,19 @@ public class Indicador implements OperandoDeIndicador {
 	//------------------------------------ ATRIBUTOS --------------------------------
 	
 	@Id
-	private String nombre;
+	private String nombreIndicador;
 	
 	private String formula;
 	
-	@OneToMany(mappedBy = "indicador", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	/*
+	@OneToMany(mappedBy = "indicador", fetch = FetchType.LAZY)
 	private List<Condicion> condiciones;
-	
+	*/
 	//------------------------------------ CONSTRUCTORES --------------------------------
 
 	public Indicador(String nombre, String formula)
 	{
-		this.nombre = nombre;
+		this.nombreIndicador = nombre;
 		this.formula = formula;
 	}
 	
@@ -38,14 +39,14 @@ public class Indicador implements OperandoDeIndicador {
 		
 	//------------------------------------ GETTERS Y SETTERS --------------------------------
 	
-	public String getNombre() {
-		return nombre;
+	public String getNombreIndicador() {
+		return nombreIndicador;
 	}
 
 	public String getFormula() {
 		return formula;
 	}
-	
+	/*
 	public List<Condicion> getCondiciones() {
 		return condiciones;
 	}
@@ -53,6 +54,7 @@ public class Indicador implements OperandoDeIndicador {
 	public void setCondiciones(List<Condicion> condiciones) {
 		this.condiciones = condiciones;
 	}
+	*/
 	//------------------------------------ METODOS --------------------------------
 	
 	public void agregarARepositorio()
@@ -101,7 +103,7 @@ public class Indicador implements OperandoDeIndicador {
 	@Override
 	public String toString()
 	{
-		return this.nombre;
+		return this.nombreIndicador;
 	}
 	
 }

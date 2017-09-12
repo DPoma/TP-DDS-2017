@@ -11,9 +11,9 @@ import com.google.common.collect.Lists;
 
 import repositories.Repositorios;
 import model.Condicion;
-import model.CondicionTipo1;
-import model.CondicionTipo2;
-import model.CondicionTipo4;
+import model.AnalizarIndicadorEnUltimosAnios;
+import model.AnalizarIndicadoresEntreEmpresas;
+import model.AnalizarCrecimientoEnPeriodo;
 import model.Empresa;
 import model.Indicador;
 import model.Longevidad;

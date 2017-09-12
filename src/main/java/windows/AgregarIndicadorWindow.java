@@ -27,13 +27,15 @@ public class AgregarIndicadorWindow extends SimpleWindow<AgregarIndicadorViewMod
 	
 	@Override
 	public void createContents(Panel panelActions) {
-		this.setTitle("Nuevo Indicador");
+		this.setTitle("Nuevo indicador");
 		panelActions.setLayout(new VerticalLayout());
-		new Label(panelActions).setText("Ingrese un indicador");
-		new Label(panelActions).setText("Ingrese el nombre");
+		new Label(panelActions).setText("         Ingrese un nombre         ");
 		new TextBox(panelActions).bindValueToProperty("nombreIndicador");
-		new Label(panelActions).setText("Ingrese la formula");
+		new Label(panelActions).setText("Ingrese una formula");
 		new TextBox(panelActions).bindValueToProperty("formulaIndicador");
+		
+		new Label(panelActions).setText("");
+		
 		new Button(panelActions)
 			.setCaption("Aceptar")
 			

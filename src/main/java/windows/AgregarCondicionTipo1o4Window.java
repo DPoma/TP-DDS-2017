@@ -2,7 +2,7 @@ package windows;
 
 import java.util.NoSuchElementException;
 
-import vm.AgregarCondicionViewModel;
+import vm.ConfigurarCondicionViewModel;
 
 import model.Indicador;
 import model.OperacionIndicador;
@@ -17,20 +17,21 @@ import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-@SuppressWarnings("serial")
-public class AgregarCondicionTipo1o4Window extends SimpleWindow<AgregarCondicionViewModel> {
+public class AgregarCondicionTipo1o4Window extends SimpleWindow<ConfigurarCondicionViewModel> {
 	
+	private ElegirCondicionWindow ventanaElegir;
 	
-	public AgregarCondicionTipo1o4Window(WindowOwner parent) {
-		super( parent, new AgregarCondicionViewModel());
+	public AgregarCondicionTipo1o4Window(WindowOwner parent, String condicion) {
+		super(parent, new ConfigurarCondicionViewModel(condicion));
+		ventanaElegir = (ElegirCondicionWindow) parent;
 	}
 
 	@Override
 	public void createContents(Panel panelActions)  {
-		this.setTitle("Agregar Condicion");
+		this.setTitle("Configurar condicion");
 		panelActions.setLayout(new VerticalLayout());
 		
-		new Label(panelActions).setText("Seleccione un indicador");
+		new Label(panelActions).setText("         Seleccione un indicador         ");
 		Selector<Indicador> selector2 = new Selector<Indicador>(panelActions);
 		selector2.allowNull(false);
 		selector2.bindValueToProperty("indicadorSeleccionado");
@@ -42,20 +43,22 @@ public class AgregarCondicionTipo1o4Window extends SimpleWindow<AgregarCondicion
 		selector.bindValueToProperty("operacionIndicadorSeleccionada");
 		selector.bindItemsToProperty("operacionesIndicador");
 		
-		new Label(panelActions).setText("Cantidad de anios");
+		new Label(panelActions).setText("Ingrese una cantidad de anios");
 		new TextBox(panelActions).bindValueToProperty("anios");
 		
 		new Label(panelActions).setText("");
 		
 		new Button(panelActions)
-		.setCaption("Agregar Condicion")
+		.setCaption("Aceptar")
 		.onClick(this:: agregarCondicion);
+		
+		new Label(panelActions).setText("");
 	}
 
 	
 	public void agregarCondicion() {
 		try {
-			this.getModelObject().agregarCondicion();
+			ventanaElegir.getModelObject().setCondicion(this.getModelObject().crearCondicion());
 			this.close();
 		}
 		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {

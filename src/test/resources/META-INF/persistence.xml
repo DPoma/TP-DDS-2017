@@ -13,10 +13,10 @@
     	<class>model.Indicador</class>
     	<class>model.OperacionIndicador</class>
     	<class>model.Operacion</class>
-    	<class>model.CondicionTipo1</class>
-    	<class>model.CondicionTipo2</class>
-    	<class>model.CondicionTipo3</class>
-    	<class>model.CondicionTipo4</class>
+    	<class>model.AnalizarIndicadorEnUltimosAnios</class>
+    	<class>model.AnalizarIndicadoresEntreEmpresas</class>
+    	<class>model.AnalizarHistoriaDelIndicador</class>
+    	<class>model.AnalizarCrecimientoEnPeriodo</class>
     	<class>model.Promedio</class>
     	<class>model.Sumatoria</class>
     	<class>model.Mediana</class>

@@ -61,10 +61,11 @@ public class FileHandler {
 		PrintWriter escritor;
 		try {
 			escritor = new PrintWriter(new FileOutputStream(archivo, true));
-			escritor.append(indicador.getNombre() + ";" + indicador.getFormula() + "\n");
+			escritor.append(indicador.getNombreIndicador() + ";" + indicador.getFormula() + "\n");
 			escritor.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}	
 	}
+	
 }

@@ -23,11 +23,15 @@ public class RepositorioIndicadores {
 	//------------------------------------ ATRIBUTOS --------------------------------
 	
 	private List<Indicador> indicadores;
+	private List<Operacion> operaciones;
+	private List<OperacionIndicador> operacionesIndicador;
 
 	//------------------------------------ CONSTRUCTORES --------------------------------
 	
 	public RepositorioIndicadores() {
 		this.indicadores = new ArrayList<Indicador>();
+		this.operaciones = new ArrayList<Operacion>();
+		this.operacionesIndicador = new ArrayList<OperacionIndicador>();
 	}
 
 	//------------------------------------ GETTERS Y SETTERS --------------------------------
@@ -35,8 +39,19 @@ public class RepositorioIndicadores {
 	public List<Indicador> getIndicadores() {
 		return indicadores;
 	}
-	//------------------------------------ METODOS --------------------------------
 	
+	
+	public List<Operacion> getOperaciones() {
+		return operaciones;
+	}
+
+	public List<OperacionIndicador> getOperacionesIndicador() {
+		return operacionesIndicador;
+	}
+
+	
+	//------------------------------------ METODOS --------------------------------
+
 	public void agregarIndicador(Indicador indicador)
 	{
 		this.indicadores.add(indicador);
@@ -50,10 +65,21 @@ public class RepositorioIndicadores {
 	//NO MIRAR
 	
 	@SuppressWarnings("unchecked")
-	public List<Indicador> obtenerIndicadores() {
+	public void obtenerIndicadores() {
 		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		indicadores = (List<Indicador>)entity.createQuery("FROM Indicador").getResultList();
-		return indicadores; 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void obtenerOperaciones() {
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+		operaciones = (List<Operacion>)entity.createQuery("FROM Operacion").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void obtenerOperacionesIndicador() {
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+		operacionesIndicador = (List<OperacionIndicador>)entity.createQuery("FROM OperacionIndicador").getResultList();
 	}
 	
 	public void persistirIndicador(Indicador indicador) {
@@ -70,25 +96,12 @@ public class RepositorioIndicadores {
 	}
 	
 	public boolean hayOperacionesSinCargar() {
-		List<Operacion> operaciones = this.obtenerOperaciones();
-		List<OperacionIndicador> operacionesIndicador = this.obtenerOperacionesIndicador();
+		this.obtenerOperaciones();
+		this.obtenerOperacionesIndicador();
 		return operaciones.isEmpty() && operacionesIndicador.isEmpty();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<Operacion> obtenerOperaciones() {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
-		List<Operacion> operaciones = (List<Operacion>)entity.createQuery("FROM Operacion").getResultList();
-		return operaciones;
-	}
-	
-	
-	@SuppressWarnings("unchecked")
-	public List<OperacionIndicador> obtenerOperacionesIndicador() {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
-		List<OperacionIndicador> operacionesIndicador = (List<OperacionIndicador>)entity.createQuery("FROM OperacionIndicador").getResultList();
-		return operacionesIndicador;
-	}
+
 	
 	public void cargarOperaciones() {
 		if(hayOperacionesSinCargar())

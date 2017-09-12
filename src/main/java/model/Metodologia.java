@@ -4,41 +4,56 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.persistence.*;
+
 import repositories.Repositorios;
 
+@Entity
+@Table(name = "Metodologia")
 public class Metodologia {
 
+	//------------------------------------- ATRIBUTOS ----------------------------------
+	@Id @GeneratedValue
+	private int idMetodologia;
+	
 	private String nombre;
+	
+	@OneToMany(mappedBy = "metodologia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Condicion> condiciones;
 
-	public Metodologia(String nombre, List<Condicion> condiciones)
-	{
+	//----------------------------------- CONSTRUCTORES --------------------------------
+	
+	public Metodologia(String nombre, List<Condicion> condiciones) {
 		this.nombre = nombre;
 		this.condiciones = condiciones;
 	}
+	
+	public Metodologia() {
+		
+	}
 
-
+	//------------------------------- GETTERS Y SETTERS --------------------------------
+	
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void agregarARepositorio()
-	{
-		Repositorios.repositorioMetodologias.agregarMetodologia(this);
-	}
-
-	@Override
-	public String toString()
-	{
-		return this.nombre;
-	}
-
-
 	public List<Condicion> getCondicion(){
 		return this.condiciones;
 	}
-
-	public void addCondicion(Condicion condicion){
+	
+	//--------------------------------------- METODOS ----------------------------------
+	
+	@Override
+	public String toString() {
+		return this.nombre;
+	}
+	
+	public void guardar() {
+		Repositorios.repositorioMetodologias.persistirMetodologia(this);
+	}
+	
+	public void agregarCondicion(Condicion condicion){
 		this.condiciones.add(condicion);
 	}
 

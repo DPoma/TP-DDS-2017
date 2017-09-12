@@ -10,17 +10,17 @@ import javax.persistence.Transient;
 
 @SuppressWarnings("unused")
 @Entity
-public class CondicionTipo4 extends Condicion {
+public class AnalizarCrecimientoEnPeriodo extends Condicion {
 
 	@Transient
 	private List<String> anios;
 	private Integer cantidadAnios;
 	
-	public CondicionTipo4(Indicador indicador, OperacionIndicador operacion, Integer anios)
+	public AnalizarCrecimientoEnPeriodo(Indicador indicador, OperacionIndicador operacion, Integer anios)
 	{
 		Integer anio = Calendar.getInstance().get(Calendar.YEAR);
 		this.indicador = indicador;
-		this.operacion = operacion;
+		this.operacionIndicador = operacion;
 		this.cantidadAnios = anios;
 		this.anios  = IntStream.rangeClosed(anio-anios, anio)
 			    .boxed()
@@ -31,14 +31,14 @@ public class CondicionTipo4 extends Condicion {
 	
 	@Override
 	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
-		if(indicador.sigueTendencia(operacion, unaEmpresa, anios))
+		if(indicador.sigueTendencia(operacionIndicador, unaEmpresa, anios))
 			unaEmpresa.aumentarPuntuacion();
 		else
 			otraEmpresa.aumentarPuntuacion();
 		
 	}
 	
-	public CondicionTipo4() {
+	public AnalizarCrecimientoEnPeriodo() {
 		
 	}
 

@@ -26,8 +26,7 @@ public class PrincipalWindow extends SimpleWindow<CargaViewModel> {
 	public void createContents(Panel panelActions) {
 		this.setTitle("Analizador de Inversiones");
 		panelActions.setLayout(new VerticalLayout());
-		new Label(panelActions).setText("Menu Principal");
-		
+		new Label(panelActions).setText("                         Menu Principal                         ");
 		new Button(panelActions)
 		.setCaption("Cargar Cuentas")
 		.onClick(this::cargarCuentas); 
@@ -70,7 +69,7 @@ public class PrincipalWindow extends SimpleWindow<CargaViewModel> {
 	}
 	
 	public void ventanaCrear() {
-		MetodologiaWindow dialog = new MetodologiaWindow(this);
+		AgregarMetodologiaWindow dialog = new AgregarMetodologiaWindow(this);
 		dialog.open();
 	}
 	

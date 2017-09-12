@@ -6,26 +6,26 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@SuppressWarnings("unused")
+
 @Entity
-public class CondicionTipo3 extends Condicion {
+public class AnalizarHistoriaDelIndicador extends Condicion {
 
 	//------------------------------------- ATRIBUTOS ----------------------------------
 	
 	private BigDecimal valor;
 	
 	@ManyToOne
-	//@JoinColumn(name = "id")
-	private Operacion operacionSobreIndicador;
+	@JoinColumn(name = "idOperacion")
+	private Operacion operacion;
 	
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
-	public CondicionTipo3(Indicador unIndicador, Operacion operacion) {
-		operacionSobreIndicador = operacion;
+	public AnalizarHistoriaDelIndicador(Indicador unIndicador, Operacion unaOperacion) {
+		operacion = unaOperacion;
 		indicador = unIndicador;
 	}
 	
-	public CondicionTipo3() {
+	public AnalizarHistoriaDelIndicador() {
 		
 	}
 	
@@ -35,8 +35,8 @@ public class CondicionTipo3 extends Condicion {
 	
 	@Override
 	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
-		BigDecimal total = operacionSobreIndicador.calcular(indicador, unaEmpresa);
-		if(operacion.operar(total, valor))
+		BigDecimal total = operacion.calcular(indicador, unaEmpresa);
+		if(operacionIndicador.operar(total, valor))
 			unaEmpresa.aumentarPuntuacion();
 		else
 			otraEmpresa.aumentarPuntuacion();	

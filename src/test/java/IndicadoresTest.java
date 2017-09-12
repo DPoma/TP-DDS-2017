@@ -69,6 +69,6 @@ public class IndicadoresTest {
 	@After
 	public void end()
 	{
-		Repositorios.repositorioIndicadores.getIndicadores().removeIf(unIndicador -> unIndicador.getNombre().equals("testing"));
+		Repositorios.repositorioIndicadores.getIndicadores().removeIf(unIndicador -> unIndicador.getNombreIndicador().equals("testing"));
 	}
 }

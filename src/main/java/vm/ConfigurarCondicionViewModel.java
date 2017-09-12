@@ -6,42 +6,45 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 
 import repositories.Repositorios;
+import model.AnalizarCrecimientoEnPeriodo;
+import model.AnalizarHistoriaDelIndicador;
+import model.AnalizarIndicadorEnUltimosAnios;
 import model.Condicion;
-import model.CondicionTipo2;
-import model.Empresa;
+import model.AnalizarIndicadoresEntreEmpresas;
 import model.Indicador;
-import model.MayorA;
-import model.MenorA;
-import model.Metodologia;
 import model.Operacion;
 import model.OperacionIndicador;
 
-@SuppressWarnings("unused")
 @Observable
-public class AgregarCondicionViewModel {
+public class ConfigurarCondicionViewModel {
+	
+	//------------------------------------- CONSTANTES ----------------------------------
+	
+	static final String TIPO1 = "Analizar indicador en los ultimos anios";
+	static final String TIPO2 = "Analizar indicadores entre empresas";
+	static final String TIPO3 = "Analizar historia del indicador";
+	static final String TIPO4 = "Analizar crecimiento del indicador";
+	
 	
 	//------------------------------------- ATRIBUTOS ----------------------------------
 	
-	private List<Metodologia> metodologias;
-	private List<Metodologia> metodologiasPersonalizadas;
-	private Metodologia metodologiaSeleccionada;
 	private Indicador indicadorSeleccionado;
 	private List<Indicador> indicadores;
-	private List<Empresa> empresasOrdenadas;
-	private String nombreNuevaMetodologia;
 	private List<OperacionIndicador> operacionesIndicador = new ArrayList<OperacionIndicador>();
 	private List <Operacion> operaciones = new ArrayList<Operacion>();
 	private Operacion operacionSeleccionada;
 	private OperacionIndicador operacionIndicadorSeleccionada;
 	private String anio;
 	private Integer anios;
+	private String condicionSeleccionada;
 
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
-	public AgregarCondicionViewModel() {
-		indicadores = Repositorios.repositorioIndicadores.obtenerIndicadores();
-		operaciones = Repositorios.repositorioIndicadores.obtenerOperaciones();
-		operacionesIndicador = Repositorios.repositorioIndicadores.obtenerOperacionesIndicador();
+	public ConfigurarCondicionViewModel(String condicion) {
+		indicadores = Repositorios.repositorioIndicadores.getIndicadores();
+		operaciones = Repositorios.repositorioIndicadores.getOperaciones();
+		operacionesIndicador = Repositorios.repositorioIndicadores.getOperacionesIndicador();
+		condicionSeleccionada = condicion;
 	}
 
 	//------------------------------- GETTERS Y SETTERS --------------------------------
@@ -114,8 +117,13 @@ public class AgregarCondicionViewModel {
 	
 	//--------------------------------------- METODOS ----------------------------------
 
-	public void agregarCondicion() {
-		ElegirTipoCondicionViewModel.crearCondicion(anio,anios,indicadorSeleccionado,operacionIndicadorSeleccionada, operacionSeleccionada);
+	public Condicion crearCondicion(){
+		switch(condicionSeleccionada){
+		case TIPO1: return new AnalizarIndicadorEnUltimosAnios(indicadorSeleccionado,operacionIndicadorSeleccionada,anios);
+		case TIPO2: return new AnalizarIndicadoresEntreEmpresas(anio,operacionIndicadorSeleccionada,indicadorSeleccionado);
+		case TIPO3: return new AnalizarHistoriaDelIndicador(indicadorSeleccionado, operacionSeleccionada);
+		default: return new AnalizarCrecimientoEnPeriodo(indicadorSeleccionado,operacionIndicadorSeleccionada,anios);
+		}
 	}
 	
 }

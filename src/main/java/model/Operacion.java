@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
-@SuppressWarnings("unused")
+
 @Entity
 @Inheritance (strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Operacion {
@@ -19,12 +19,14 @@ public abstract class Operacion {
 	//------------------------------------ ATRIBUTOS --------------------------------
 	
 	@Id @GeneratedValue()
-	protected int id;
+	protected int idOperacion;
 	
 	protected String nombre;
 	
-	//@OneToMany(mappedBy = "operacionSobreIndicador", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	//protected List<CondicionTipo3> condiciones;
+	/*
+	@OneToMany(mappedBy = "operacion", fetch = FetchType.LAZY)
+	protected List<CondicionTipo3> condiciones;
+	*/
 	
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
@@ -37,17 +39,18 @@ public abstract class Operacion {
 	}
 	
 	//------------------------------- GETTERS Y SETTERS --------------------------------
-	
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public int getIdOperacion() {
+		return idOperacion;
+	}
+
+	public void setIdOperacion(int idOperacion) {
+		this.idOperacion = idOperacion;
 	}
 
 	public void setNombre(String nombre) {

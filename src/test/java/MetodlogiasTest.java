@@ -9,9 +9,9 @@ import org.junit.Test;
 
 import repositories.Repositorios;
 import model.Condicion;
-import model.CondicionTipo1;
-import model.CondicionTipo2;
-import model.CondicionTipo4;
+import model.AnalizarIndicadorEnUltimosAnios;
+import model.AnalizarIndicadoresEntreEmpresas;
+import model.AnalizarCrecimientoEnPeriodo;
 import model.Cuenta;
 import model.Empresa;
 import model.FileHandler;
@@ -25,7 +25,7 @@ import model.Metodologia;
 @SuppressWarnings("unused")
 public class MetodlogiasTest {
 	
-		private CondicionTipo2 unaCondicion;
+		private AnalizarIndicadoresEntreEmpresas unaCondicion;
 		private Empresa unaEmpresa;
 		private Empresa otraEmpresa;
 		private Indicador indicador;
@@ -37,7 +37,7 @@ public class MetodlogiasTest {
 			//Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook", unaCuenta);
 			//Repositorios.repositorioEmpresas.trabajarEmpresa("Twitter",otraCuenta);
 			indicador = new Indicador("humo", "2*(EBITDA+2000)");
-			unaCondicion = new CondicionTipo2("2015", new IgualA(), indicador);
+			unaCondicion = new AnalizarIndicadoresEntreEmpresas("2015", new IgualA(), indicador);
 			unaEmpresa = Repositorios.repositorioEmpresas.find(empresa -> empresa.getNombre().equals("Facebook"));
 			otraEmpresa = Repositorios.repositorioEmpresas.find(empresa -> empresa.getNombre().equals("Twitter"));
 			FileHandler lector= new FileHandler();
@@ -62,14 +62,14 @@ public class MetodlogiasTest {
 		@Test
 		public void metodologiaWarrenBuffet()
 		{
-			Indicador ROE = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("ROE"));
-			Indicador proporcionDeDeuda = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("ProporcionDeuda"));
-			Indicador margen = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("Margen"));
+			Indicador ROE = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombreIndicador().equals("ROE"));
+			Indicador proporcionDeDeuda = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombreIndicador().equals("ProporcionDeuda"));
+			Indicador margen = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombreIndicador().equals("Margen"));
 			Longevidad longevidad = new Longevidad("Longevidad", "");
-			Condicion condicionROE = new CondicionTipo1(ROE,  new MayorA(), 10);
-			Condicion condicionDeuda = new CondicionTipo2("2017", new MenorA(),proporcionDeDeuda);
-			Condicion condicionMargen = new CondicionTipo4(margen, new MayorA(),10);
-			Condicion condicionLongevidad = new CondicionTipo2("", new MayorA(),longevidad);
+			Condicion condicionROE = new AnalizarIndicadorEnUltimosAnios(ROE,  new MayorA(), 10);
+			Condicion condicionDeuda = new AnalizarIndicadoresEntreEmpresas("2017", new MenorA(),proporcionDeDeuda);
+			Condicion condicionMargen = new AnalizarCrecimientoEnPeriodo(margen, new MayorA(),10);
+			Condicion condicionLongevidad = new AnalizarIndicadoresEntreEmpresas("", new MayorA(),longevidad);
 			List<Condicion> condiciones = new ArrayList<Condicion>();
 			condiciones.add(condicionROE);
 			condiciones.add(condicionDeuda);

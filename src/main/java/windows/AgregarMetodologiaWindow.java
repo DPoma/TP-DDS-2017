@@ -2,7 +2,7 @@ package windows;
 
 import java.util.NoSuchElementException;
 
-import vm.MetodologiaViewModel;
+import vm.AgregarMetodologiaViewModel;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -13,12 +13,10 @@ import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-@SuppressWarnings("serial")
-public class MetodologiaWindow extends SimpleWindow<MetodologiaViewModel> {
+public class AgregarMetodologiaWindow extends SimpleWindow<AgregarMetodologiaViewModel> {
 	
-	
-	public MetodologiaWindow(WindowOwner parent) {
-		super(parent, new MetodologiaViewModel());
+	public AgregarMetodologiaWindow(WindowOwner parent) {
+		super(parent, new AgregarMetodologiaViewModel());
 	}
 	
 	public void createFormPanel(Panel panelActions) {
@@ -27,33 +25,20 @@ public class MetodologiaWindow extends SimpleWindow<MetodologiaViewModel> {
 	
 	@Override
 	public void createContents(Panel panelActions) {
-		this.setTitle("Nueva Metodologia");
+		this.setTitle("Nueva metodologia");
 		panelActions.setLayout(new VerticalLayout());
 		
-		new Label(panelActions).setText("Nombre");
+		new Label(panelActions).setText("          Ingrese un nombre          ");
 		new TextBox(panelActions).bindValueToProperty("nombreNuevaMetodologia");
-		/*
-		new Label(panelActions).setText("            Seleccione una operacion             ");
-		Selector<Metodologia> selector1 = new Selector<Metodologia>(panelActions);
-		selector1.allowNull(false);
-		selector1.bindValueToProperty("metodologiaSeleccionada");
-		selector1.bindItemsToProperty("metodologiasPersonalizadas");
-		
-		new Label(panelActions).setText("Seleccione un indicador");
-		Selector<Indicador> selector2 = new Selector<Indicador>(panelActions);
-		selector2.allowNull(false);
-		selector2.bindValueToProperty("indicadorSeleccionado");
-		selector2.bindItemsToProperty("indicadores");*/
-		
-		new Button(panelActions)
-		.setCaption("Agregar Condicion")
-		.onClick(this:: agregarCondicion);
 		
 		new Label(panelActions).setText("");
 		
-
 		new Button(panelActions)
-			.setCaption("Crear metodologia")
+		.setCaption("Agregar condicion")
+		.onClick(this:: agregarCondicion);
+	
+		new Button(panelActions)
+			.setCaption("Aceptar")
 			.onClick(this::crearNuevaMetodologia);
 		
 		new Label(panelActions).setText("");
@@ -71,13 +56,11 @@ public class MetodologiaWindow extends SimpleWindow<MetodologiaViewModel> {
 			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 			dialog.open();
 		}
-		}
-	
+	}
 	
 	public void agregarCondicion() {
-		ElegirTipoCondicionWindow dialog = new ElegirTipoCondicionWindow(this);
+		ElegirCondicionWindow dialog = new ElegirCondicionWindow(this);
 		dialog.open();
-	
 	}
 	
 }

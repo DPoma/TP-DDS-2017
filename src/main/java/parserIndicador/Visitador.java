@@ -38,7 +38,7 @@ public class Visitador extends IndicadorBaseVisitor<BigDecimal>{
 		}
 		catch(NoSuchElementException e)
 		{
-			operando = Repositorios.repositorioIndicadores.find(unIndicador -> unIndicador.getNombre().equals(ctx.getText()));
+			operando = Repositorios.repositorioIndicadores.find(unIndicador -> unIndicador.getNombreIndicador().equals(ctx.getText()));
 			
 		}
 		//System.out.println(operando);

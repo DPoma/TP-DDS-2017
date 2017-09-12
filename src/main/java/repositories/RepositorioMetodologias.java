@@ -1,7 +1,13 @@
 package repositories;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+
+import javax.persistence.EntityManager;
+
+import org.hibernate.HibernateException;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import model.Metodologia;
 
@@ -27,13 +33,31 @@ public class RepositorioMetodologias{
 
 	//--------------------------------------- METODOS ----------------------------------
 
-	public void agregarMetodologia(Metodologia metodologia)
-	{
+	public void agregarMetodologia(Metodologia metodologia) {
 		this.metodologias.add(metodologia);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void obtenerMetodologias() {
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+		metodologias = (List<Metodologia>)entity.createQuery("FROM Metodologia").getResultList();
 	}
 	
 	public Metodologia find(Predicate<? super Metodologia> criterio)
 	{
 		return this.metodologias.stream().filter(criterio).findFirst().get();
+	}
+	
+	public void persistirMetodologia(Metodologia metodologia) {
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+	    try {
+	    entity.getTransaction().begin();
+	    entity.persist(metodologia);
+	    entity.getTransaction().commit();
+	    } catch(HibernateException e) {
+	    	entity.getTransaction().rollback();
+	    } finally {
+	    	entity.close();
+	    }
 	}
 }
