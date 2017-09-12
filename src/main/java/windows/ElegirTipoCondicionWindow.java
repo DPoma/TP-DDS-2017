@@ -81,13 +81,11 @@ public class ElegirTipoCondicionWindow extends SimpleWindow<ElegirTipoCondicionV
 	
 	@Override
 	protected void createFormPanel(Panel arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected void addActions(Panel arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 }

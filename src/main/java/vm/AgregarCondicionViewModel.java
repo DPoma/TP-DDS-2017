@@ -13,6 +13,7 @@ import model.Indicador;
 import model.MayorA;
 import model.MenorA;
 import model.Metodologia;
+import model.Operacion;
 import model.OperacionIndicador;
 
 @SuppressWarnings("unused")
@@ -28,21 +29,19 @@ public class AgregarCondicionViewModel {
 	private List<Indicador> indicadores;
 	private List<Empresa> empresasOrdenadas;
 	private String nombreNuevaMetodologia;
-	private List<OperacionIndicador> operaciones = new ArrayList<OperacionIndicador>();
-	private OperacionIndicador operacionSeleccionada;
+	private List<OperacionIndicador> operacionesIndicador = new ArrayList<OperacionIndicador>();
+	private List <Operacion> operaciones = new ArrayList<Operacion>();
+	private Operacion operacionSeleccionada;
+	private OperacionIndicador operacionIndicadorSeleccionada;
 	private String anio;
 	private Integer anios;
 
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
-	public AgregarCondicionViewModel()
-	{
-		OperacionIndicador mayorA = new MayorA();
-		OperacionIndicador menorA = new MenorA();
-		this.operaciones.add(mayorA);
-		this.operaciones.add(menorA);
-		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
-		
+	public AgregarCondicionViewModel() {
+		indicadores = Repositorios.repositorioIndicadores.obtenerIndicadores();
+		operaciones = Repositorios.repositorioIndicadores.obtenerOperaciones();
+		operacionesIndicador = Repositorios.repositorioIndicadores.obtenerOperacionesIndicador();
 	}
 
 	//------------------------------- GETTERS Y SETTERS --------------------------------
@@ -71,19 +70,37 @@ public class AgregarCondicionViewModel {
 		this.anio = anio;
 	}
 
-	public OperacionIndicador getOperacionSeleccionada() {
+	public Operacion getOperacionSeleccionada() {
 		return operacionSeleccionada;
 	}
 
-	public void setOperacionSeleccionada(OperacionIndicador operacionSeleccionada) {
+	public void setOperacionSeleccionada(Operacion operacionSeleccionada) {
 		this.operacionSeleccionada = operacionSeleccionada;
 	}
 
-	public List<OperacionIndicador> getOperaciones() {
+	public OperacionIndicador getOperacionIndicadorSeleccionada() {
+		return operacionIndicadorSeleccionada;
+	}
+
+	public void setOperacionIndicadorSeleccionada(
+			OperacionIndicador operacionIndicadorSeleccionada) {
+		this.operacionIndicadorSeleccionada = operacionIndicadorSeleccionada;
+	}
+
+	public List<OperacionIndicador> getOperacionesIndicador() {
+		return operacionesIndicador;
+	}
+
+	public void setOperacionesIndicador(
+			List<OperacionIndicador> operacionesIndicador) {
+		this.operacionesIndicador = operacionesIndicador;
+	}
+
+	public List<Operacion> getOperaciones() {
 		return operaciones;
 	}
 
-	public void setOperaciones(List<OperacionIndicador> operaciones) {
+	public void setOperaciones(List<Operacion> operaciones) {
 		this.operaciones = operaciones;
 	}
 
@@ -98,7 +115,7 @@ public class AgregarCondicionViewModel {
 	//--------------------------------------- METODOS ----------------------------------
 
 	public void agregarCondicion() {
-		ElegirTipoCondicionViewModel.crearCondicion(anio,anios,indicadorSeleccionado,operacionSeleccionada);
+		ElegirTipoCondicionViewModel.crearCondicion(anio,anios,indicadorSeleccionado,operacionIndicadorSeleccionada, operacionSeleccionada);
 	}
 	
 }

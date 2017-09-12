@@ -65,7 +65,6 @@ public class MetodologiaViewModel implements WindowOwner {
 		else{
 		metodologia = new Metodologia(nombreNuevaMetodologia,condicionesDeLaMetodologia);
 		}
-		//TODO persistir esto
 	}
 	
 	public static void agregarAListaCondiciones(Condicion condicion){

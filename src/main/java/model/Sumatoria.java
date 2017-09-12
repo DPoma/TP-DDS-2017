@@ -9,6 +9,11 @@ public class Sumatoria extends Operacion {
 	
 	//------------------------------------ CONSTRUCTORES --------------------------------
 	
+	public Sumatoria(String unNombre) {
+		nombre = unNombre;
+	}
+	
+	
 	public Sumatoria() {
 		
 	}

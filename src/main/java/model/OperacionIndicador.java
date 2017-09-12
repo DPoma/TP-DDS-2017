@@ -22,13 +22,45 @@ public abstract class OperacionIndicador {
 	@Id @GeneratedValue
 	protected int id;
 	
+	protected String nombre;
+	
 	//@OneToMany(mappedBy = "operacion", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	//protected List<Condicion> condiciones;
+	
+	//----------------------------------- CONSTRUCTORES --------------------------------
+	
+	public OperacionIndicador() {
+		
+	}
 
-	//------------------------------------ METODOS --------------------------------
+	//------------------------------- GETTERS Y SETTERS --------------------------------
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+
+	//--------------------------------------- METODOS ----------------------------------
 	
 	public boolean operar(BigDecimal unMonto, BigDecimal otroMonto) {
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return this.nombre;
 	}
 
 }

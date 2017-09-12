@@ -9,6 +9,11 @@ public class Promedio extends Operacion {
 
 	//------------------------------------ CONSTRUCTORES --------------------------------
 	
+	public Promedio(String unNombre) {
+		nombre = unNombre;
+	}
+	
+	
 	public Promedio() {
 		
 	}

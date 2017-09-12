@@ -45,7 +45,6 @@ public class MetodlogiasTest {
 				lector.leerArchivoCuentas("cuentas.csv");
 				lector.leerArchivoIndicadores("indicadores.csv");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			

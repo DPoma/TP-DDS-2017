@@ -21,14 +21,49 @@ public abstract class Operacion {
 	@Id @GeneratedValue()
 	protected int id;
 	
+	protected String nombre;
+	
 	//@OneToMany(mappedBy = "operacionSobreIndicador", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	//protected List<CondicionTipo3> condiciones;
 	
-	//------------------------------------ METODOS --------------------------------
+	//----------------------------------- CONSTRUCTORES --------------------------------
+	
+	public Operacion(String unNombre) {
+		nombre = unNombre;
+	}
+	
+	public Operacion() {
+		
+	}
+	
+	//------------------------------- GETTERS Y SETTERS --------------------------------
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	//--------------------------------------- METODOS ----------------------------------
 	
 	public BigDecimal calcular(Indicador indicador, Empresa empresa)
 	{
 		return new BigDecimal(0);
+	}
+	
+	@Override
+	public String toString() {
+		return this.nombre;
 	}
 	
 }

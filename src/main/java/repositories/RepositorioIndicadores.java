@@ -47,6 +47,8 @@ public class RepositorioIndicadores {
 		return this.indicadores.stream().filter(criterio).findFirst().get();
 	}
 	
+	//NO MIRAR
+	
 	@SuppressWarnings("unchecked")
 	public List<Indicador> obtenerIndicadores() {
 		EntityManager entity = PerThreadEntityManagers.getEntityManager();
@@ -67,12 +69,25 @@ public class RepositorioIndicadores {
 	    }
 	}
 	
-	@SuppressWarnings("unchecked")
 	public boolean hayOperacionesSinCargar() {
+		List<Operacion> operaciones = this.obtenerOperaciones();
+		List<OperacionIndicador> operacionesIndicador = this.obtenerOperacionesIndicador();
+		return operaciones.isEmpty() && operacionesIndicador.isEmpty();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Operacion> obtenerOperaciones() {
 		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		List<Operacion> operaciones = (List<Operacion>)entity.createQuery("FROM Operacion").getResultList();
-		List<OperacionIndicador> operacionesInd = (List<OperacionIndicador>)entity.createQuery("FROM OperacionIndicador").getResultList();
-		return operaciones.isEmpty() && operacionesInd.isEmpty();
+		return operaciones;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<OperacionIndicador> obtenerOperacionesIndicador() {
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+		List<OperacionIndicador> operacionesIndicador = (List<OperacionIndicador>)entity.createQuery("FROM OperacionIndicador").getResultList();
+		return operacionesIndicador;
 	}
 	
 	public void cargarOperaciones() {
@@ -83,15 +98,15 @@ public class RepositorioIndicadores {
 	public void persistirOperaciones() {
 		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		entity.getTransaction().begin();
-		entity.persist(new MayorA());
-		entity.persist(new MenorA());
-		entity.persist(new IgualA());
+		entity.persist(new MayorA("MayorA"));
+		entity.persist(new MenorA("MenorA"));
+		entity.persist(new IgualA("IgualA"));
 		entity.getTransaction().commit();
 		// Para que el contador se reinicie
 		entity.getTransaction().begin();
-		entity.persist(new Promedio());
-		entity.persist(new Sumatoria());
-		entity.persist(new Mediana());
+		entity.persist(new Promedio("Promedio"));
+		entity.persist(new Sumatoria("Sumatoria"));
+		entity.persist(new Mediana("Mediana"));
 		entity.getTransaction().commit();
 	}
 }

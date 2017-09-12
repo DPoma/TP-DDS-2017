@@ -39,8 +39,8 @@ public class AgregarCondicionTipo2Window extends SimpleWindow<AgregarCondicionVi
 		new Label(panelActions).setText("Seleccione una operacion");
 		Selector<OperacionIndicador> selector = new Selector<OperacionIndicador>(panelActions);
 		selector.allowNull(false);
-		selector.bindValueToProperty("operacionSeleccionada");
-		selector.bindItemsToProperty("operaciones");
+		selector.bindValueToProperty("operacionIndicadorSeleccionada");
+		selector.bindItemsToProperty("operacionesIndicador");
 		
 		new Label(panelActions).setText("Anio");
 		new TextBox(panelActions).bindValueToProperty("anio");
@@ -68,13 +68,11 @@ public class AgregarCondicionTipo2Window extends SimpleWindow<AgregarCondicionVi
 		}
 	@Override
 	protected void createFormPanel(Panel arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected void addActions(Panel arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 }

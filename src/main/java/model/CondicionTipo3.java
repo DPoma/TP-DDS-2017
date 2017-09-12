@@ -10,11 +10,28 @@ import javax.persistence.ManyToOne;
 @Entity
 public class CondicionTipo3 extends Condicion {
 
+	//------------------------------------- ATRIBUTOS ----------------------------------
+	
 	private BigDecimal valor;
 	
 	@ManyToOne
 	//@JoinColumn(name = "id")
 	private Operacion operacionSobreIndicador;
+	
+	//----------------------------------- CONSTRUCTORES --------------------------------
+	
+	public CondicionTipo3(Indicador unIndicador, Operacion operacion) {
+		operacionSobreIndicador = operacion;
+		indicador = unIndicador;
+	}
+	
+	public CondicionTipo3() {
+		
+	}
+	
+	//------------------------------- GETTERS Y SETTERS --------------------------------
+	
+	//--------------------------------------- METODOS ----------------------------------
 	
 	@Override
 	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
@@ -22,10 +39,6 @@ public class CondicionTipo3 extends Condicion {
 		if(operacion.operar(total, valor))
 			unaEmpresa.aumentarPuntuacion();
 		else
-			otraEmpresa.aumentarPuntuacion();
-			
-		
+			otraEmpresa.aumentarPuntuacion();	
 	}
-	
-
 }

@@ -9,6 +9,11 @@ public class Mediana extends Operacion {
 	
 	//------------------------------------ CONSTRUCTORES --------------------------------
 	
+	public Mediana(String unNombre) {
+		nombre = unNombre;
+	}
+	
+	
 	public Mediana() {
 		
 	}
