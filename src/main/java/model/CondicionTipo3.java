@@ -1,14 +1,19 @@
 package model;
 
 import java.math.BigDecimal;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@SuppressWarnings("unused")
 @Entity
 public class CondicionTipo3 extends Condicion {
 
 	private BigDecimal valor;
+	
 	@ManyToOne
+	//@JoinColumn(name = "id")
 	private Operacion operacionSobreIndicador;
 	
 	@Override

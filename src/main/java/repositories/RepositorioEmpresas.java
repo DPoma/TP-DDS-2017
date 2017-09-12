@@ -61,6 +61,11 @@ public class RepositorioEmpresas {
 	}
 	
 	
+	//public List<Cuenta> filtrarPorEmpresaPeriodo(String empresa, String anioMin, String anioMax){
+	//Empresa e= this.empresas.stream().filter(x->x.nameEqualsCI(empresa)).findFirst().get();
+	//return e.periodoEntre(anioMin, anioMax);
+	//}
+	
 	public Empresa obtenerEmpresa(String nombreEmpresa, int anioFundacion) {
 		if(this.existeEmpresa(nombreEmpresa))
 			return this.buscarEmpresa(nombreEmpresa);

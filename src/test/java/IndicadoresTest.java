@@ -13,7 +13,7 @@ import parserIndicador.ParsearIndicador;
 import repositories.Repositorios;
 import vm.AgregarIndicadorViewModel;
 
-
+@SuppressWarnings("unused")
 public class IndicadoresTest {
 	private ParsearIndicador parser = new ParsearIndicador();
 	

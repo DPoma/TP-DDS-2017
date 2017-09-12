@@ -21,6 +21,7 @@ import model.MayorA;
 import model.MenorA;
 import model.Metodologia;
 
+@SuppressWarnings("unused")
 @Observable
 public class VerMetodologiasViewModel {
 	
@@ -38,6 +39,7 @@ public class VerMetodologiasViewModel {
 
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
+	/*
 	public VerMetodologiasViewModel()
 	{
 		//Warren Buffet hardcodeado
@@ -61,6 +63,7 @@ public class VerMetodologiasViewModel {
 		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
 		this.empresas = Repositorios.repositorioEmpresas.getEmpresas();
 	}
+	*/
 
 	//------------------------------- GETTERS Y SETTERS --------------------------------
 	

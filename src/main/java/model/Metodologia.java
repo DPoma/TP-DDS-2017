@@ -6,7 +6,6 @@ import java.util.List;
 
 import repositories.Repositorios;
 
-
 public class Metodologia {
 
 	private String nombre;
@@ -27,8 +26,6 @@ public class Metodologia {
 	{
 		Repositorios.repositorioMetodologias.agregarMetodologia(this);
 	}
-
-
 
 	@Override
 	public String toString()

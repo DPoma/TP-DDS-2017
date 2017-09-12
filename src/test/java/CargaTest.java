@@ -7,13 +7,14 @@ import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import model.Cuenta;
 import model.Empresa;
 import model.FileHandler;
 import repositories.Repositorios;
 import vm.PathViewModel;
 
-
+@SuppressWarnings("unused")
 public class CargaTest{
 	
 	private List<Empresa> lista = new ArrayList<Empresa>();

@@ -22,6 +22,7 @@ import model.MayorA;
 import model.MenorA;
 import model.Metodologia;
 
+@SuppressWarnings("unused")
 public class MetodlogiasTest {
 	
 		private CondicionTipo2 unaCondicion;
