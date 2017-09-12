@@ -19,6 +19,10 @@ public class ElegirCondicionWindow extends SimpleWindow<ElegirCondicionViewModel
 	
 	private AgregarMetodologiaWindow ventanaMetodologia;
 	
+	public AgregarMetodologiaWindow getVentanaMetodologia() {
+		return ventanaMetodologia;
+	}
+
 	public ElegirCondicionWindow(WindowOwner parent) {
 		super(parent, new ElegirCondicionViewModel());
 		ventanaMetodologia = (AgregarMetodologiaWindow)parent;
@@ -41,18 +45,10 @@ public class ElegirCondicionWindow extends SimpleWindow<ElegirCondicionViewModel
 		.setCaption("Configurar condicion")
 		.onClick(this:: configurarCondicion);
 		
-		new Button(panelActions)
-		.setCaption("Aceptar")
-		.onClick(this:: agregarCondicion);
-		
 		new Label(panelActions).setText("");
 	}
 
-	public void agregarCondicion() {
-		ventanaMetodologia.getModelObject().agregarCondicion(this.getModelObject().getCondicion());
-		this.cerrar();
-	}
-	
+
 	public void configurarCondicion() {
 		
 		switch(this.getModelObject().getcondicionSeleccionada()){

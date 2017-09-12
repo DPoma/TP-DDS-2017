@@ -58,7 +58,9 @@ public class AgregarCondicionTipo2Window extends SimpleWindow<ConfigurarCondicio
 	public void agregarCondicion() {
 		try {
 			ventanaElegir.getModelObject().setCondicion(this.getModelObject().crearCondicion());
+			ventanaElegir.getVentanaMetodologia().getModelObject().agregarCondicion(ventanaElegir.getModelObject().getCondicion());
 			this.close();
+			ventanaElegir.close();
 		}
 		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
 			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
