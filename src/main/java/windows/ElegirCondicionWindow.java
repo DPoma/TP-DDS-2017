@@ -48,9 +48,9 @@ public class ElegirCondicionWindow extends SimpleWindow<ElegirCondicionViewModel
 		new Label(panelActions).setText("");
 	}
 
-	
 	public void agregarCondicion() {
 		ventanaMetodologia.getModelObject().agregarCondicion(this.getModelObject().getCondicion());
+		this.cerrar();
 	}
 	
 	public void configurarCondicion() {

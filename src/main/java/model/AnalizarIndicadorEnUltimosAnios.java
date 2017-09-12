@@ -8,14 +8,17 @@ import java.util.stream.IntStream;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
-@SuppressWarnings("unused")
 @Entity
 public class AnalizarIndicadorEnUltimosAnios extends Condicion {
 
+	//------------------------------------- ATRIBUTOS ----------------------------------
+	
 	@Transient
 	private List<String> anios;
 
 	private Integer cantidadAnios;
+	
+	//----------------------------------- CONSTRUCTORES --------------------------------
 	
 	public AnalizarIndicadorEnUltimosAnios(Indicador indicador, OperacionIndicador operacion, Integer anios)
 	{
@@ -27,22 +30,45 @@ public class AnalizarIndicadorEnUltimosAnios extends Condicion {
 			    .boxed()
 			    .map(unAnio -> unAnio.toString())
 			    .collect(Collectors.toList());
+	}
+	
+	
+	public AnalizarIndicadorEnUltimosAnios() {
 		
 	}
+	
+
+	//------------------------------- GETTERS Y SETTERS --------------------------------
+
+	public List<String> getAnios() {
+		return anios;
+	}
+
+
+	public void setAnios(List<String> anios) {
+		this.anios = anios;
+	}
+
+
+	public Integer getCantidadAnios() {
+		return cantidadAnios;
+	}
+
+
+	public void setCantidadAnios(Integer cantidadAnios) {
+		this.cantidadAnios = cantidadAnios;
+	}
+
+
+	
+	//--------------------------------------- METODOS ----------------------------------
 	
 	@Override
 	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
 		if(indicador.montoCumpleOperacionEnPeriodo(operacionIndicador, unaEmpresa, otraEmpresa, anios))
 			unaEmpresa.aumentarPuntuacion();
 		else
-			otraEmpresa.aumentarPuntuacion();
-		
+			otraEmpresa.aumentarPuntuacion();	
 	}
-	
-	public AnalizarIndicadorEnUltimosAnios() {
-		
-	}
-
-	
 
 }

@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import org.hibernate.HibernateException;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import model.Condicion;
 import model.Metodologia;
 
 
@@ -35,6 +36,13 @@ public class RepositorioMetodologias{
 
 	public void agregarMetodologia(Metodologia metodologia) {
 		this.metodologias.add(metodologia);
+	}
+	
+	
+	public void crearMetodologia(String nombre, List<Condicion> condiciones) {
+		Metodologia metodologia = new Metodologia(nombre, condiciones);
+		metodologia.asignarseEnSusCondiciones();
+		this.persistirMetodologia(metodologia);
 	}
 	
 	@SuppressWarnings("unchecked")

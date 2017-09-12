@@ -33,9 +33,6 @@ public class ElegirCondicionViewModel {
 		Repositorios.repositorioIndicadores.obtenerIndicadores();
 		Repositorios.repositorioIndicadores.obtenerOperaciones();
 		Repositorios.repositorioIndicadores.obtenerOperacionesIndicador();
-		System.out.println(Repositorios.repositorioIndicadores.getIndicadores());
-		System.out.println(Repositorios.repositorioIndicadores.getOperaciones());
-		System.out.println(Repositorios.repositorioIndicadores.getOperacionesIndicador());
 	}
 	
 	//------------------------------- GETTERS Y SETTERS --------------------------------

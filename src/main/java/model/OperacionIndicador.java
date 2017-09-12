@@ -1,16 +1,12 @@
 package model;
 
 import java.math.BigDecimal;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+
 
 @Entity
 @Inheritance (strategy = InheritanceType.SINGLE_TABLE)
@@ -22,11 +18,6 @@ public abstract class OperacionIndicador {
 	protected int idOperacionIndicador;
 
 	protected String nombre;
-	
-	/*
-	@OneToMany(mappedBy = "operacionIndicador", fetch = FetchType.LAZY)
-	protected List<Condicion> condiciones;
-	*/
 	
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
@@ -43,16 +34,16 @@ public abstract class OperacionIndicador {
 	public void setIdOperacionIndicador(int idOperacionIndicador) {
 		this.idOperacionIndicador = idOperacionIndicador;
 	}
-
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String nombreOperacionIndicador) {
+		this.nombre = nombreOperacionIndicador;
 	}
 	
-
 	//--------------------------------------- METODOS ----------------------------------
 	
 	public boolean operar(BigDecimal unMonto, BigDecimal otroMonto) {
@@ -63,5 +54,4 @@ public abstract class OperacionIndicador {
 	public String toString() {
 		return this.nombre;
 	}
-
 }

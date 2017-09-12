@@ -2,10 +2,11 @@ package vm;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.uqbar.commons.utils.Observable;
 
+import repositories.Repositorios;
 import model.Condicion;
-import model.Metodologia;
 
 @Observable
 public class AgregarMetodologiaViewModel {
@@ -43,13 +44,11 @@ public class AgregarMetodologiaViewModel {
 	//--------------------------------------- METODOS ----------------------------------
 	
 	public void crearMetodologia() {
-		Metodologia metodologia = new Metodologia(nombreNuevaMetodologia,condicionesDeLaMetodologia);
-		metodologia.guardar();
-	}
-
+		Repositorios.repositorioMetodologias.crearMetodologia(nombreNuevaMetodologia,condicionesDeLaMetodologia);
+	} 
+	
 	public void agregarCondicion(Condicion condicion){
 		condicionesDeLaMetodologia.add(condicion);
-		System.out.println(condicion);
 	}
 	
 }

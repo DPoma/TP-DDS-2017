@@ -11,6 +11,7 @@
     	<class>model.Empresa</class>
     	<class>model.Cuenta</class>
     	<class>model.Indicador</class>
+    	<class>model.Metodologia</class>
     	<class>model.OperacionIndicador</class>
     	<class>model.Operacion</class>
     	<class>model.AnalizarIndicadorEnUltimosAnios</class>
@@ -23,8 +24,6 @@
     	<class>model.MayorA</class>
     	<class>model.MenorA</class>
     	<class>model.IgualA</class>
-    	
-    		
     	
  
         <properties> 

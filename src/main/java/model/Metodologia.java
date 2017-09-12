@@ -42,6 +42,14 @@ public class Metodologia {
 		return this.condiciones;
 	}
 	
+	public int getIdMetodologia() {
+		return idMetodologia;
+	}
+
+	public void setIdMetodologia(int idMetodologia) {
+		this.idMetodologia = idMetodologia;
+	}
+	
 	//--------------------------------------- METODOS ----------------------------------
 	
 	@Override
@@ -55,6 +63,10 @@ public class Metodologia {
 	
 	public void agregarCondicion(Condicion condicion){
 		this.condiciones.add(condicion);
+	}
+	
+	public void asignarseEnSusCondiciones() {
+		this.condiciones.forEach(condicion -> condicion.setMetodologia(this));
 	}
 
 	public List<Empresa> aplicarMetodologia( List<Empresa> empresas){
