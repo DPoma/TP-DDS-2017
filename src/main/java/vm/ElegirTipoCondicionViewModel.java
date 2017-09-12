@@ -37,7 +37,7 @@ public class ElegirTipoCondicionViewModel {
 	private static Condicion condicion;
 	@Observable
 	public static String condicionSeleccionada;
-	private List<String> condiciones = new ArrayList<String>();
+	public List<String> condiciones = new ArrayList<String>();
 
 	//----------------------------------- CONSTRUCTORES --------------------------------
 
@@ -55,6 +55,10 @@ public class ElegirTipoCondicionViewModel {
 	public String getcondicionSeleccionada(){
 		return condicionSeleccionada;
 	}
+	
+	public void setcondicionSeleccionada(String condicionSeleccionada){
+ 		this.condicionSeleccionada =condicionSeleccionada;
+ 	}
 
 	//--------------------------------------- METODOS ----------------------------------
 	
