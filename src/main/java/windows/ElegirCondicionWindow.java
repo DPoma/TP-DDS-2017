@@ -17,6 +17,7 @@ public class ElegirCondicionWindow extends SimpleWindow<ElegirCondicionViewModel
 	static final String TIPO1 = "Analizar indicador en los ultimos anios";
 	static final String TIPO2 = "Analizar indicadores entre empresas";
 	static final String TIPO3 = "Analizar historia del indicador";
+	static final String TIPO5 = "Analizar antiguedad de la empresa";
 	
 	private AgregarMetodologiaWindow ventanaMetodologia;
 	
@@ -72,6 +73,11 @@ public class ElegirCondicionWindow extends SimpleWindow<ElegirCondicionViewModel
 			AgregarCondicionTipo3Window dialog1 = new AgregarCondicionTipo3Window(this, TIPO3);
 			dialog1.open();
 			break;
+			
+		case TIPO5:
+			this.getModelObject().setCondicion(this.getModelObject().crearCondicion());
+			ventanaMetodologia.getModelObject().agregarCondicion(this.getModelObject().getCondicion());
+			this.close(); break;
 			
 		default: 
 			AgregarCondicionTipo1o4Window dialog2 = new AgregarCondicionTipo1o4Window(this, TIPO1);

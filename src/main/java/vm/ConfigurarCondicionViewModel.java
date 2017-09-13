@@ -25,7 +25,7 @@ public class ConfigurarCondicionViewModel {
 	static final String TIPO2 = "Analizar indicadores entre empresas";
 	static final String TIPO3 = "Analizar historia del indicador";
 	static final String TIPO4 = "Analizar crecimiento del indicador";
-	static final String TIPO5 = "Analizar por longevidad";
+	static final String TIPO5 = "Analizar por antiguedad";
 	
 	
 	//------------------------------------- ATRIBUTOS ----------------------------------

@@ -7,6 +7,7 @@ import org.uqbar.commons.utils.Observable;
 
 import repositories.Repositorios;
 import model.Condicion;
+import model.Longevidad;
 
 @Observable
 public class ElegirCondicionViewModel {
@@ -17,6 +18,8 @@ public class ElegirCondicionViewModel {
 	static final String TIPO2 = "Analizar indicadores entre empresas";
 	static final String TIPO3 = "Analizar historia del indicador";
 	static final String TIPO4 = "Analizar crecimiento del indicador";
+	static final String TIPO5 = "Analizar antiguedad de la empresa";
+	
 	
 	//------------------------------------- ATRIBUTOS ----------------------------------
 	
@@ -30,6 +33,7 @@ public class ElegirCondicionViewModel {
 		condiciones.add(TIPO2);
 		condiciones.add(TIPO3);
 		condiciones.add(TIPO4);
+		condiciones.add(TIPO5);
 		Repositorios.repositorioIndicadores.obtenerIndicadores();
 		Repositorios.repositorioIndicadores.obtenerOperaciones();
 		Repositorios.repositorioIndicadores.obtenerOperacionesIndicador();
@@ -64,5 +68,9 @@ public class ElegirCondicionViewModel {
  	}
 
 	//--------------------------------------- METODOS ----------------------------------
+	
+	public Condicion crearCondicion() {
+		return new Longevidad();
+	}
 	
 }

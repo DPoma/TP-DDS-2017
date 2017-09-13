@@ -5,6 +5,8 @@ import java.util.Calendar;
 
 import javax.persistence.Entity;
 
+import repositories.Repositorios;
+
 @Entity
 public class Longevidad extends Condicion {
 
@@ -17,14 +19,22 @@ public class Longevidad extends Condicion {
 	
 	//------------------------------------ METODOS --------------------------------
 	
-	public BigDecimal calcularMonto(Empresa unaEmpresa, String anio)
-	{
+	public BigDecimal calcularAntiguedad(Empresa unaEmpresa) {
 		return new BigDecimal(Calendar.getInstance().get(Calendar.YEAR) - unaEmpresa.getAnioFundacion());
 	}
-
+	
 	@Override
 	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
-		
+		if(this.esMasAntigua(unaEmpresa, otraEmpresa) > 1)
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(unaEmpresa);
+		else
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(otraEmpresa);
+	}
+	
+	public int esMasAntigua(Empresa unaEmpresa, Empresa otraEmpresa) {
+		BigDecimal unaAntiguedad = this.calcularAntiguedad(unaEmpresa);
+		BigDecimal otraAntiguedad = this.calcularAntiguedad(otraEmpresa);
+		return unaAntiguedad.compareTo(otraAntiguedad);
 	}
 
 }
