@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class CargaTest{
 	public void cargarArchivo() throws IOException
 	{
 		FileHandler lector = new FileHandler();
-		lector.leerArchivoCuentas("src/main/java/cuentas.csv");
+		lector.leerArchivoCuentas(new File("").getAbsolutePath());
 		Assert.assertEquals(3, Repositorios.repositorioEmpresas.getEmpresas().size());
 		Assert.assertEquals(7,Repositorios.repositorioEmpresas.getEmpresas().stream().mapToInt(x->x.getCuentas().size()).sum());
 	}

@@ -3,20 +3,28 @@ package model;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-public class Longevidad extends Indicador {
+import javax.persistence.Entity;
+
+@Entity
+public class Longevidad extends Condicion {
+
 
 	//------------------------------------ CONSTRUCTORES --------------------------------
 	
-	public Longevidad(String nombre, String formula) {
-		super(nombre, formula);
+	public Longevidad() {
+		
 	}
 	
 	//------------------------------------ METODOS --------------------------------
 	
-	@Override
 	public BigDecimal calcularMonto(Empresa unaEmpresa, String anio)
 	{
 		return new BigDecimal(Calendar.getInstance().get(Calendar.YEAR) - unaEmpresa.getAnioFundacion());
+	}
+
+	@Override
+	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
+		
 	}
 
 }

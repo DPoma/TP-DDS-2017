@@ -23,7 +23,7 @@ import model.MenorA;
 import model.Metodologia;
 
 @SuppressWarnings("unused")
-public class MetodlogiasTest {
+public class MetodologiasTest {
 	
 		private AnalizarIndicadoresEntreEmpresas unaCondicion;
 		private Empresa unaEmpresa;
@@ -32,23 +32,16 @@ public class MetodlogiasTest {
 		
 		@Before
 		public void init() {
-			//Cuenta unaCuenta = new Cuenta("EBITDA",2015,"200000");
-			//Cuenta otraCuenta = new Cuenta("EBITDA",2015,"100000");
-			//Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook", unaCuenta);
-			//Repositorios.repositorioEmpresas.trabajarEmpresa("Twitter",otraCuenta);
+			Empresa facebook = new Empresa("Facebook", 2004);
+			Empresa twitter = new Empresa("Twitter", 2006);
+			Repositorios.repositorioEmpresas.agregarEmpresa(facebook);
+			Repositorios.repositorioEmpresas.agregarEmpresa(twitter);
+			Cuenta unaCuenta = new Cuenta("EBITDA",2015,"200000", facebook);
+			Cuenta otraCuenta = new Cuenta("EBITDA",2015,"100000", twitter);
 			indicador = new Indicador("humo", "2*(EBITDA+2000)");
 			unaCondicion = new AnalizarIndicadoresEntreEmpresas("1000", new IgualA(), indicador);
 			unaEmpresa = Repositorios.repositorioEmpresas.find(empresa -> empresa.getNombre().equals("Facebook"));
-			otraEmpresa = Repositorios.repositorioEmpresas.find(empresa -> empresa.getNombre().equals("Twitter"));
-			FileHandler lector= new FileHandler();
-			try {
-				lector.leerArchivoCuentas("cuentas.csv");
-				lector.leerArchivoIndicadores("indicadores.csv");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			
+			otraEmpresa = Repositorios.repositorioEmpresas.find(empresa -> empresa.getNombre().equals("Twitter"));			
 		}
 		
 		@Test
@@ -65,16 +58,16 @@ public class MetodlogiasTest {
 			Indicador ROE = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombreIndicador().equals("ROE"));
 			Indicador proporcionDeDeuda = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombreIndicador().equals("ProporcionDeuda"));
 			Indicador margen = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombreIndicador().equals("Margen"));
-			Longevidad longevidad = new Longevidad("Longevidad", "");
+			//Longevidad longevidad = new Longevidad("Longevidad", "");
 			Condicion condicionROE = new AnalizarIndicadorEnUltimosAnios(ROE,  new MayorA(), 10);
 			Condicion condicionDeuda = new AnalizarIndicadoresEntreEmpresas("2017", new MenorA(),proporcionDeDeuda);
 			Condicion condicionMargen = new AnalizarCrecimientoEnPeriodo(margen, new MayorA(),10);
-			Condicion condicionLongevidad = new AnalizarIndicadoresEntreEmpresas("2000", new MayorA(),longevidad);
+			//Condicion condicionLongevidad = new AnalizarIndicadoresEntreEmpresas("2000", new MayorA(),longevidad);
 			List<Condicion> condiciones = new ArrayList<Condicion>();
 			condiciones.add(condicionROE);
 			condiciones.add(condicionDeuda);
 			condiciones.add(condicionMargen);
-			condiciones.add(condicionLongevidad);
+			//condiciones.add(condicionLongevidad);
 			unaEmpresa.setAnioFundacion(2000);
 			otraEmpresa.setAnioFundacion(2002);
 			Metodologia warrenBuffet = new Metodologia("Warren Buffet", condiciones);
@@ -87,8 +80,6 @@ public class MetodlogiasTest {
 			Assert.assertEquals(3, primera.getPuntacion());
 			Assert.assertEquals(1, segunda.getPuntacion());
 			Assert.assertEquals(primera.getNombre(), "Facebook");
-			
-			
 		}
 		
 		@After

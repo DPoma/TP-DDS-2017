@@ -3,6 +3,7 @@ package repositories;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -41,6 +42,10 @@ public class RepositorioEmpresas {
 		return this.empresas.stream().filter(criterio).findFirst().get();
 	}
 	
+	public void agregarEmpresa(Empresa empresa) {
+		empresas.add(empresa);
+	}
+	
 	
 	public void guardarCuenta(String[] linea) {
 		//0 = NombreEmpresa | 1 = AnioFundacion  | 2 = NombreCuenta | 3 = anioCuenta | 4 = MontoCuenta
@@ -61,10 +66,16 @@ public class RepositorioEmpresas {
 	}
 	
 	
-	//public List<Cuenta> filtrarPorEmpresaPeriodo(String empresa, String anioMin, String anioMax){
-	//Empresa e= this.empresas.stream().filter(x->x.nameEqualsCI(empresa)).findFirst().get();
-	//return e.periodoEntre(anioMin, anioMax);
-	//}
+	public List<Cuenta> filtrarCuentasPorPeriodo(String nombreEmpresa, String anioMin, String anioMax){
+	Empresa empresa = buscarEmpresa(nombreEmpresa);
+	return empresa.getCuentas().stream().filter(unaCuenta -> this.cuentaEstaDentroDelPeriodo(unaCuenta, anioMin, anioMax)).collect(Collectors.toList());
+	}
+	
+	public boolean cuentaEstaDentroDelPeriodo(Cuenta cuenta, String anioMin, String anioMax) {
+		int anio1 = Integer.parseInt(anioMin);
+		int anio2 = Integer.parseInt(anioMax);
+		return cuenta.getAnio() <= anio1 ||  cuenta.getAnio() >= anio2;
+	}
 	
 	public Empresa obtenerEmpresa(String nombreEmpresa, int anioFundacion) {
 		if(this.existeEmpresa(nombreEmpresa))

@@ -21,9 +21,11 @@ public class AnalizarHistoriaDelIndicador extends Condicion {
 	
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
-	public AnalizarHistoriaDelIndicador(Indicador unIndicador, Operacion unaOperacion) {
+	public AnalizarHistoriaDelIndicador(Indicador unIndicador, Operacion unaOperacion, OperacionIndicador unaOperacionIndicador, String unValor) {
 		operacion = unaOperacion;
 		indicador = unIndicador;
+		operacionIndicador = unaOperacionIndicador;
+		valor = new BigDecimal(unValor) ;
 	}
 	
 	public AnalizarHistoriaDelIndicador() {
@@ -52,7 +54,6 @@ public class AnalizarHistoriaDelIndicador extends Condicion {
 	
 	@Override
 	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
-		
 		BigDecimal total = operacion.calcular(indicador, unaEmpresa);
 		if(operacionIndicador.operar(total, valor))
 			Repositorios.repositorioEmpresas.aumentarPuntuacion(unaEmpresa);

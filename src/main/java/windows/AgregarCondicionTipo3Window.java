@@ -11,6 +11,7 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
@@ -35,11 +36,20 @@ public class AgregarCondicionTipo3Window extends SimpleWindow<ConfigurarCondicio
 		selector2.bindValueToProperty("indicadorSeleccionado");
 		selector2.bindItemsToProperty("indicadores");
 		
-		new Label(panelActions).setText("Seleccione una operacion");
+		new Label(panelActions).setText("Seleccione una operacion de indicador");
 		Selector<OperacionIndicador> selector = new Selector<OperacionIndicador>(panelActions);
 		selector.allowNull(false);
-		selector.bindValueToProperty("operacionSeleccionada");
-		selector.bindItemsToProperty("operaciones");
+		selector.bindValueToProperty("operacionIndicadorSeleccionada");
+		selector.bindItemsToProperty("operacionesIndicador");
+		
+		new Label(panelActions).setText("Seleccione una operacion");
+		Selector<OperacionIndicador> selector3 = new Selector<OperacionIndicador>(panelActions);
+		selector3.allowNull(false);
+		selector3.bindValueToProperty("operacionSeleccionada");
+		selector3.bindItemsToProperty("operaciones");
+		
+		new Label(panelActions).setText("Ingrese un valor");
+		new TextBox(panelActions).bindValueToProperty("valor");
 		
 		new Label(panelActions).setText("");
 		
@@ -70,7 +80,7 @@ public class AgregarCondicionTipo3Window extends SimpleWindow<ConfigurarCondicio
 	}
 	
 	public boolean usuarioSePasaDeListo() {
-		return getModelObject().getIndicadorSeleccionado() == null|| getModelObject().getOperacionSeleccionada() == null;
+		return getModelObject().getIndicadorSeleccionado() == null || getModelObject().getOperacionSeleccionada() == null || getModelObject().getValor().isEmpty() || getModelObject().getOperacionIndicadorSeleccionada() == null;
 	}
 	
 	@Override

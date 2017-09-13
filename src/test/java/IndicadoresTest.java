@@ -44,18 +44,13 @@ public class IndicadoresTest {
 		vm.setNombreIndicador("test");
 		vm.setFormulaIndicador("test+2");
 		vm.guardarIndicador();
-		
 	}
 	
 	@Test
 	public void indicadorFuncionaConCuentas()
 	{
-		//Cuenta cuenta = new Cuenta("test", 2013, "2000000");
-		//Empresa empresa = new Empresa("Empresa", cuenta);
 		Indicador indicador = new Indicador("Indicador", "test*2");
-		//BigDecimal resultado = indicador.calcularMonto(empresa, "2013");
 		BigDecimal expected = new BigDecimal("4000000");
-		//Assert.assertTrue(resultado.compareTo(expected) == 0);
 	}
 	
 	@Test 

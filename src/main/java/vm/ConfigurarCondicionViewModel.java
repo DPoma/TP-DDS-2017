@@ -12,6 +12,7 @@ import model.AnalizarIndicadorEnUltimosAnios;
 import model.Condicion;
 import model.AnalizarIndicadoresEntreEmpresas;
 import model.Indicador;
+import model.Longevidad;
 import model.Operacion;
 import model.OperacionIndicador;
 
@@ -24,6 +25,7 @@ public class ConfigurarCondicionViewModel {
 	static final String TIPO2 = "Analizar indicadores entre empresas";
 	static final String TIPO3 = "Analizar historia del indicador";
 	static final String TIPO4 = "Analizar crecimiento del indicador";
+	static final String TIPO5 = "Analizar por longevidad";
 	
 	
 	//------------------------------------- ATRIBUTOS ----------------------------------
@@ -37,6 +39,7 @@ public class ConfigurarCondicionViewModel {
 	private String anio;
 	private Integer anios;
 	private String condicionSeleccionada;
+	private String valor;
 
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
@@ -115,15 +118,26 @@ public class ConfigurarCondicionViewModel {
 		this.indicadorSeleccionado = indicadorSeleccionado;
 	}
 	
+
+	public String getValor() {
+		return valor;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+	
 	//--------------------------------------- METODOS ----------------------------------
 
 	public Condicion crearCondicion(){
 		switch(condicionSeleccionada){
 		case TIPO1: return new AnalizarIndicadorEnUltimosAnios(indicadorSeleccionado,operacionIndicadorSeleccionada,anios);
 		case TIPO2: return new AnalizarIndicadoresEntreEmpresas(anio,operacionIndicadorSeleccionada,indicadorSeleccionado);
-		case TIPO3: return new AnalizarHistoriaDelIndicador(indicadorSeleccionado, operacionSeleccionada);
-		default: return new AnalizarCrecimientoEnPeriodo(indicadorSeleccionado,operacionIndicadorSeleccionada,anios);
+		case TIPO3: return new AnalizarHistoriaDelIndicador(indicadorSeleccionado, operacionSeleccionada, operacionIndicadorSeleccionada, valor);
+		case TIPO4:return new AnalizarCrecimientoEnPeriodo(indicadorSeleccionado,operacionIndicadorSeleccionada,anios);
+		default: return new Longevidad();
 		}
 	}
+
 	
 }

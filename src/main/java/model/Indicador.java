@@ -78,10 +78,9 @@ public class Indicador implements OperandoDeIndicador {
 	
 	public boolean sigueTendencia(OperacionIndicador operacion, Empresa unaEmpresa, List<String> anios)
 	{
-		IntStream.range(0, anios.size() - 1)
+		return IntStream.range(0, anios.size() - 1)
 		.filter(i -> i % 2 == 0)
 		.allMatch(i -> operacion.operar(this.calcularMonto(unaEmpresa, anios.get(i)), this.calcularMonto(unaEmpresa, anios.get(i+1))));
-		return true;
 	}
 
 	@Override

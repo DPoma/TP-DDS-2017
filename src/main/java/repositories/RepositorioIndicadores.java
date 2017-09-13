@@ -10,7 +10,6 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import model.Indicador;
 import model.MayorA;
-import model.Mediana;
 import model.MenorA;
 import model.Operacion;
 import model.OperacionIndicador;
@@ -97,10 +96,11 @@ public class RepositorioIndicadores {
 	public boolean hayOperacionesSinCargar() {
 		this.obtenerOperaciones();
 		this.obtenerOperacionesIndicador();
-		return operaciones.isEmpty() && operacionesIndicador.isEmpty();
+		return operaciones.isEmpty() || operacionesIndicador.isEmpty();
 	}
 	
 
+	
 	
 	public void cargarOperaciones() {
 		if(hayOperacionesSinCargar())
@@ -115,9 +115,17 @@ public class RepositorioIndicadores {
 		entity.getTransaction().commit();
 		// Para que el contador se reinicie
 		entity.getTransaction().begin();
-		entity.persist(new Promedio("Promedio"));
 		entity.persist(new Sumatoria("Sumatoria"));
-		entity.persist(new Mediana("Mediana"));
+		entity.persist(new Promedio("Promedio"));
 		entity.getTransaction().commit();
+		//
+		entity.getTransaction().begin();
+		Indicador roe = new Indicador("ROE", "(IngresoNeto-dividendos)/capitalTotal");
+		Indicador proporcionDeuda = new Indicador("ProporcionDeuda", "FDS/IngresoNeto");
+		Indicador margen = new Indicador("Margen", "IngresoNeto/EBITDA");
+		entity.persist(roe);
+		entity.persist(proporcionDeuda);
+		entity.persist(margen);
+		entity.getTransaction().commit();	
 	}
 }
