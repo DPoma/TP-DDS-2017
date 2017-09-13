@@ -37,7 +37,7 @@ public class MetodlogiasTest {
 			//Repositorios.repositorioEmpresas.trabajarEmpresa("Facebook", unaCuenta);
 			//Repositorios.repositorioEmpresas.trabajarEmpresa("Twitter",otraCuenta);
 			indicador = new Indicador("humo", "2*(EBITDA+2000)");
-			unaCondicion = new AnalizarIndicadoresEntreEmpresas("2015", new IgualA(), indicador);
+			unaCondicion = new AnalizarIndicadoresEntreEmpresas("1000", new IgualA(), indicador);
 			unaEmpresa = Repositorios.repositorioEmpresas.find(empresa -> empresa.getNombre().equals("Facebook"));
 			otraEmpresa = Repositorios.repositorioEmpresas.find(empresa -> empresa.getNombre().equals("Twitter"));
 			FileHandler lector= new FileHandler();
@@ -69,7 +69,7 @@ public class MetodlogiasTest {
 			Condicion condicionROE = new AnalizarIndicadorEnUltimosAnios(ROE,  new MayorA(), 10);
 			Condicion condicionDeuda = new AnalizarIndicadoresEntreEmpresas("2017", new MenorA(),proporcionDeDeuda);
 			Condicion condicionMargen = new AnalizarCrecimientoEnPeriodo(margen, new MayorA(),10);
-			Condicion condicionLongevidad = new AnalizarIndicadoresEntreEmpresas("", new MayorA(),longevidad);
+			Condicion condicionLongevidad = new AnalizarIndicadoresEntreEmpresas("2000", new MayorA(),longevidad);
 			List<Condicion> condiciones = new ArrayList<Condicion>();
 			condiciones.add(condicionROE);
 			condiciones.add(condicionDeuda);

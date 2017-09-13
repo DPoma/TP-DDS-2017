@@ -38,7 +38,6 @@ public class RepositorioMetodologias{
 		this.metodologias.add(metodologia);
 	}
 	
-	
 	public void crearMetodologia(String nombre, List<Condicion> condiciones) {
 		Metodologia metodologia = new Metodologia(nombre, condiciones);
 		metodologia.asignarseEnSusCondiciones();

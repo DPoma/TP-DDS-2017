@@ -9,6 +9,7 @@ import org.uqbar.commons.utils.Observable;
 
 @Entity
 @Observable
+@DiscriminatorColumn(length = 100)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Condicion {
 	

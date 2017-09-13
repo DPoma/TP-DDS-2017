@@ -32,7 +32,7 @@ public class AnalisisEmpresaWindow extends SimpleWindow<AnalisisEmpresaViewModel
 	
 	@Override
 	public void createContents(Panel panelActions) {
-		this.setTitle("Busqueda");
+		this.setTitle("Analizar empresas");
 		panelActions.setLayout(new VerticalLayout());
 
 		new Label(panelActions).setText("		Seleccionar Empresa		");
@@ -51,6 +51,9 @@ public class AnalisisEmpresaWindow extends SimpleWindow<AnalisisEmpresaViewModel
 		new Button(panelActions)
 		.setCaption("Buscar")
 		.onClick(this::mostrarResultados);
+		
+		new Label(panelActions).setText("");
+		
 		Table<Cuenta> tableCuentas = new Table<Cuenta>(panelActions, Cuenta.class);
 		tableCuentas.setNumberVisibleRows(5).bindItemsToProperty("cuentas");
 				
@@ -63,34 +66,30 @@ public class AnalisisEmpresaWindow extends SimpleWindow<AnalisisEmpresaViewModel
 		Column<Cuenta> columnaMonto = new Column<Cuenta>(tableCuentas);
 		columnaMonto.setTitle("Monto").setFixedSize(150).bindContentsToProperty("monto");
 		
+		new Label(panelActions).setText("");
+		
 		new Button(panelActions)
-		.setCaption("Ver indicadores")
+		.setCaption("Aplicar indicador")
 		.onClick(this::verIndicadores);
 
 		new Button(panelActions)
-		.setCaption("Ver metodologias")
+		.setCaption("Aplicar metodologia")
 		.onClick(this::verMetodologias);
 		
 		new Button(panelActions)
 		.setCaption("Ver grafico");
 		
 		new Label(panelActions).setText("");
-		
 	}
 	
 	protected void addActions(Panel actionsPanel) {}
 	
 	public void verIndicadores() {
-		try 
-		{
+		if(getModelObject().getEmpresaSeleccionada() != null) {
 			Dialog <?> dialog = new VerIndicadoresWindow(this, this.getModelObject().getEmpresaSeleccionada());
 			dialog.open();			
-		}
-		catch(NullPointerException e)
-		{
-			this.mostrarMensajeDerror("Seleccione una Empresa");
-		}
-		
+		} else
+			this.mostrarMensajeDerror("Seleccione una Empresa");	
 	}
 	
 	public void verMetodologias()

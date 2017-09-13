@@ -8,6 +8,7 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -43,12 +44,21 @@ public class ElegirCondicionWindow extends SimpleWindow<ElegirCondicionViewModel
 		
 		new Button(panelActions)
 		.setCaption("Configurar condicion")
-		.onClick(this:: configurarCondicion);
+		.onClick(this:: configurar);
 		
 		new Label(panelActions).setText("");
 	}
 
-
+	public void configurar() {
+		try {
+			configurarCondicion();
+		}
+		catch(NullPointerException e) {
+			Dialog <?> dialog = new ErrorWindow(this, "Debe seleccionar una condicion");
+			dialog.open();
+		}
+	}
+	
 	public void configurarCondicion() {
 		
 		switch(this.getModelObject().getcondicionSeleccionada()){

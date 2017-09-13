@@ -23,9 +23,12 @@ public class ErrorWindow extends Dialog<ErrorViewModel>{
 		this.setTitle("Error");
 		panelActions.setLayout(new VerticalLayout());
 		new Label(panelActions).bindValueToProperty("texto");
+		
 		new Button(panelActions)
 		.setCaption("Aceptar")
 		.onClick(this::close);
+		
+		new Label(panelActions).setText("");
 		
 	}
 	

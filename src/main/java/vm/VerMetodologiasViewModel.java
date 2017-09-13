@@ -29,7 +29,6 @@ public class VerMetodologiasViewModel {
 	
 	private List<Metodologia> metodologias;
 	private Metodologia metodologiaSeleccionada;
-	private List<Indicador> indicadores;
 	private List<Empresa> empresas;
 	private Empresa empresaSeleccionada;
 	private List<Empresa> empresasOrdenadas;
@@ -39,31 +38,12 @@ public class VerMetodologiasViewModel {
 
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
-	/*
-	public VerMetodologiasViewModel()
-	{
-		//Warren Buffet hardcodeado
-		Indicador ROE = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("ROE"));
-		Indicador proporcionDeDeuda = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("ProporcionDeuda"));
-		Indicador margen = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("Margen"));
-		Longevidad longevidad = new Longevidad("Longevidad", "");
-		Condicion condicionROE = new CondicionTipo1(ROE,  new MayorA(), 10);
-		Condicion condicionDeuda = new CondicionTipo2("2017", new MenorA(), proporcionDeDeuda);
-		Condicion condicionMargen = new CondicionTipo4(margen, new MayorA() ,10);
-		Condicion condicionLongevidad = new CondicionTipo2("", new MayorA(), longevidad);
-		List<Condicion> condiciones = new ArrayList<Condicion>();
-		condiciones.add(condicionROE);
-		condiciones.add(condicionDeuda);
-		condiciones.add(condicionMargen);
-		condiciones.add(condicionLongevidad);
-		Metodologia warrenBuffet = new Metodologia("Warren Buffet", condiciones);
-		
-		this.metodologias = Repositorios.repositorioMetodologias.getMetodologias();
-		this.metodologias.add(warrenBuffet);
-		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
-		this.empresas = Repositorios.repositorioEmpresas.getEmpresas();
+	public VerMetodologiasViewModel() {
+		Repositorios.repositorioMetodologias.obtenerMetodologias();
+		Repositorios.repositorioEmpresas.obtenerEmpresas();
+		metodologias = Repositorios.repositorioMetodologias.getMetodologias();
+		empresas = Repositorios.repositorioEmpresas.getEmpresas();
 	}
-	*/
 
 	//------------------------------- GETTERS Y SETTERS --------------------------------
 	
@@ -120,7 +100,7 @@ public class VerMetodologiasViewModel {
 	//--------------------------------------- METODOS ----------------------------------
 
 	//------------------------COMPARACIONES--------------------------------
-	
+	/*
 	public int compararValoresROIC(Empresa unaEmpresa, Empresa otraEmpresa) {
 		return this.ROICUltimosAnios(unaEmpresa).compareTo(this.ROICUltimosAnios(otraEmpresa));
 	}
@@ -139,6 +119,8 @@ public class VerMetodologiasViewModel {
 	*/
 	
 	//------------------------ORDENAR LISTAS--------------------------------
+	
+	/*
 	
 	public void ordenarEmpresasPorROIC() {
 		empresasOrdenadas = Lists.reverse(empresas.stream().sorted((e1,e2)-> this.compararValoresROIC(e1, e2)).collect(Collectors.toList()));
@@ -162,7 +144,7 @@ public class VerMetodologiasViewModel {
 		empresasOrdenadas = empresas.stream().filter(e-> this.esAntigua(e)).collect(Collectors.toList());
 	}
 	
-/*	public void ordenarPorValor(String anio) {
+	public void ordenarPorValor(String anio) {
 		empresasOrdenadas = Lists.reverse(empresas.stream().sorted((e1,e2)-> this.compararValoresIndicador(e1, e2, anio)).collect(Collectors.toList()));
 	}
 	
@@ -174,7 +156,7 @@ public class VerMetodologiasViewModel {
 	
 	//------------------------REALIZAR CALCULO--------------------------------
 	
-	
+	/*
 	public BigDecimal realizarCalculo(Empresa unaEmpresa, String anio, int indicador) {
 			return this.indicadores.get(indicador).calcularMonto(unaEmpresa, anio);
 		}
@@ -192,11 +174,11 @@ public class VerMetodologiasViewModel {
 		return this.realizarCalculo(unaEmpresa, anio, 3);
 	}
 	
-/*	public BigDecimal valorDeUnIndicador(Empresa unaEmpresa, String anio) {
+	public BigDecimal valorDeUnIndicador(Empresa unaEmpresa, String anio) {
 	//	BigDecimal bd = this.metodologiaSeleccionada.getIndicador().calcularMonto(unaEmpresa, anio);
 		System.out.println(unaEmpresa.getNombre() + ": " + bd);
 	//	return bd ;
-	}*/
+	}
 	
 	public boolean esAntigua(Empresa unaEmpresa) {
 		return unaEmpresa.getCuentas().stream().anyMatch(c-> c.getAnio() <= 2007);
@@ -259,7 +241,7 @@ public class VerMetodologiasViewModel {
 
 
 	//------------------------APLICACION METODOLOGIA--------------------------------
-
+*/
 	public void aplicar() {
 		empresasOrdenadas= metodologiaSeleccionada.aplicarMetodologia(empresasAComparar);
 
@@ -275,6 +257,33 @@ public class VerMetodologiasViewModel {
 		this.empresasAComparar.add(empresaSeleccionada);
 	}
 
+	
+	/*
+	public VerMetodologiasViewModel()
+	{
+		//Warren Buffet hardcodeado
+		Indicador ROE = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("ROE"));
+		Indicador proporcionDeDeuda = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("ProporcionDeuda"));
+		Indicador margen = Repositorios.repositorioIndicadores.find(indicador -> indicador.getNombre().equals("Margen"));
+		Longevidad longevidad = new Longevidad("Longevidad", "");
+		Condicion condicionROE = new CondicionTipo1(ROE,  new MayorA(), 10);
+		Condicion condicionDeuda = new CondicionTipo2("2017", new MenorA(), proporcionDeDeuda);
+		Condicion condicionMargen = new CondicionTipo4(margen, new MayorA() ,10);
+		Condicion condicionLongevidad = new CondicionTipo2("", new MayorA(), longevidad);
+		List<Condicion> condiciones = new ArrayList<Condicion>();
+		condiciones.add(condicionROE);
+		condiciones.add(condicionDeuda);
+		condiciones.add(condicionMargen);
+		condiciones.add(condicionLongevidad);
+		Metodologia warrenBuffet = new Metodologia("Warren Buffet", condiciones);
+		
+		this.metodologias = Repositorios.repositorioMetodologias.getMetodologias();
+		this.metodologias.add(warrenBuffet);
+		this.indicadores = Repositorios.repositorioIndicadores.getIndicadores();
+		this.empresas = Repositorios.repositorioEmpresas.getEmpresas();
+	}
+	*/
+	
 	
 }
 

@@ -53,16 +53,26 @@ public class AgregarCondicionTipo3Window extends SimpleWindow<ConfigurarCondicio
 	
 	public void agregarCondicion() {
 		try {
+			if(this.usuarioSePasaDeListo()) {
+				Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
+				dialog.open();
+			} else {
 			ventanaElegir.getModelObject().setCondicion(this.getModelObject().crearCondicion());
 			ventanaElegir.getVentanaMetodologia().getModelObject().agregarCondicion(ventanaElegir.getModelObject().getCondicion());
 			this.close();
 			ventanaElegir.close();
+			}
 		}
 		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
 			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 			dialog.open();
 		}
-		}
+	}
+	
+	public boolean usuarioSePasaDeListo() {
+		return getModelObject().getIndicadorSeleccionado() == null|| getModelObject().getOperacionSeleccionada() == null;
+	}
+	
 	@Override
 	protected void createFormPanel(Panel arg0) {
 		

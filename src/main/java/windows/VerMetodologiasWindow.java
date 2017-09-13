@@ -49,26 +49,18 @@ public class VerMetodologiasWindow extends SimpleWindow<VerMetodologiasViewModel
 		selector2.bindValueToProperty("empresaSeleccionada");
 		selector2.bindItemsToProperty("empresas");
 		
+		new Label(panelActions).setText("");
+		
 		new Button(panelActions)
 		.setCaption("Agregar empresa a comparar")
 		.onClick(this:: agregarEmpresaAComparar);
-		
-		/*Table<Empresa> tableAComparar = new Table<Empresa>(panelActions, Empresa.class);
-		tableAComparar.setNumberVisibleRows(5).bindItemsToProperty("empresasAComparar");
-				
-		Column<Empresa> columnaNombres1 = new Column<Empresa>(tableAComparar);
-		columnaNombres1.setTitle("Empresa").setFixedSize(100).bindContentsToProperty("nombre");*/
-		
-		//new Label(panelActions).setText("Elegir un anio");
-		//new TextBox(panelActions).bindValueToProperty("anioElegido");
-		
-		new Label(panelActions).setText("");
 		
 		new Button(panelActions)
 		.setCaption("Aplicar Metodologia")
 		.onClick(this::aplicarMetodologia);		
 		
-
+		new Label(panelActions).setText("");
+		
 		Table<Empresa> tableCuentas = new Table<Empresa>(panelActions, Empresa.class);
 		tableCuentas.setNumberVisibleRows(5).bindItemsToProperty("empresasOrdenadas");
 				
@@ -77,6 +69,7 @@ public class VerMetodologiasWindow extends SimpleWindow<VerMetodologiasViewModel
 		Column<Empresa> columnaCuentas = new Column<Empresa>(tableCuentas);
 		columnaCuentas.setTitle("Cuentas").setFixedSize(100).bindContentsToProperty("cuentas");
 		
+		new Label(panelActions).setText("");
 	}
 	
 	

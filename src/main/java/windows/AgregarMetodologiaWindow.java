@@ -46,11 +46,11 @@ public class AgregarMetodologiaWindow extends SimpleWindow<AgregarMetodologiaVie
 	}
 	
 	protected void addActions(Panel actionsPanel) {}
-	
+		
 	public void crearNuevaMetodologia() {
 		try {
-			if(getModelObject().getCondicionesDeLaMetodologia().isEmpty()) {
-				ErrorWindow dialog = new ErrorWindow(this, "La metodologia debe tener al menos una condicion");
+			if(this.usuarioSePasaDeListo()) {
+				ErrorWindow dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 				dialog.open();
 			} else {
 				this.getModelObject().crearMetodologia();
@@ -61,6 +61,10 @@ public class AgregarMetodologiaWindow extends SimpleWindow<AgregarMetodologiaVie
 			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 			dialog.open();
 		}
+	}
+	
+	public boolean usuarioSePasaDeListo() {
+		return getModelObject().getCondicionesDeLaMetodologia().isEmpty() || getModelObject().getNombreNuevaMetodologia().isEmpty();
 	}
 	
 	public void agregarCondicion() {

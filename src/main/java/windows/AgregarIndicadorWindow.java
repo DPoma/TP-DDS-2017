@@ -38,7 +38,6 @@ public class AgregarIndicadorWindow extends SimpleWindow<AgregarIndicadorViewMod
 		
 		new Button(panelActions)
 			.setCaption("Aceptar")
-			
 			.onClick(this::crearIndicador);
 		
 		new Label(panelActions).setText("");
@@ -49,17 +48,13 @@ public class AgregarIndicadorWindow extends SimpleWindow<AgregarIndicadorViewMod
 	
 	public void crearIndicador() {
 		try {
-			
 			this.getModelObject().guardarIndicador();
+			this.close();
 		}
-		catch(ParseCancellationException e)
-		{
-			Dialog <?> dialog = new ErrorWindow(this, "Indicador Incorrecto");
+		catch(ParseCancellationException | NullPointerException e) {
+			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 			dialog.open();
 		}
-		
-		
-		this.close();
 	}
 	
 }

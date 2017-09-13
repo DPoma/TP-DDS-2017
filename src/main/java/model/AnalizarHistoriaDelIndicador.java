@@ -10,9 +10,9 @@ import javax.persistence.ManyToOne;
 public class AnalizarHistoriaDelIndicador extends Condicion {
 
 	//------------------------------------- ATRIBUTOS ----------------------------------
-	
+
 	private BigDecimal valor;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idOperacion")
 	private Operacion operacion;
@@ -30,14 +30,31 @@ public class AnalizarHistoriaDelIndicador extends Condicion {
 	
 	//------------------------------- GETTERS Y SETTERS --------------------------------
 	
+	
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+	
+	public Operacion getOperacion() {
+		return operacion;
+	}
+
+	public void setOperacion(Operacion operacion) {
+		this.operacion = operacion;
+	}
 	//--------------------------------------- METODOS ----------------------------------
 	
 	@Override
 	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
+		
 		BigDecimal total = operacion.calcular(indicador, unaEmpresa);
 		if(operacionIndicador.operar(total, valor))
 			unaEmpresa.aumentarPuntuacion();
 		else
-			otraEmpresa.aumentarPuntuacion();	
+			otraEmpresa.aumentarPuntuacion();
 	}
 }
