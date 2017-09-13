@@ -243,18 +243,18 @@ public class VerMetodologiasViewModel {
 	//------------------------APLICACION METODOLOGIA--------------------------------
 */
 	public void aplicar() {
-		empresasOrdenadas= metodologiaSeleccionada.aplicarMetodologia(empresasAComparar);
+		empresasOrdenadas = metodologiaSeleccionada.aplicarMetodologia(empresasAComparar);
 
 	}
 	
-	public void aplicarMetodologia() throws NullPointerException
-	{
+	public void aplicarMetodologia() throws NullPointerException {
 		this.aplicar();
 	}
 	
 	public void agregarEmpresaAComparar() throws NullPointerException
 	{
 		this.empresasAComparar.add(empresaSeleccionada);
+		System.out.println("Empresa agregada para ser analizada: "+empresaSeleccionada);
 	}
 
 	

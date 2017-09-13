@@ -87,6 +87,20 @@ public class RepositorioEmpresas {
 	
 	//MAGIA NEGRA
 	
+	public void aumentarPuntuacion(Empresa unaEmpresa) {
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+	    try {
+	    entity.getTransaction().begin();
+	    entity.merge(unaEmpresa);
+	    unaEmpresa.aumentarPuntuacion();
+	    entity.getTransaction().commit();
+	    } catch(HibernateException e) {
+	    	entity.getTransaction().rollback();
+	    } finally {
+	    	entity.close();
+	    }
+	}
+	
 	@SuppressWarnings("unchecked")
 	public void obtenerEmpresas() {
 		EntityManager entity = PerThreadEntityManagers.getEntityManager();

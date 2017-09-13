@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import repositories.Repositorios;
+
 @Entity
 public class AnalizarHistoriaDelIndicador extends Condicion {
 
@@ -53,8 +55,8 @@ public class AnalizarHistoriaDelIndicador extends Condicion {
 		
 		BigDecimal total = operacion.calcular(indicador, unaEmpresa);
 		if(operacionIndicador.operar(total, valor))
-			unaEmpresa.aumentarPuntuacion();
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(unaEmpresa);
 		else
-			otraEmpresa.aumentarPuntuacion();
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(otraEmpresa);
 	}
 }

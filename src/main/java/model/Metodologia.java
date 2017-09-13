@@ -69,7 +69,7 @@ public class Metodologia {
 		this.condiciones.forEach(condicion -> condicion.setMetodologia(this));
 	}
 
-	public List<Empresa> aplicarMetodologia( List<Empresa> empresas){
+	public List<Empresa> aplicarMetodologia( List<Empresa> empresas){;
 		this.condiciones.forEach(unaCondicion -> unaCondicion.evaluarEmpresas(empresas));
 		empresas.sort(Comparator.comparingInt(Empresa::getPuntacion));
 		Collections.reverse(empresas);

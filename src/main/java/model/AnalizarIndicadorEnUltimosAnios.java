@@ -6,15 +6,13 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+
+import repositories.Repositorios;
 
 @Entity
 public class AnalizarIndicadorEnUltimosAnios extends Condicion {
 
 	//------------------------------------- ATRIBUTOS ----------------------------------
-	
-	@Transient
-	private List<String> anios;
 
 	private Integer cantidadAnios;
 	
@@ -22,14 +20,10 @@ public class AnalizarIndicadorEnUltimosAnios extends Condicion {
 	
 	public AnalizarIndicadorEnUltimosAnios(Indicador indicador, OperacionIndicador operacion, Integer anios)
 	{
-		Integer anio = Calendar.getInstance().get(Calendar.YEAR);
 		this.indicador = indicador;
 		this.operacionIndicador = operacion;
 		this.cantidadAnios = anios;
-		this.anios  = IntStream.rangeClosed(anio-anios, anio)
-			    .boxed()
-			    .map(unAnio -> unAnio.toString())
-			    .collect(Collectors.toList());
+
 	}
 	
 	
@@ -39,15 +33,6 @@ public class AnalizarIndicadorEnUltimosAnios extends Condicion {
 	
 
 	//------------------------------- GETTERS Y SETTERS --------------------------------
-
-	public List<String> getAnios() {
-		return anios;
-	}
-
-
-	public void setAnios(List<String> anios) {
-		this.anios = anios;
-	}
 
 
 	public Integer getCantidadAnios() {
@@ -63,12 +48,18 @@ public class AnalizarIndicadorEnUltimosAnios extends Condicion {
 	
 	//--------------------------------------- METODOS ----------------------------------
 	
+	public List<String> obtenerUltimosAnios() {
+		Integer anio = Calendar.getInstance().get(Calendar.YEAR);
+		return IntStream.rangeClosed(anio - cantidadAnios, anio).boxed().map(unAnio -> unAnio.toString()).collect(Collectors.toList());
+	}
+	
 	@Override
 	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
+		List<String> anios  = this.obtenerUltimosAnios();
 		if(indicador.montoCumpleOperacionEnPeriodo(operacionIndicador, unaEmpresa, otraEmpresa, anios))
-			unaEmpresa.aumentarPuntuacion();
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(unaEmpresa);
 		else
-			otraEmpresa.aumentarPuntuacion();	
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(otraEmpresa);
 	}
 
 }

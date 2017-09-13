@@ -21,10 +21,6 @@ public class Indicador implements OperandoDeIndicador {
 	
 	private String formula;
 	
-	/*
-	@OneToMany(mappedBy = "indicador", fetch = FetchType.LAZY)
-	private List<Condicion> condiciones;
-	*/
 	//------------------------------------ CONSTRUCTORES --------------------------------
 
 	public Indicador(String nombre, String formula)
@@ -46,15 +42,7 @@ public class Indicador implements OperandoDeIndicador {
 	public String getFormula() {
 		return formula;
 	}
-	/*
-	public List<Condicion> getCondiciones() {
-		return condiciones;
-	}
-
-	public void setCondiciones(List<Condicion> condiciones) {
-		this.condiciones = condiciones;
-	}
-	*/
+	
 	//------------------------------------ METODOS --------------------------------
 	
 	public void agregarARepositorio()
@@ -65,9 +53,6 @@ public class Indicador implements OperandoDeIndicador {
 	public void guardar()
 	{
 		Repositorios.repositorioIndicadores.persistirIndicador(this);
-		//this.agregarARepositorio();
-		//FileHandler csv = new FileHandler();
-		//csv.guardarIndicador("indicadores.csv", this);
 	}
 	
 	public BigDecimal calcularMonto(Empresa unaEmpresa, String anio)
@@ -88,8 +73,7 @@ public class Indicador implements OperandoDeIndicador {
 	public boolean montoCumpleOperacionEnPeriodo(OperacionIndicador operacion, Empresa unaEmpresa, Empresa otraEmpresa, List<String> anios)
 	{
 		Stream<Boolean> resultados = anios.stream().map(unAnio -> operacion.operar(this.calcularMonto(unaEmpresa, unAnio), this.calcularMonto(otraEmpresa, unAnio)));
-		resultados.allMatch(unBool -> unBool.booleanValue() == true);
-		return true;
+		return resultados.allMatch(unBool -> unBool.booleanValue() == true);
 	}
 	
 	public boolean sigueTendencia(OperacionIndicador operacion, Empresa unaEmpresa, List<String> anios)

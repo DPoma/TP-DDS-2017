@@ -17,9 +17,9 @@ import model.Indicador;
 import vm.VerIndicadoresViewModel;
 
 @SuppressWarnings("serial")
-public class VerIndicadoresWindow extends Dialog<VerIndicadoresViewModel> {
+public class AplicarIndicadorWindow extends Dialog<VerIndicadoresViewModel> {
 	
-	public VerIndicadoresWindow(WindowOwner parent, Empresa unaEmpresa) throws NullPointerException
+	public AplicarIndicadorWindow(WindowOwner parent, Empresa unaEmpresa) throws NullPointerException
 	{
 		super(parent, new VerIndicadoresViewModel(unaEmpresa));
 		if(unaEmpresa == null)
@@ -34,7 +34,7 @@ public class VerIndicadoresWindow extends Dialog<VerIndicadoresViewModel> {
 	public void createContents(Panel panelActions) {
 		
 		 panelActions.setLayout(new ColumnLayout(2));
-		this.setTitle("Indicadores");
+		this.setTitle("Aplicar indicador");
 		new Label(panelActions).setText("Seleccionar indicador");
 		Selector<Indicador> selector = new Selector<Indicador>(panelActions);
 		selector.allowNull(false);

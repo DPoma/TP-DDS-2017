@@ -1,6 +1,5 @@
 package windows;
 
-
 import vm.AnalisisEmpresaViewModel;
 
 import org.uqbar.arena.layout.VerticalLayout;
@@ -18,7 +17,6 @@ import org.uqbar.arena.windows.WindowOwner;
 import model.Cuenta;
 import model.Empresa;
 
-@SuppressWarnings("serial")
 public class AnalisisEmpresaWindow extends SimpleWindow<AnalisisEmpresaViewModel> {
 	
 	
@@ -86,7 +84,7 @@ public class AnalisisEmpresaWindow extends SimpleWindow<AnalisisEmpresaViewModel
 	
 	public void verIndicadores() {
 		if(getModelObject().getEmpresaSeleccionada() != null) {
-			Dialog <?> dialog = new VerIndicadoresWindow(this, this.getModelObject().getEmpresaSeleccionada());
+			Dialog <?> dialog = new AplicarIndicadorWindow(this, this.getModelObject().getEmpresaSeleccionada());
 			dialog.open();			
 		} else
 			this.mostrarMensajeDerror("Seleccione una Empresa");	
@@ -94,7 +92,7 @@ public class AnalisisEmpresaWindow extends SimpleWindow<AnalisisEmpresaViewModel
 	
 	public void verMetodologias()
 	{
-		VerMetodologiasWindow dialog = new VerMetodologiasWindow(this);
+		AplicarMetodologiaWindow dialog = new AplicarMetodologiaWindow(this);
 		dialog.open();
 	}
 	

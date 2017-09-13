@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
+import repositories.Repositorios;
+
 @Entity
 public class AnalizarCrecimientoEnPeriodo extends Condicion {
 
@@ -62,9 +64,9 @@ public class AnalizarCrecimientoEnPeriodo extends Condicion {
 	@Override
 	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
 		if(indicador.sigueTendencia(operacionIndicador, unaEmpresa, anios))
-			unaEmpresa.aumentarPuntuacion();
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(unaEmpresa);
 		else
-			otraEmpresa.aumentarPuntuacion();
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(otraEmpresa);
 		
 	}
 	

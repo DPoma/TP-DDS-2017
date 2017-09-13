@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 
 import org.uqbar.commons.utils.Observable;
 
+import repositories.Repositorios;
+
 @Entity
 @Observable
 public class AnalizarIndicadoresEntreEmpresas extends Condicion {
@@ -30,7 +32,7 @@ public class AnalizarIndicadoresEntreEmpresas extends Condicion {
 
 	public AnalizarIndicadoresEntreEmpresas(String anio, OperacionIndicador operacion, Indicador indicador)
 	{
-		//this.anio = anio;
+		this.anio = anio;
 		this.operacionIndicador = operacion;
 		this.indicador = indicador;
 	}
@@ -43,12 +45,13 @@ public class AnalizarIndicadoresEntreEmpresas extends Condicion {
 	
 	@Override
 	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
-		BigDecimal unMonto = indicador.calcularMonto(unaEmpresa, anio.toString());
-		BigDecimal otroMonto = indicador.calcularMonto(otraEmpresa, anio.toString());
+		BigDecimal unMonto = indicador.calcularMonto(unaEmpresa, anio);
+		BigDecimal otroMonto = indicador.calcularMonto(otraEmpresa, anio);
 		if(operacionIndicador.operar(unMonto, otroMonto))
-			unaEmpresa.aumentarPuntuacion();
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(unaEmpresa);
 		else
-			otraEmpresa.aumentarPuntuacion();
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(otraEmpresa);
+
 	}
 	
 }

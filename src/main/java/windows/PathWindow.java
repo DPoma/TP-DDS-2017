@@ -32,6 +32,8 @@ public class PathWindow extends SimpleWindow<PathViewModel> {
 		new Label(panelActions).setText("			Ingrese la ruta del archivo			");
 		new TextBox(panelActions).bindValueToProperty("path");
 		
+		new Label(panelActions).setText("");
+		
 		new Button(panelActions)
 			.setCaption("Aceptar")
 			.onClick(this::aceptar);

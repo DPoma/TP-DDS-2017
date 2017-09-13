@@ -24,7 +24,7 @@ public class IgualA extends OperacionIndicador {
 	//------------------------------------ METODOS --------------------------------
 	@Override
 	public boolean operar(BigDecimal unMonto, BigDecimal otroMonto) {
-		return unMonto.compareTo(otroMonto) == 1;
+		return unMonto.compareTo(otroMonto) == 0;
 	}
 	
 

@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import org.hibernate.HibernateException;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import model.IgualA;
 import model.Indicador;
 import model.MayorA;
 import model.Mediana;
@@ -113,7 +112,6 @@ public class RepositorioIndicadores {
 		entity.getTransaction().begin();
 		entity.persist(new MayorA("MayorA"));
 		entity.persist(new MenorA("MenorA"));
-		entity.persist(new IgualA("IgualA"));
 		entity.getTransaction().commit();
 		// Para que el contador se reinicie
 		entity.getTransaction().begin();

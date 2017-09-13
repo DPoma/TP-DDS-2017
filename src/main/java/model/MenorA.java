@@ -24,7 +24,7 @@ public class MenorA extends OperacionIndicador {
 	//------------------------------------ METODOS --------------------------------
 	@Override
 	public boolean operar(BigDecimal unMonto, BigDecimal otroMonto) {
-		return unMonto.compareTo(otroMonto) < 0;
+		return unMonto.compareTo(otroMonto) <= 0;
 	}
 	
 

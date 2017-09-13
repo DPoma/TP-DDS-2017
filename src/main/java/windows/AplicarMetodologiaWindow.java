@@ -20,10 +20,10 @@ import model.Empresa;
 import model.Metodologia;
 
 @SuppressWarnings("serial")
-public class VerMetodologiasWindow extends SimpleWindow<VerMetodologiasViewModel> {
+public class AplicarMetodologiaWindow extends SimpleWindow<VerMetodologiasViewModel> {
 	
 	
-	public VerMetodologiasWindow(WindowOwner parent) {
+	public AplicarMetodologiaWindow(WindowOwner parent) {
 		super(parent, new VerMetodologiasViewModel());
 	}
 	
@@ -36,7 +36,7 @@ public class VerMetodologiasWindow extends SimpleWindow<VerMetodologiasViewModel
 		this.setTitle("Busqueda");
 		panelActions.setLayout(new VerticalLayout());
 
-		this.setTitle("Metodologias");
+		this.setTitle("Aplicar metodologia");
 		new Label(panelActions).setText("                     Seleccionar metodologia                    ");
 		Selector<Metodologia> selector = new Selector<Metodologia>(panelActions);
 		selector.allowNull(false);
@@ -80,6 +80,7 @@ public class VerMetodologiasWindow extends SimpleWindow<VerMetodologiasViewModel
 		}
 		
 		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
+			e.printStackTrace();
 			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 			dialog.open();
 		}
@@ -92,6 +93,7 @@ public class VerMetodologiasWindow extends SimpleWindow<VerMetodologiasViewModel
 		}
 		
 		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
+			e.printStackTrace();
 			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 			dialog.open();
 		}
