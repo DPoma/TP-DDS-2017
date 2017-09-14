@@ -19,11 +19,14 @@ public class RepositorioEmpresas {
 	//------------------------------------ ATRIBUTOS --------------------------------
 	
 	private List<Empresa> empresas;
+	private EntityManager entity;
 	
 	//------------------------------------ CONSTRUCTORES --------------------------------
 	
 	public RepositorioEmpresas(){
 		this.empresas = new ArrayList<Empresa>();
+		this.entity = PerThreadEntityManagers.getEntityManager();
+		
 	}
 	
 	//------------------------------------ GETTERS Y SETTERS --------------------------------
@@ -99,7 +102,6 @@ public class RepositorioEmpresas {
 	//MAGIA NEGRA
 	
 	public void aumentarPuntuacion(Empresa unaEmpresa) {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 	    try {
 	    entity.getTransaction().begin();
 	    entity.merge(unaEmpresa);
@@ -114,7 +116,6 @@ public class RepositorioEmpresas {
 	
 	@SuppressWarnings("unchecked")
 	public void obtenerEmpresas() {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		empresas = (List<Empresa>)entity.createQuery("FROM Empresa").getResultList();
 	}
 	
@@ -122,7 +123,6 @@ public class RepositorioEmpresas {
 	public List<Cuenta> obtenerCuentasDeUnPeriodo(int id, String anio1, String anio2) {
 		int anioMinimo = Integer.parseInt(anio1);
 		int anioMaximo = Integer.parseInt(anio2);
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		Query query = entity.createQuery("FROM Cuenta WHERE anio >= :anioMinimo AND anio <= :anioMaximo AND idEmpresa = :id");
 		query.setParameter("id", id);
 		query.setParameter("anioMinimo", anioMinimo);
@@ -132,7 +132,6 @@ public class RepositorioEmpresas {
 	}
 	
 	public void persistirEmpresas() {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 	    try {
 	    entity.getTransaction().begin();
 	    for(Empresa empresa : empresas)

@@ -30,11 +30,13 @@ public class RepositorioMetodologias{
 	//------------------------------------- ATRIBUTOS ----------------------------------
 	
 	private List<Metodologia> metodologias;
+	private EntityManager entity;
 	
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
 	public RepositorioMetodologias() {
 		this.metodologias = new ArrayList<Metodologia>();
+		this.entity = PerThreadEntityManagers.getEntityManager();
 		
 	}
 
@@ -58,7 +60,6 @@ public class RepositorioMetodologias{
 	
 	@SuppressWarnings("unchecked")
 	public void obtenerMetodologias() {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		metodologias = (List<Metodologia>)entity.createQuery("FROM Metodologia").getResultList();
 	}
 	
@@ -68,7 +69,6 @@ public class RepositorioMetodologias{
 	}
 	
 	public void persistirMetodologia(Metodologia metodologia) {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 	    try {
 	    entity.getTransaction().begin();
 	    entity.persist(metodologia);
