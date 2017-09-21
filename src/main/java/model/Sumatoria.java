@@ -25,24 +25,9 @@ public class Sumatoria extends Operacion {
 	}
 	
 	//------------------------------------ METODOS --------------------------------
-	
-	public List<String> obtenerUltimosAnios(int cantidadAnios) {
-		Integer anio = Calendar.getInstance().get(Calendar.YEAR);
-		return IntStream.rangeClosed(anio - cantidadAnios, anio).boxed().map(unAnio -> unAnio.toString()).collect(Collectors.toList());
-	}
-	
-	public int obtenerAniosDeCuentas(Empresa empresa) {
-		int maximo = Collections.max(empresa.getCuentas().stream().map(e -> e.getAnio()).collect(Collectors.toList()));
-		int minimo = Collections.min(empresa.getCuentas().stream().map(e -> e.getAnio()).collect(Collectors.toList()));
-		return maximo - minimo;
-	}
-	
-	public List<BigDecimal> obtenerListaDeMontos(List<String> anios, Indicador indicador, Empresa empresa) {
-		return anios.stream().map(a -> indicador.calcularMonto(empresa, a)).collect(Collectors.toList());
-	}
 
 	public BigDecimal obtenerMontoTotal(List<BigDecimal> montos, int cantidadAnios) {
-		return montos.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+		return this.sumatoria(montos, cantidadAnios);
 	}
 	
 	@Override

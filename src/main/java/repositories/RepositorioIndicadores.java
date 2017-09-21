@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import org.hibernate.HibernateException;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -23,6 +24,7 @@ public class RepositorioIndicadores {
 	private List<Indicador> indicadores;
 	private List<Operacion> operaciones;
 	private List<OperacionIndicador> operacionesIndicador;
+	private EntityManager entity;
 
 	//------------------------------------ CONSTRUCTORES --------------------------------
 	
@@ -30,6 +32,7 @@ public class RepositorioIndicadores {
 		this.indicadores = new ArrayList<Indicador>();
 		this.operaciones = new ArrayList<Operacion>();
 		this.operacionesIndicador = new ArrayList<OperacionIndicador>();
+		this.entity = PerThreadEntityManagers.getEntityManager();
 	}
 
 	//------------------------------------ GETTERS Y SETTERS --------------------------------
@@ -64,24 +67,20 @@ public class RepositorioIndicadores {
 	
 	@SuppressWarnings("unchecked")
 	public void obtenerIndicadores() {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		indicadores = (List<Indicador>)entity.createQuery("FROM Indicador").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void obtenerOperaciones() {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		operaciones = (List<Operacion>)entity.createQuery("FROM Operacion").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void obtenerOperacionesIndicador() {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		operacionesIndicador = (List<OperacionIndicador>)entity.createQuery("FROM OperacionIndicador").getResultList();
 	}
 	
 	public void persistirIndicador(Indicador indicador) {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 	    try {
 	    entity.getTransaction().begin();
 	    entity.persist(indicador);
@@ -108,18 +107,18 @@ public class RepositorioIndicadores {
 	}
 	
 	public void persistirOperaciones() {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
-		entity.getTransaction().begin();
+		EntityTransaction transaccion = entity.getTransaction();
+		transaccion.begin();
 		entity.persist(new MayorA("MayorA"));
 		entity.persist(new MenorA("MenorA"));
-		entity.getTransaction().commit();
+		transaccion.commit();
 		// Para que el contador se reinicie
-		entity.getTransaction().begin();
+		transaccion.begin();
 		entity.persist(new Sumatoria("Sumatoria"));
 		entity.persist(new Promedio("Promedio"));
-		entity.getTransaction().commit();
+		transaccion.commit();
 		//
-		entity.getTransaction().begin();
+		transaccion.begin();
 		Indicador roe = new Indicador("ROE", "(IngresoNeto-dividendos)/capitalTotal");
 		Indicador proporcionDeuda = new Indicador("ProporcionDeuda", "FDS/IngresoNeto");
 		Indicador margen = new Indicador("Margen", "IngresoNeto/EBITDA");
@@ -127,7 +126,11 @@ public class RepositorioIndicadores {
 		entity.persist(roe);
 		entity.persist(proporcionDeuda);
 		entity.persist(margen);
+<<<<<<< HEAD
 		entity.persist(ingresoNeto);
 		entity.getTransaction().commit();	
+=======
+		transaccion.commit();	
+>>>>>>> origin/master
 	}
 }
