@@ -51,7 +51,6 @@ public class AnalizarIndicadoresEntreEmpresas extends Condicion {
 			Repositorios.repositorioEmpresas.aumentarPuntuacion(unaEmpresa);
 		else
 			Repositorios.repositorioEmpresas.aumentarPuntuacion(otraEmpresa);
-
 	}
 	
 }

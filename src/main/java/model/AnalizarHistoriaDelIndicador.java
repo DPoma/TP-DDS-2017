@@ -60,4 +60,5 @@ public class AnalizarHistoriaDelIndicador extends Condicion {
 		else
 			Repositorios.repositorioEmpresas.aumentarPuntuacion(otraEmpresa);
 	}
+	
 }

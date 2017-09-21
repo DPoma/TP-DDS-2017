@@ -81,8 +81,7 @@ public abstract class Condicion {
 		.filter(i -> i % 2 == 0)
 		.forEach(i -> this.compararEmpresas(empresas.get(i), empresas.get(i+1)));
 	}
-
-	
+		
 	public abstract void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa);
 	
 	public Indicador getIndicador()

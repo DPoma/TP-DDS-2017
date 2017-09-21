@@ -123,9 +123,11 @@ public class RepositorioIndicadores {
 		Indicador roe = new Indicador("ROE", "(IngresoNeto-dividendos)/capitalTotal");
 		Indicador proporcionDeuda = new Indicador("ProporcionDeuda", "FDS/IngresoNeto");
 		Indicador margen = new Indicador("Margen", "IngresoNeto/EBITDA");
+		Indicador ingresoNeto = new Indicador("IngresoNeto", "ingresoNetoOperacionesContinuas+ingresoNetoOperacionesDiscontinuas");
 		entity.persist(roe);
 		entity.persist(proporcionDeuda);
 		entity.persist(margen);
+		entity.persist(ingresoNeto);
 		entity.getTransaction().commit();	
 	}
 }

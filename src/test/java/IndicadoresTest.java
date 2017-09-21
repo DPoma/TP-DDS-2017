@@ -13,7 +13,7 @@ import parserIndicador.ParsearIndicador;
 import repositories.Repositorios;
 import vm.AgregarIndicadorViewModel;
 
-@SuppressWarnings("unused")
+
 public class IndicadoresTest {
 	private ParsearIndicador parser = new ParsearIndicador();
 	
@@ -49,8 +49,13 @@ public class IndicadoresTest {
 	@Test
 	public void indicadorFuncionaConCuentas()
 	{
+		Empresa empresa = new Empresa("Empresa", 2000);
+		Cuenta cuenta = new Cuenta("test", 2013, "2000000", empresa);
+		empresa.agregarCuenta(cuenta);
 		Indicador indicador = new Indicador("Indicador", "test*2");
 		BigDecimal expected = new BigDecimal("4000000");
+		BigDecimal resultado = indicador.calcularMonto(empresa, "2013");
+		Assert.assertTrue(resultado.compareTo(expected) == 0);
 	}
 	
 	@Test 
@@ -64,6 +69,6 @@ public class IndicadoresTest {
 	@After
 	public void end()
 	{
-		Repositorios.repositorioIndicadores.getIndicadores().removeIf(unIndicador -> unIndicador.getNombreIndicador().equals("testing"));
+		Repositorios.repositorioIndicadores.getIndicadores().clear();
 	}
 }

@@ -68,13 +68,18 @@ public class RepositorioEmpresas {
 	
 	public List<Cuenta> filtrarCuentasPorPeriodo(String nombreEmpresa, String anioMin, String anioMax){
 	Empresa empresa = buscarEmpresa(nombreEmpresa);
-	return empresa.getCuentas().stream().filter(unaCuenta -> this.cuentaEstaDentroDelPeriodo(unaCuenta, anioMin, anioMax)).collect(Collectors.toList());
+	return empresa.getCuentas().stream().filter(unaCuenta -> this.cuentaEstaDentroDelPeriodo(unaCuenta, anioMin, anioMax))
+			.collect(Collectors.toList());
+	}
+	
+	public boolean cuentaPertenceAPeriodo(Cuenta cuenta, int min, int max) {
+		return cuenta.getAnio() >= min && cuenta.getAnio() <= max;
 	}
 	
 	public boolean cuentaEstaDentroDelPeriodo(Cuenta cuenta, String anioMin, String anioMax) {
 		int anio1 = Integer.parseInt(anioMin);
 		int anio2 = Integer.parseInt(anioMax);
-		return cuenta.getAnio() <= anio1 ||  cuenta.getAnio() >= anio2;
+		return this.cuentaPertenceAPeriodo(cuenta, anio1, anio2);
 	}
 	
 	public Empresa obtenerEmpresa(String nombreEmpresa, int anioFundacion) {
@@ -82,6 +87,12 @@ public class RepositorioEmpresas {
 			return this.buscarEmpresa(nombreEmpresa);
 		else
 			return this.generarEmpresa(nombreEmpresa, anioFundacion);
+	}
+	
+	public Empresa buscarEmpresaPorId(int unId) {
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+		Empresa empresa = entity.find(Empresa.class, unId);
+		return empresa;
 	}
 	
 	public Empresa buscarEmpresa(String nombre) {
@@ -112,6 +123,8 @@ public class RepositorioEmpresas {
 	    }
 	}
 	
+	
+	
 	@SuppressWarnings("unchecked")
 	public void obtenerEmpresas() {
 		EntityManager entity = PerThreadEntityManagers.getEntityManager();
@@ -137,6 +150,20 @@ public class RepositorioEmpresas {
 	    entity.getTransaction().begin();
 	    for(Empresa empresa : empresas)
 	    	entity.persist(empresa);
+	    entity.getTransaction().commit();
+	    } catch(HibernateException e) {
+	    	entity.getTransaction().rollback();
+	    } finally {
+	    	entity.close();
+	    }
+	}
+	
+	
+	public void persistirEmpresa(Empresa unaEmpresa) {
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+	    try {
+	    entity.getTransaction().begin();
+	    	entity.persist(unaEmpresa);
 	    entity.getTransaction().commit();
 	    } catch(HibernateException e) {
 	    	entity.getTransaction().rollback();

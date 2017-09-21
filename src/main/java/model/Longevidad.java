@@ -23,18 +23,19 @@ public class Longevidad extends Condicion {
 		return new BigDecimal(Calendar.getInstance().get(Calendar.YEAR) - unaEmpresa.getAnioFundacion());
 	}
 	
-	@Override
-	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
-		if(this.esMasAntigua(unaEmpresa, otraEmpresa) > 1)
-			Repositorios.repositorioEmpresas.aumentarPuntuacion(unaEmpresa);
-		else
-			Repositorios.repositorioEmpresas.aumentarPuntuacion(otraEmpresa);
-	}
-	
 	public int esMasAntigua(Empresa unaEmpresa, Empresa otraEmpresa) {
 		BigDecimal unaAntiguedad = this.calcularAntiguedad(unaEmpresa);
 		BigDecimal otraAntiguedad = this.calcularAntiguedad(otraEmpresa);
 		return unaAntiguedad.compareTo(otraAntiguedad);
 	}
 
+	
+	@Override
+	public void compararEmpresas(Empresa unaEmpresa, Empresa otraEmpresa) {
+		if(this.esMasAntigua(unaEmpresa, otraEmpresa) > 0)
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(unaEmpresa);
+		else
+			Repositorios.repositorioEmpresas.aumentarPuntuacion(otraEmpresa);
+	}
+	
 }

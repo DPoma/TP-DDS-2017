@@ -39,6 +39,7 @@ public class VerMetodologiasViewModel {
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
 	public VerMetodologiasViewModel() {
+		
 		Repositorios.repositorioMetodologias.obtenerMetodologias();
 		Repositorios.repositorioEmpresas.obtenerEmpresas();
 		metodologias = Repositorios.repositorioMetodologias.getMetodologias();

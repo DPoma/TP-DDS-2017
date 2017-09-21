@@ -9,7 +9,6 @@ import model.Empresa;
 
 public class BusquedaTest{
 	
-	
 	private Cuenta unaCuenta;
 	private Cuenta otraCuenta;
 	
@@ -18,6 +17,8 @@ public class BusquedaTest{
 		Empresa facebook = new Empresa("Facebook", 2004);
 		unaCuenta = new Cuenta("PDS",2015,"200000", facebook);
 		otraCuenta = new Cuenta("PDS",2012,"200000", facebook);
+		facebook.agregarCuenta(unaCuenta);
+		facebook.agregarCuenta(otraCuenta);
 		Repositorios.repositorioEmpresas.agregarEmpresa(facebook);
 	}
 	

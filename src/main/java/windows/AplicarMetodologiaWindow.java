@@ -78,9 +78,7 @@ public class AplicarMetodologiaWindow extends SimpleWindow<VerMetodologiasViewMo
 		try {
 			this.getModelObject().agregarEmpresaAComparar();
 		}
-		
 		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
-			e.printStackTrace();
 			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 			dialog.open();
 		}
@@ -93,7 +91,6 @@ public class AplicarMetodologiaWindow extends SimpleWindow<VerMetodologiasViewMo
 		}
 		
 		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
-			e.printStackTrace();
 			Dialog <?> dialog = new ErrorWindow(this, "Datos incompletos o incorrectos");
 			dialog.open();
 		}

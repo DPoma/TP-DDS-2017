@@ -53,5 +53,4 @@ public class AnalizarCrecimientoEnPeriodo extends Condicion {
 		else
 			Repositorios.repositorioEmpresas.aumentarPuntuacion(otraEmpresa);
 	}
-	
 }

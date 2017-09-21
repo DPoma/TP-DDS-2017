@@ -8,6 +8,8 @@ import javax.persistence.*;
 
 import org.uqbar.commons.utils.Observable;
 
+import repositories.Repositorios;
+
 @Observable
 @Entity
 @Table(name="Empresa")
@@ -90,6 +92,10 @@ public class Empresa {
 	public Cuenta encontrarCuenta(String nombre, String anio) {
 		int anioNumerico = Integer.parseInt(anio);
 		return this.find(unaCuenta -> unaCuenta.getNombre().equals(nombre) && unaCuenta.getAnio() == anioNumerico);
+	}
+	
+	public void guardar() {
+		Repositorios.repositorioEmpresas.persistirEmpresa(this);
 	}
 	
 	public void aumentarPuntuacion() {
