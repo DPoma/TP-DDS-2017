@@ -1,5 +1,8 @@
 package server;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import controllers.CondicionesController;
 import controllers.EmpresasController;
 import controllers.HomeController;
@@ -11,6 +14,8 @@ import spark.utils.BooleanHelper;
 import spark.utils.HandlebarsTemplateEngineBuilder;
 
 public class Router {
+	
+	static Set<String> publicRoutes = new HashSet<String>();
 
 	public static void configure() {
 		HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder
@@ -20,15 +25,16 @@ public class Router {
 				.build();
 
 		Spark.staticFiles.location("/public");
-
-		HomeController homeController = new HomeController();
+		setPublicRoutes(publicRoutes);
+		
+		//HomeController homeController = new HomeController();
 		EmpresasController empresasController = new EmpresasController();
 		IndicadoresController indicadoresController = new IndicadoresController();
 		CondicionesController condicionesController = new CondicionesController();
 		MetodologiasController metodologiasController = new MetodologiasController();
 		
-		Spark.get("/", homeController::login, engine);
-		Spark.get("/home", HomeController::home, engine);
+		Spark.get("/", HomeController::home, engine);
+		//Spark.get("/home", HomeController::home, engine);
 		Spark.get("/empresas", empresasController::listar,engine);
 		Spark.get("/metodologias", metodologiasController::aplicar, engine);
 		Spark.post("/metodologias/nueva", metodologiasController::nueva, engine);
@@ -39,6 +45,14 @@ public class Router {
 		Spark.post("/condiciones", condicionesController::crear, engine);
 		
 		
+	}
+	
+	public static Boolean isPublic(String route){
+		return publicRoutes.contains(route);
+	}
+	
+	private static void setPublicRoutes(Set<String> publicRoutes){
+		publicRoutes.add("/login");
 	}
 
 }

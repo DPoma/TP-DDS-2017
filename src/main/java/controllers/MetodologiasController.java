@@ -9,6 +9,7 @@ import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import model.Metodologia;
 import repositories.Repositorios;
+import server.SessionHandler;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -17,15 +18,23 @@ public class MetodologiasController implements WithGlobalEntityManager, Transact
 	
 	public ModelAndView nueva(Request req, Response res){
 		//ver la lista
-		Metodologia proyectoNuevo = new Metodologia(req.queryParams("nombre"), new List(req.queryParams("costoEstimado")));
+		/*
+		 * SessionHandler session = new SessionHandler();
+		 * session.loginAttempt(req, res);
+		 * 
+		 * Metodologia proyectoNuevo = new Metodologia(req.queryParams("nombre"), new List(req.queryParams("costoEstimado")));
 		withTransaction(() ->{
 			RepositorioProyectos.instancia.agregar(proyectoNuevo);
-		});
+		});*/
 		res.redirect("/proyectos");
 		return null;
 	}
 	
 	public ModelAndView mostrar(Request req, Response res){
+		
+		SessionHandler session = new SessionHandler();
+		session.loginAttempt(req, res);
+		
 		Map<String, Metodologia> model = new HashMap<>();
 		String id = req.params("id");
 		
@@ -38,6 +47,10 @@ public class MetodologiasController implements WithGlobalEntityManager, Transact
 	}
 	
 	public ModelAndView aplicar(Request req, Response res){
+		
+		SessionHandler session = new SessionHandler();
+		session.loginAttempt(req, res);
+		
 		//ver como pasar lista de empresas por parametro
 		return new ModelAndView(null, "metodologias/home.hbs");
 	}

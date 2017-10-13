@@ -3,6 +3,7 @@ package controllers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
+import server.SessionHandler;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -10,6 +11,9 @@ import spark.Response;
 public class HomeController implements WithGlobalEntityManager, TransactionalOps{
 	
 	public static ModelAndView home(Request req, Response res){
+		SessionHandler session = new SessionHandler();
+		session.loginAttempt(req, res);
+		
 		return new ModelAndView(null, "home/home.hbs");
 	}
 	
