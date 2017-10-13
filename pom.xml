@@ -8,40 +8,85 @@
 	<name>dds-tpa</name>
 
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>arena-jface</artifactId>
 			<version>3.6.1</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
 			<version>3.9</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr4-runtime</artifactId>
 			<version>4.7</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>jpa-java8-extras</artifactId>
 			<version>1.0-alpha-1</version>
 		</dependency>
+		
 		<dependency>
 			<groupId> com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<version>6.1.0.jre8</version>
 		</dependency>
+		
 		<dependency>
     		<groupId>com.h2database</groupId>
     		<artifactId>h2</artifactId>
     		<version>1.4.196</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.21</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-core</artifactId>
+			<version>2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-template-handlebars</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-debug-tools</artifactId>
+			<version>0.5</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.github.jknack</groupId>
+			<artifactId>handlebars-helpers</artifactId>
+			<version>4.0.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.jknack</groupId>
+			<artifactId>handlebars-humanize</artifactId>
+			<version>4.0.6</version>
 		</dependency>
 
 	</dependencies>

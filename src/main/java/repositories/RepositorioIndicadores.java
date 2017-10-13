@@ -126,11 +126,7 @@ public class RepositorioIndicadores {
 		entity.persist(roe);
 		entity.persist(proporcionDeuda);
 		entity.persist(margen);
-<<<<<<< HEAD
 		entity.persist(ingresoNeto);
-		entity.getTransaction().commit();	
-=======
-		transaccion.commit();	
->>>>>>> origin/master
+		entity.getTransaction().commit();
 	}
 }
