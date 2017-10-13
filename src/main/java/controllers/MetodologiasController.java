@@ -16,12 +16,9 @@ import spark.Response;
 
 public class MetodologiasController implements WithGlobalEntityManager, TransactionalOps{
 	
-	public ModelAndView nueva(Request req, Response res){
+	public static ModelAndView nueva(Request req, Response res){
 		//ver la lista
 		/*
-		 * SessionHandler session = new SessionHandler();
-		 * session.loginAttempt(req, res);
-		 * 
 		 * Metodologia proyectoNuevo = new Metodologia(req.queryParams("nombre"), new List(req.queryParams("costoEstimado")));
 		withTransaction(() ->{
 			RepositorioProyectos.instancia.agregar(proyectoNuevo);
@@ -30,10 +27,7 @@ public class MetodologiasController implements WithGlobalEntityManager, Transact
 		return null;
 	}
 	
-	public ModelAndView mostrar(Request req, Response res){
-		
-		SessionHandler session = new SessionHandler();
-		session.loginAttempt(req, res);
+	public static ModelAndView mostrar(Request req, Response res){
 		
 		Map<String, Metodologia> model = new HashMap<>();
 		String id = req.params("id");
@@ -46,10 +40,7 @@ public class MetodologiasController implements WithGlobalEntityManager, Transact
 		return new ModelAndView(model, "metodologias/show.hbs");
 	}
 	
-	public ModelAndView aplicar(Request req, Response res){
-		
-		SessionHandler session = new SessionHandler();
-		session.loginAttempt(req, res);
+	public static ModelAndView aplicar(Request req, Response res){
 		
 		//ver como pasar lista de empresas por parametro
 		return new ModelAndView(null, "metodologias/home.hbs");

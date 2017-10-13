@@ -14,18 +14,12 @@ import spark.Response;
 
 public class IndicadoresController implements WithGlobalEntityManager, TransactionalOps{
 	
-	public ModelAndView nuevo(Request req, Response res){
-		
-		SessionHandler session = new SessionHandler();
-		session.loginAttempt(req, res);
+	public static ModelAndView nuevo(Request req, Response res){
 		
 		return new ModelAndView(null, "home/home.hbs");
 	}
 	
 	public ModelAndView crear(Request req, Response res){
-		
-		SessionHandler session = new SessionHandler();
-		session.loginAttempt(req, res);
 		
 		Indicador indicador = new Indicador(req.queryParams("nombre"), req.queryParams("formula"));
 		withTransaction(() ->{

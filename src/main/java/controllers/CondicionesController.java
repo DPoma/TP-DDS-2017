@@ -9,11 +9,11 @@ import spark.Response;
 
 public class CondicionesController implements WithGlobalEntityManager, TransactionalOps{
 	
-	public ModelAndView nueva(Request req, Response res){
+	public static ModelAndView nueva(Request req, Response res){
 		return new ModelAndView(null, "condiciones/home.hbs");
 	}
 	
-	public ModelAndView crear(Request req, Response res){
+	public static ModelAndView crear(Request req, Response res){
 		return new ModelAndView(null, "home/home.hbs");
 	}
 	

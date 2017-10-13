@@ -17,10 +17,7 @@ import spark.Spark;
 
 public class EmpresasController implements WithGlobalEntityManager, TransactionalOps{
 	
-	public ModelAndView listar(Request req, Response res){
-		
-		SessionHandler session = new SessionHandler();
-		session.loginAttempt(req, res);
+	public static ModelAndView listar(Request req, Response res){
 		
 		Map<String, List<Empresa>> model = new HashMap<>();
 		List<Empresa> empresas = Repositorios.repositorioEmpresas.getEmpresas();
