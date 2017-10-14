@@ -23,6 +23,7 @@
     	<class>model.MayorA</class>
     	<class>model.MenorA</class>
     	<class>model.IgualA</class>
+    	<class>model.Usuario</class>
     	
     	 
         <properties> 

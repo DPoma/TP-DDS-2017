@@ -13,11 +13,7 @@ public class SessionHandler {
 		    return new Filter() {
 		    	@Override
 		    	public void handle(Request req, Response res){
-		    	boolean authenticated = logged(
-		    		req.session()
-		    		.id(),
-		    		req.session()
-		    		.attribute("user"));
+		    	boolean authenticated = req.session().attribute("user") != null;
 		    
 			    if (!authenticated && !Router.isPublic(req.pathInfo())) {
 			    	res.redirect("/login");
@@ -26,10 +22,5 @@ public class SessionHandler {
 	    };
 	}
 
-	private static Boolean logged(String id,String user){
-		
-		return Repositorios.repositorioSesiones.isLogged(id, user);
-		 //return true;
-	}
 
 }

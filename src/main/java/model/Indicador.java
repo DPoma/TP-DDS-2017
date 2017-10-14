@@ -21,6 +21,11 @@ public class Indicador implements OperandoDeIndicador {
 	
 	private String formula;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "username")
+	private Usuario usuario;
+	
+
 	//------------------------------------ CONSTRUCTORES --------------------------------
 
 	public Indicador(String nombre, String formula)

@@ -48,6 +48,7 @@ public class Router {
 		Spark.post("/condiciones", CondicionesController::crear, engine);
 		
 		
+		
 	}
 	
 	public static Boolean isPublic(String route){
