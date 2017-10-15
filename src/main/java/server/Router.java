@@ -37,6 +37,8 @@ public class Router {
 		
 		Spark.get("/", HomeController::home, engine);
 		Spark.get("/login", HomeController::login, engine);
+		Spark.get("/wrong-user-or-pass", HomeController::wrongLogin, engine);
+		Spark.post("/wrong-user-or-pass", HomeController::wrongLogin, engine);
 		Spark.post("/login", homeController::newSession);
 		Spark.get("/empresas", EmpresasController::listar,engine);
 		Spark.get("/metodologias", MetodologiasController::aplicar, engine);

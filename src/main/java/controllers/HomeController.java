@@ -24,6 +24,11 @@ public class HomeController implements WithGlobalEntityManager, TransactionalOps
 		return new ModelAndView(null, "home/login.hbs");
 	}
 	
+	public static ModelAndView wrongLogin (Request req, Response res){
+		
+		return new ModelAndView(null, "home/wrongLogin.hbs");
+	}
+	
 	public Void newSession(Request req, Response res){
 		
 		String username = req.queryParams("user");
@@ -35,8 +40,10 @@ public class HomeController implements WithGlobalEntityManager, TransactionalOps
 			Console.println("COREC");
 			Session sesion = req.session(true);
 			sesion.attribute("user", username);
-		}
-		res.redirect("/");	
+			res.redirect("/");	
+		}else{res.redirect("/wrong-user-or-pass");}
+		res.redirect("/wrong-user-or-pass");
+
 		return null;
 	}
 }

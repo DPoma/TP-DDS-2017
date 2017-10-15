@@ -11,6 +11,7 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import model.Empresa;
 import model.Usuario;
+import model.UsuarioIncorrecto;
 
 public class RepositorioUsuarios {
 
@@ -29,7 +30,10 @@ public class RepositorioUsuarios {
 	public Usuario buscarUsuario(String user) {
 		Query query = entity.createQuery("FROM Usuario WHERE username = :user");
 		query.setParameter("user", user);
-		return (Usuario)query.getSingleResult();
+		try{
+		Usuario result = (Usuario)query.getSingleResult();
+		return result;
+		}catch(Exception e){return new UsuarioIncorrecto();}
 	}
 	
 
