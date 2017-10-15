@@ -12,10 +12,6 @@
     	<class>model.Cuenta</class>
     	<class>model.Indicador</class>
     	<class>model.OperacionIndicador</class>
-    	<class>model.CondicionTipo1</class>
-    	<class>model.CondicionTipo2</class>
-    	<class>model.CondicionTipo3</class>
-    	<class>model.CondicionTipo4</class>
     	<class>model.Promedio</class>
     	<class>model.Sumatoria</class>
     	<class>model.Mediana</class>
