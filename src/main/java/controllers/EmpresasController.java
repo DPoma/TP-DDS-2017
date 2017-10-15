@@ -9,21 +9,19 @@ import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import model.Empresa;
 import repositories.Repositorios;
-import server.SessionHandler;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import spark.Spark;
 
 public class EmpresasController implements WithGlobalEntityManager, TransactionalOps{
 	
-	public static ModelAndView listar(Request req, Response res){
-		
+	public ModelAndView home(Request req, Response res){
 		Map<String, List<Empresa>> model = new HashMap<>();
 		List<Empresa> empresas = Repositorios.repositorioEmpresas.getEmpresas();
-		model.put("proyectos", empresas);
-		return new ModelAndView(model, "empresas/index.hbs");
-		
+		model.put("empresas", empresas);
+		return new ModelAndView(null, "empresas/home.hbs");
 	}
+	
+	
 	
 }

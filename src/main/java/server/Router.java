@@ -32,25 +32,29 @@ public class Router {
 
 		Spark.before(SessionHandler.allowed());
 		
-		HomeController homeController = new HomeController();
-		IndicadoresController indicadoresController = new IndicadoresController();
-		
-		Spark.get("/", HomeController::home, engine);
-		Spark.get("/login", HomeController::login, engine);
+ 		HomeController homeController = new HomeController();
+ 		EmpresasController empresasController = new EmpresasController();
+  		IndicadoresController indicadoresController = new IndicadoresController();
+ 		MetodologiasController metodologiasController = new MetodologiasController();
+
+ 		Spark.get("/", homeController::home, engine);
+ 		Spark.get("/login", homeController::login, engine);
+  		Spark.post("/login", homeController::newSession);
 		Spark.get("/wrong-user-or-pass", HomeController::wrongLogin, engine);
 		Spark.post("/wrong-user-or-pass", HomeController::wrongLogin, engine);
-		Spark.post("/login", homeController::newSession);
-		Spark.get("/empresas", EmpresasController::listar,engine);
-		Spark.get("/metodologias", MetodologiasController::aplicar, engine);
-		Spark.post("/metodologias/nueva", MetodologiasController::nueva, engine);
-		Spark.get("/metodologias/:id", MetodologiasController::mostrar, engine);
-		Spark.get("/indicadores", IndicadoresController::nuevo, engine);
-		Spark.post("/indicadores", indicadoresController::crear, engine);
-		Spark.get("/condiciones", CondicionesController::nueva, engine);
-		Spark.post("/condiciones", CondicionesController::crear, engine);
-		
-		
-		
+
+  		
+ 		Spark.get("/empresas", empresasController::home,engine);
+  		
+ 		Spark.get("/metodologias", metodologiasController::home, engine);
+ 		Spark.get("/metodologias/nueva", metodologiasController::nueva, engine);
+ 		Spark.post("/metodologias/nueva", metodologiasController::crear, engine);
+ 		Spark.get("/metodologias/:id", metodologiasController::mostrar, engine);
+  		
+ 		Spark.get("/indicadores", indicadoresController::home, engine);
+ 		Spark.get("/indicadores/nuevo", indicadoresController::nuevo, engine);
+ 		Spark.post("/indicadores/nuevo", indicadoresController::crear, engine);
+
 	}
 	
 	public static Boolean isPublic(String route){

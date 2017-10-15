@@ -3,7 +3,6 @@ package server;
 import spark.Filter;
 import spark.Request;
 import spark.Response;
-import repositories.Repositorios;
 import server.Router;
 
 public class SessionHandler {
