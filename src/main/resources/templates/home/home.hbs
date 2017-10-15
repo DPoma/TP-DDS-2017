@@ -1,3 +1,4 @@
+{{#partial "contenido"}}
 <!DOCTYPE html>
 
 <head>
@@ -9,18 +10,20 @@
   <p style = "font-size:24px">Analizador de inversiones</p>
 
   <div>
-    <input class="btn btn-primary btn-lg" type="submit" value="Cargar cuentas">
+    <input class="btn btn-primary btn-lg" type="submit" value="Cargar archivo">
   </div>
 
   <div>
-    <input class="btn btn-primary btn-lg" type="submit" value="Cargar indicador">
+    <a href="empresas"><input class="btn btn-primary btn-lg" type="submit" value="Ver empresas"></a>
   </div>
 
   <div>
-    <input class="btn btn-primary btn-lg" type="submit" value="Cargar metodologia">
+    <a href="indicadores"><input class="btn btn-primary btn-lg" type="submit" value="Ver indicadores"></a>
   </div>
 
   <div>
-    <input class="btn btn-primary btn-lg" type="submit" value="Analizar empresas">
+    <a href="metodologias"/><input class="btn btn-primary btn-lg" type="submit" value="Ver metodologias"></a>
   </div>
 </body>
+{{/partial}}
+{{>layout.hbs}}

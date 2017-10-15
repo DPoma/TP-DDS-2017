@@ -1,3 +1,4 @@
+{{#partial "contenido"}}
 <!DOCTYPE html>
 
 <head>
@@ -6,9 +7,9 @@
 </head>
 
 <body>
-<p style = "font-size:24px">Crear un indicador</p>
+<p style = "font-size:24px">Nuevo indicador</p>
 
-	<form action="/proyectos" method="POST">
+	<form action="/indicadores/nuevo" method="POST">
 		
 		<div class="form-group">
 			<label for="nombre">Nombre</label>
@@ -23,3 +24,5 @@
 		<input class="btn btn-primary btn-lg" type="submit" value="Guardar">
 	</form>
 </body>
+{{/partial}}
+{{>layout.hbs}}

@@ -4,7 +4,6 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import model.Usuario;
-import repositories.RepositorioUsuarios;
 import repositories.Repositorios;
 import scala.Console;
 import spark.ModelAndView;
@@ -14,12 +13,12 @@ import spark.Session;
 
 public class HomeController implements WithGlobalEntityManager, TransactionalOps{
 	
-	public static ModelAndView home(Request req, Response res){
+	public ModelAndView home(Request req, Response res){
 		
 		return new ModelAndView(null, "home/home.hbs");
 	}
 	
-	public static ModelAndView login (Request req, Response res){
+	public ModelAndView login (Request req, Response res){
 	
 		return new ModelAndView(null, "home/login.hbs");
 	}

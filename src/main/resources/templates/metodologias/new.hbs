@@ -1,3 +1,4 @@
+{{#partial "contenido"}}
 <!DOCTYPE html>
 
 <head>
@@ -6,9 +7,9 @@
 </head>
 
 <body>
-<p style = "font-size:24px">Crear una metodologia</p>
+<p style = "font-size:24px">Nueva metodologia</p>
 
-	<form action="/proyectos" method="POST">
+	<form action="/metodologia/nueva" method="POST">
 		
 		<div class="form-group">
 			<label for="nombre">Nombre</label>
@@ -28,3 +29,6 @@
 		<input class="btn btn-primary btn-lg" type="submit" value="Guardar">
 	</form>
 </body>
+
+{{/partial}}
+{{>layout.hbs}}

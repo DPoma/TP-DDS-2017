@@ -1,13 +1,9 @@
 package model;
 
 import java.math.BigDecimal;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import javax.persistence.Entity;
 
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
