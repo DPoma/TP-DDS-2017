@@ -9,7 +9,7 @@
 <body>
 <p style = "font-size:24px">Nueva metodologia</p>
 
-	<form action="/metodologia/nueva" method="POST">
+	<form action="/metodologias/nueva" method="POST">
 		
 		<div class="form-group">
 			<label for="nombre">Nombre</label>
@@ -19,14 +19,15 @@
 		<div class="form-group">		
 			<label for="nombre">Condiciones</label>
 			<select name="nombreCondicion" class="custom-select">
-				<option value="-1">Seleccionar</option>
-				{{#each condiciones}}
-				<option value= {{idCondicion}}> {{idCondicion}}</option>
-				{{/each}}
+				<option value="-1">Seleccione una condicion</option>
+				<option value="Analizar indicador en los ultimos anios">Analizar indicador en los ultimos años</option>
+				<option value="Analizar indicadores entre empresas">Analizar indicadores entre empresas</option>
+				<option value="Analizar historia del indicador">Analizar historia del indicador</option>
+				<option value="Analizar crecimiento del indicador">Analizar crecimiento del indicador</option>
 			</select>
 		</div>
 
-		<input class="btn btn-primary btn-lg" type="submit" value="Guardar">
+		<input class="btn btn-primary btn-lg" type="submit" value="Configurar">
 	</form>
 </body>
 

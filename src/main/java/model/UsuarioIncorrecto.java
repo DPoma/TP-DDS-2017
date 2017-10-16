@@ -14,6 +14,7 @@ public class UsuarioIncorrecto extends Usuario {
 	}
 
 	private String password;
+	
 	@OneToMany(mappedBy="usuario",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Indicador> indicadores;
 	

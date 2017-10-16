@@ -1,0 +1,55 @@
+{{#partial "contenido"}}
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Nueva condicion</title>
+</head>
+
+<body>
+<p style = "font-size:24px">Analizar historia del indicador</p>
+
+	<form action="/metodologia/nueva" method="POST">
+	
+		<div class="form-group">		
+			<label for="nombre">Indicador</label>
+			<select name="ind" class="custom-select">
+				<option value="-1">Seleccione un indicador</option>
+				{{#each indicadores}}
+				<option value= {{nombreIndicador}}> {{nombreIndicador}}</option>
+				{{/each}}
+			</select>
+		</div>
+
+				<div class="form-group">		
+			<label for="nombre">OperacionIndicador</label>
+			<select name="operacionesIndicador" class="custom-select">
+				<option value="-1">Seleccione una operacion de indicador</option>
+				{{#each operacionesIndicador}}
+				<option value= {{nombre}}> {{nombre}}</option>
+				{{/each}}
+			</select>
+		</div>
+
+		<div class="form-group">		
+			<label for="nombre">Operacion</label>
+			<select name="operaciones" class="custom-select">
+				<option value="-1">Seleccione una operacionr</option>
+				{{#each operaciones}}
+				<option value= {{nombre}}> {{nombre}}</option>
+				{{/each}}
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="nombre">Valor</label>
+			<input type="text" placeholder="Ingrese un valor" name="nombre">
+		</div>
+
+
+		<input class="btn btn-primary btn-lg" type="submit" value="Guardar">
+	</form>
+</body>
+
+{{/partial}}
+{{>layout.hbs}}

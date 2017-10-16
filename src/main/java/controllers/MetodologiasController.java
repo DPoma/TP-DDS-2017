@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
+import model.Condicion;
 import model.Empresa;
 import model.Metodologia;
 import repositories.Repositorios;
@@ -17,8 +19,18 @@ import spark.Response;
 
 public class MetodologiasController implements WithGlobalEntityManager, TransactionalOps{
 	
+	
+	static final String TIPO1 = "Analizar indicador en los ultimos anios";
+	static final String TIPO2 = "Analizar indicadores entre empresas";
+	static final String TIPO3 = "Analizar historia del indicador";
+	static final String TIPO4 = "Analizar crecimiento del indicador";
+	static final String TIPO5 = "Analizar por antiguedad";
+	
+	List<Condicion> condiciones = new ArrayList<Condicion>(); 
+	
 	public ModelAndView nueva(Request req, Response res){
 		Map<String, Object> model=new HashMap<>();
+		Repositorios.repositorioIndicadores.obtenerIndicadores();
 		Repositorios.repositorioIndicadores.obtenerOperaciones();
 		Repositorios.repositorioIndicadores.obtenerOperacionesIndicador();
 		return new ModelAndView(model, "metodologias/new.hbs");
@@ -61,16 +73,27 @@ public class MetodologiasController implements WithGlobalEntityManager, Transact
 	}
 	
 	public ModelAndView crear(Request req, Response res) {
-		/*
-		List<Condicion> condiciones = new ArrayList<Condicion>();  
-		condiciones = req.queryParams("condiciones")
 		Metodologia metodologia = new Metodologia(req.queryParams("nombre"), condiciones);
 		withTransaction(() ->{
 			Repositorios.repositorioMetodologias.persistirMetodologia(metodologia);
 		});
 		res.redirect("/metodologias");
-		*/
 		return null;
 	}
+
 	
+	public ModelAndView condicionCrearTipo(Request req, Response res) {
+		Map<String, Object> model=new HashMap<>();
+		model.put("operacionesIndicador", Repositorios.repositorioIndicadores.getOperacionesIndicador());
+		model.put("operaciones", Repositorios.repositorioIndicadores.getOperaciones());
+		model.put("indicadores", Repositorios.repositorioIndicadores.getIndicadores());
+		switch(req.queryParams("nombreCondicion")){
+			case TIPO1: return new ModelAndView(model, "/condiciones/condicion1.hbs");
+			case TIPO2: return new ModelAndView(model, "/condiciones/condicion2.hbs");
+			case TIPO3: return new ModelAndView(model, "/condiciones/condicion3.hbs");
+			case TIPO4: return new ModelAndView(model, "/condiciones/condicion4.hbs");
+			default: return null;
+		}
+	}
+
 }

@@ -41,13 +41,16 @@ public class Router {
 		Spark.get("/wrong-user-or-pass", homeController::wrongLogin, engine);
 		Spark.post("/wrong-user-or-pass", homeController::wrongLogin, engine);
   		
+		Spark.get("/cargar", empresasController::verArchivos,engine);
+		Spark.post("/cargar", empresasController::cargarArchivos,engine);
+		
  		Spark.get("/empresas", empresasController::home,engine);
  		Spark.post("/empresas", empresasController::aplicar,engine);
   		
  		Spark.get("/metodologias", metodologiasController::home, engine);
  		Spark.post("/metodologias", metodologiasController::aplicar, engine);
  		Spark.get("/metodologias/nueva", metodologiasController::nueva, engine);
- 		Spark.post("/metodologias/nueva", metodologiasController::crear, engine);
+ 		Spark.post("/metodologias/nueva", metodologiasController::condicionCrearTipo, engine);
  		Spark.get("/metodologias/:id", metodologiasController::mostrar, engine);
   		
  		Spark.get("/indicadores", indicadoresController::home, engine);
