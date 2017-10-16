@@ -12,16 +12,16 @@
 	<form action="/indicadores/nuevo" method="POST">
 		
 		<div class="form-group">
-			<label for="nombre">Nombre</label>
-			<input type="text" placeholder="Ingrese un nombre" name="nombre">
+        <label for="nombre" class="sr-only">nombre</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingrese un nombre" required>
 		</div>
 	
 		<div class="form-group">		
-			<label for="costoEstimado">Formula</label>
-			<input type="text" placeholder="Ingrese una formula" name="costoEstimado">
+        <label for="formula" class="sr-only">formula</label>
+        <input type="text" id="formula" name="formula" class="form-control" placeholder="Ingrese una formula" required>
 		</div>
 		
-		<input class="btn btn-primary btn-lg" type="submit" value="Guardar">
+		 <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
 	</form>
 </body>
 {{/partial}}

@@ -13,20 +13,20 @@
 	<form>
 		<div class="form-group">		
 			<label for="nombre">Indicadores</label>
-			<select name="nombreCondicion" class="custom-select">
+			<select name="nombreIndicador" class="custom-select">
 				<option value="-1">Seleccione un indicador</option>
-				{{#each condiciones}}
-				<option value= {{idCondicion}}> {{idCondicion}}</option>
+				{{#each indicadores}}
+				<option value= {{nombreIndicador}}> {{nombreIndicador}}</option>
 				{{/each}}
 			</select>
 		</div>
 
 		<div class="form-group">		
 			<label for="nombre">Empresas</label>
-			<select name="nombreCondicion" class="custom-select">
+			<select name="nombreEmpresa" class="custom-select">
 				<option value="-1">Seleccione una empresa</option>
-				{{#each condiciones}}
-				<option value= {{idCondicion}}> {{idCondicion}}</option>
+				{{#each empresas}}
+				<option value= {{nombre}}> {{nombre}}</option>
 				{{/each}}
 			</select>
 		</div>

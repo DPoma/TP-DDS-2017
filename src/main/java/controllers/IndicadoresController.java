@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.HashMap;
+import java.util.Map;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
@@ -18,19 +20,22 @@ public class IndicadoresController implements WithGlobalEntityManager, Transacti
 	}
 	
 	public ModelAndView home(Request req, Response res){
-		
-		return new ModelAndView(null, "indicadores/home.hbs");
+		Map<String, Object> model=new HashMap<>();
+		Repositorios.repositorioIndicadores.obtenerIndicadores();
+		Repositorios.repositorioEmpresas.obtenerEmpresas();
+		model.put("empresas", Repositorios.repositorioEmpresas.getEmpresas());
+		model.put("indicadores",Repositorios.repositorioIndicadores.getIndicadores());
+		return new ModelAndView(model, "indicadores/home.hbs");
 	}
 	
 	public ModelAndView nuevo(Request req, Response res){
-		
 		return new ModelAndView(null, "indicadores/new.hbs");
 	}
 	
 	public ModelAndView crear(Request req, Response res){
 		Indicador indicador = new Indicador(req.queryParams("nombre"), req.queryParams("formula"));
 		withTransaction(() ->{
-			Repositorios.repositorioIndicadores.agregarIndicador(indicador);
+			Repositorios.repositorioIndicadores.persistirIndicador(indicador);
 		});
 		res.redirect("/indicadores");
 		return null;

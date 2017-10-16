@@ -17,9 +17,9 @@ public class EmpresasController implements WithGlobalEntityManager, Transactiona
 	
 	public ModelAndView home(Request req, Response res){
 		Map<String, List<Empresa>> model = new HashMap<>();
-		List<Empresa> empresas = Repositorios.repositorioEmpresas.getEmpresas();
-		model.put("empresas", empresas);
-		return new ModelAndView(null, "empresas/home.hbs");
+		Repositorios.repositorioEmpresas.obtenerEmpresas();
+		model.put("empresas",  Repositorios.repositorioEmpresas.getEmpresas());
+		return new ModelAndView(model, "empresas/home.hbs");
 	}
 	
 	

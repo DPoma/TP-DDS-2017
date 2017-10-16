@@ -12,10 +12,10 @@
 		
 		<div class="form-group">		
 			<label for="nombre">Buscar cuentas de empresas</label>
-			<select name="nombreCondicion" class="custom-select">
+			<select name="nombreEmpresa" class="custom-select">
 				<option value="-1">Seleccione una empresa</option>
-				{{#each condiciones}}
-				<option value= {{idCondicion}}> {{idCondicion}}</option>
+				{{#each empresas}}
+				<option value= {{nombre}}> {{nombre}}</option>
 				{{/each}}
 			</select>
 		</div>
