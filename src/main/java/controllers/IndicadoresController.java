@@ -41,6 +41,9 @@ public class IndicadoresController implements WithGlobalEntityManager, Transacti
 		model.put("empresas", Repositorios.repositorioEmpresas.getEmpresas());
 		model.put("indicadores",Repositorios.repositorioIndicadores.getIndicadores());
 		model.put("resultado", bd.toString());
+		model.put("anio", anio);
+		model.put("nombreIndicador", nombreIndicador);
+		model.put("nombreEmpresa",nombreEmpresa);
 		return new ModelAndView(model, "indicadores/home.hbs");
 	}
 	

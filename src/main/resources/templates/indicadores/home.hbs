@@ -37,10 +37,25 @@
 		</div>
 
 	<div class="container">
-		<label for="nombre">Resultado</label>
+		<label for="nombre">Empresa:</label>
+		<option value= {{nombreEmpresa}}> {{nombreEmpresa}}</option>
+	</div>
+	<p></p>
+	<div class="container">
+		<label for="nombre">Indicador:</label>
+		<option value= {{nombreIndicador}}> {{nombreIndicador}}</option>
+	</div>
+	<p></p>
+		<div class="container">
+		<label for="nombre">Año:</label>
+		<option value= {{anio}}> {{anio}}</option>
+	</div>
+	<p></p>
+	<div class="container">
+		<label for="nombre">Resultado:</label>
 		<option value= {{resultado}}> {{resultado}}</option>
 	</div>
-
+	<p></p>
 		<div class="form-group">
 			<input class="btn btn-primary btn-lg" type="submit" value="Aplicar">
 		</div>
@@ -50,7 +65,10 @@
 	<div>
     	<a href="indicadores/nuevo"><input class="btn btn-primary btn-lg" type="submit" value="Crear indicador"></a>
   	</div>
-
+<p></p>
+	  <div>
+    	<a href="../"><input class="btn btn-primary btn-lg" type="submit" value="Ir al menu principal"></a>
+  	</div>
 </body>
 {{/partial}}
 {{>layout.hbs}}

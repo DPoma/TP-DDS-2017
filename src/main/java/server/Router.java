@@ -3,7 +3,6 @@ package server;
 import java.util.HashSet;
 import java.util.Set;
 
-import controllers.CondicionesController;
 import controllers.EmpresasController;
 import controllers.HomeController;
 import controllers.IndicadoresController;
@@ -33,7 +32,6 @@ public class Router {
  		EmpresasController empresasController = new EmpresasController();
   		IndicadoresController indicadoresController = new IndicadoresController();
  		MetodologiasController metodologiasController = new MetodologiasController();
- 		CondicionesController condicionesController = new CondicionesController();
 
  		Spark.get("/", homeController::home, engine);
  		Spark.get("/login", homeController::login, engine);
@@ -50,7 +48,7 @@ public class Router {
  		Spark.get("/metodologias", metodologiasController::home, engine);
  		Spark.post("/metodologias", metodologiasController::aplicar, engine);
  		Spark.get("/metodologias/nueva", metodologiasController::nueva, engine);
- 		Spark.post("/metodologias/nueva", metodologiasController::condicionCrearTipo, engine);
+ 		Spark.post("/metodologias/nueva", metodologiasController::crear, engine);
  		Spark.get("/metodologias/:id", metodologiasController::mostrar, engine);
   		
  		Spark.get("/indicadores", indicadoresController::home, engine);
@@ -58,8 +56,16 @@ public class Router {
  		Spark.get("/indicadores/nuevo", indicadoresController::nuevo, engine);
  		Spark.post("/indicadores/nuevo", indicadoresController::crear, engine);
  		
-		Spark.get("/condiciones", condicionesController::nueva, engine);
-		Spark.post("/condiciones", condicionesController::crear, engine);
+ 		Spark.get("/condiciones/nueva", metodologiasController::verCondicion, engine);
+ 		Spark.post("/condiciones/nueva", metodologiasController::crearCondicion, engine);
+		Spark.get("/condiciones/condicionTipo1", metodologiasController::verCondicionTipo1, engine);
+		Spark.post("/condiciones/condicionTipo1", metodologiasController::crearCondicionTipo1, engine);
+		Spark.get("/condiciones/condicionTipo2", metodologiasController::verCondicionTipo2, engine);
+		Spark.post("/condiciones/condicionTipo2", metodologiasController::crearCondicionTipo2, engine);
+		Spark.get("/condiciones/condicionTipo3", metodologiasController::verCondicionTipo3, engine);
+		Spark.post("/condiciones/condicionTipo3", metodologiasController::crearCondicionTipo3, engine);
+		Spark.get("/condiciones/condicionTipo4", metodologiasController::verCondicionTipo4, engine);
+		Spark.post("/condiciones/condicionTipo4", metodologiasController::crearCondicionTipo4, engine);
 
 	}
 	
