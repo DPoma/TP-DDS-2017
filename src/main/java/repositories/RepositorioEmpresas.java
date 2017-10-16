@@ -37,6 +37,11 @@ public class RepositorioEmpresas {
 	
 	//------------------------------------ METODOS--------------------------------
 	
+	public List<Empresa> buscarEmpresasPorNombre(List<String> nombres) {
+		this.obtenerEmpresas();
+		return empresas.stream().filter(e-> nombres.contains(e.getNombre())).collect(Collectors.toList());
+	}
+	
 	public boolean existeEmpresa(String empresa){
 		return empresas.stream().anyMatch(x->x.getNombre().equals(empresa));
 	}
@@ -120,8 +125,6 @@ public class RepositorioEmpresas {
 	    entity.getTransaction().commit();
 	    } catch(HibernateException e) {
 	    	entity.getTransaction().rollback();
-	    } finally {
-	    	entity.close();
 	    }
 	}
 	
@@ -152,11 +155,8 @@ public class RepositorioEmpresas {
 	    entity.getTransaction().commit();
 	    } catch(HibernateException e) {
 	    	entity.getTransaction().rollback();
-	    } finally {
-	    	entity.close();
 	    }
 	}
-	
 	
 	public void persistirEmpresa(Empresa unaEmpresa) {
 		EntityManager entity = PerThreadEntityManagers.getEntityManager();
@@ -166,8 +166,6 @@ public class RepositorioEmpresas {
 	    entity.getTransaction().commit();
 	    } catch(HibernateException e) {
 	    	entity.getTransaction().rollback();
-	    } finally {
-	    	entity.close();
 	    }
 	}
 

@@ -9,7 +9,7 @@
 <body>
 	<div>
 	<h3>Metodologia</h3>
-	<form>
+	<form action ="/metodologias" method = "POST">
 		
 		<div class="form-group">		
 			<label for="nombre">Metodologias</label>
@@ -23,28 +23,26 @@
 
 			<div class="form-group">		
 			<label for="nombre">Empresas</label>
-			<select name="nombreEmpresa" class="custom-select">
-				<option value="-1">Seleccione una empresa</option>
+			<select name="empresas" class="custom-select" size="5" multiple>
 				{{#each empresas}}
 				<option value= {{nombre}}> {{nombre}}</option>
 				{{/each}}
 			</select>
 		</div>
 
-		<div class="form-group">
-			<input class="btn btn-primary btn-lg" type="submit" value="Agregar empresa a comparar">
-		</div>
-
-
 	<div class="table-responsive">
-		<h3>Empresas a comparar</h3>
+		<h3>Ranking de empresas</h3>
 	<table class="table">
 		<tr>
 			<th>Empresa</th>
+			<th>Año de fundacion</th>
+			<th>Puntuacion</th>
 		</tr>
-		{{#each ventas}}
+		{{#each empresasOrdenadas}}
 		<tr>
-			<td>{{nombreEmpresa}}</td>
+			<td>{{nombre}}</td>
+			<td>{{anioFundacion}}</td>
+			<td>{{puntuacion}}</td>
 		</tr>
 		{{/each}}
 	</table>

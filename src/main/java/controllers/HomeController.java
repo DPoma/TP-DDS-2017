@@ -39,10 +39,10 @@ public class HomeController implements WithGlobalEntityManager, TransactionalOps
 			Console.println("COREC");
 			Session sesion = req.session(true);
 			sesion.attribute("user", username);
-			res.redirect("/");	
-		}else{res.redirect("/wrong-user-or-pass");}
-		res.redirect("/wrong-user-or-pass");
-
+			res.redirect("/");
+		}
+		else
+			res.redirect("/wrong-user-or-pass");
 		return null;
 	}
 }

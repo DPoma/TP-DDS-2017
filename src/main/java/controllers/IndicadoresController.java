@@ -6,6 +6,7 @@ import java.util.Map;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
+import model.Empresa;
 import model.Indicador;
 import repositories.Repositorios;
 import spark.ModelAndView;
@@ -21,12 +22,28 @@ public class IndicadoresController implements WithGlobalEntityManager, Transacti
 	
 	public ModelAndView home(Request req, Response res){
 		Map<String, Object> model=new HashMap<>();
-		//Repositorios.repositorioIndicadores.obtenerIndicadores();
-		//Repositorios.repositorioEmpresas.obtenerEmpresas();
+		Repositorios.repositorioIndicadores.obtenerIndicadores();
+		Repositorios.repositorioEmpresas.obtenerEmpresas();
 		model.put("empresas", Repositorios.repositorioEmpresas.getEmpresas());
 		model.put("indicadores",Repositorios.repositorioIndicadores.getIndicadores());
+		model.put("resultado", 0);
 		return new ModelAndView(model, "indicadores/home.hbs");
 	}
+	
+	public ModelAndView aplicar(Request req, Response res) {
+		Map<String, Object> model=new HashMap<>();
+		String nombreIndicador = req.queryParams("nombreIndicador");
+		String anio = req.queryParams("anio");
+		String nombreEmpresa = req.queryParams("nombreEmpresa");
+		Indicador indicador = Repositorios.repositorioIndicadores.find(ind->ind.getNombreIndicador().equals(nombreIndicador));
+		Empresa empresa = Repositorios.repositorioEmpresas.find(e-> e.getNombre().equals(nombreEmpresa));
+		java.math.BigDecimal bd = indicador.calcularMonto(empresa, anio);
+		model.put("empresas", Repositorios.repositorioEmpresas.getEmpresas());
+		model.put("indicadores",Repositorios.repositorioIndicadores.getIndicadores());
+		model.put("resultado", bd.toString());
+		return new ModelAndView(model, "indicadores/home.hbs");
+	}
+	
 	
 	public ModelAndView nuevo(Request req, Response res){
 		return new ModelAndView(null, "indicadores/new.hbs");

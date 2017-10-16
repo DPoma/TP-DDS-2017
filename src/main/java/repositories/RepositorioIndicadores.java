@@ -87,8 +87,6 @@ public class RepositorioIndicadores {
 	    entity.getTransaction().commit();
 	    } catch(HibernateException e) {
 	    	entity.getTransaction().rollback();
-	    } finally {
-	    	entity.close();
 	    }
 	}
 	
@@ -97,9 +95,7 @@ public class RepositorioIndicadores {
 		this.obtenerOperacionesIndicador();
 		return operaciones.isEmpty() || operacionesIndicador.isEmpty();
 	}
-	
 
-	
 	
 	public void cargarOperaciones() {
 		if(hayOperacionesSinCargar())

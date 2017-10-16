@@ -75,8 +75,6 @@ public class RepositorioMetodologias{
 	    entity.getTransaction().commit();
 	    } catch(HibernateException e) {
 	    	entity.getTransaction().rollback();
-	    } finally {
-	    	entity.close();
 	    }
 	}
 	

@@ -1,13 +1,14 @@
 package controllers;
 
+import java.util.Arrays;
 import java.util.HashMap;
-
+import java.util.List;
 import java.util.Map;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
-
+import model.Empresa;
 import model.Metodologia;
 import repositories.Repositorios;
 import spark.ModelAndView;
@@ -15,7 +16,6 @@ import spark.Request;
 import spark.Response;
 
 public class MetodologiasController implements WithGlobalEntityManager, TransactionalOps{
-	
 	
 	public ModelAndView nueva(Request req, Response res){
 		Map<String, Object> model=new HashMap<>();
@@ -46,9 +46,25 @@ public class MetodologiasController implements WithGlobalEntityManager, Transact
 		return new ModelAndView(model, "metodologias/home.hbs");
 	}
 	
+	public ModelAndView aplicar(Request req, Response res){
+		Map<String, Object> model=new HashMap<>();
+		String[] qempresas = req.queryParamsValues("empresas");
+		List<String> empresas = Arrays.asList(qempresas);
+		List<Empresa> empresasMapeadas = Repositorios.repositorioEmpresas.buscarEmpresasPorNombre(empresas);
+		String nombreMetodologia = req.queryParams("nombreMetodologia");
+		Metodologia metodologia = Repositorios.repositorioMetodologias.find(m->m.getNombre().equals(nombreMetodologia));
+		List<Empresa> empresasOrdenadas = metodologia.aplicarMetodologia(empresasMapeadas);
+		model.put("empresas", Repositorios.repositorioEmpresas.getEmpresas());
+		model.put("metodologias", Repositorios.repositorioMetodologias.getMetodologias());
+		model.put("empresasOrdenadas", empresasOrdenadas);
+		return new ModelAndView(model, "metodologias/home.hbs");
+	}
+	
 	public ModelAndView crear(Request req, Response res) {
 		/*
-		Metodologia metodologia = new Metodologia(req.queryParams("nombre"), req.queryParams("condiciones")));
+		List<Condicion> condiciones = new ArrayList<Condicion>();  
+		condiciones = req.queryParams("condiciones")
+		Metodologia metodologia = new Metodologia(req.queryParams("nombre"), condiciones);
 		withTransaction(() ->{
 			Repositorios.repositorioMetodologias.persistirMetodologia(metodologia);
 		});

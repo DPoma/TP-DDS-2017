@@ -8,7 +8,7 @@
 
 <body>
 
-	<form>
+	<form action="/empresas" method="POST">
 		
 		<div class="form-group">		
 			<label for="nombre">Buscar cuentas de empresas</label>
@@ -21,13 +21,13 @@
 		</div>
 
 		<div class="form-group">
-			<label for="nombre">Año inicial de busqueda</label>
-			<input type="text" placeholder="Ingrese un año" name="nombre">
+			<label for="anioMin">Año inicial de busqueda</label>
+			<input type="text" placeholder="Ingrese un año" name="anioMin">
 		</div>
 	
 		<div class="form-group">		
-			<label for="costoEstimado">Año final de busqueda</label>
-			<input type="text" placeholder="Ingrese un año" name="costoEstimado">
+			<label for="anioMax">Año final de busqueda</label>
+			<input type="text" placeholder="Ingrese un año" name="anioMax">
 		</div>
 		
 		<div class="form-group">
@@ -42,12 +42,11 @@
 			<th>Año</th>
 			<th>Monto</th>
 		</tr>
-		{{#each ventas}}
+		{{#each cuentas}}
 		<tr>
-			<td>{{fechaYhora}}</td>
+			<td>{{nombre}}</td>
 			<td>{{anio}}</td>
 			<td>{{monto}}</td>
-
 		</tr>
 		{{/each}}
 	</table>

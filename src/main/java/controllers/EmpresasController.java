@@ -22,6 +22,14 @@ public class EmpresasController implements WithGlobalEntityManager, Transactiona
 		return new ModelAndView(model, "empresas/home.hbs");
 	}
 	
-	
-	
+	public ModelAndView aplicar(Request req, Response res){
+		Map<String, Object> model = new HashMap<>();
+		String nombreEmpresa = req.queryParams("nombreEmpresa");
+		Empresa empresa = Repositorios.repositorioEmpresas.buscarEmpresa(nombreEmpresa);
+		String anioMin = req.queryParams("anioMin");
+		String anioMax = req.queryParams("anioMax");
+		model.put("cuentas", Repositorios.repositorioEmpresas.obtenerCuentasDeUnPeriodo(empresa.getIdEmpresa(), anioMin, anioMax));
+		model.put("empresas",  Repositorios.repositorioEmpresas.getEmpresas());
+		return new ModelAndView(model, "empresas/home.hbs");
+	}
 }

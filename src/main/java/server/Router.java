@@ -2,6 +2,8 @@ package server;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import controllers.CondicionesController;
 import controllers.EmpresasController;
 import controllers.HomeController;
 import controllers.IndicadoresController;
@@ -31,6 +33,7 @@ public class Router {
  		EmpresasController empresasController = new EmpresasController();
   		IndicadoresController indicadoresController = new IndicadoresController();
  		MetodologiasController metodologiasController = new MetodologiasController();
+ 		CondicionesController condicionesController = new CondicionesController();
 
  		Spark.get("/", homeController::home, engine);
  		Spark.get("/login", homeController::login, engine);
@@ -39,15 +42,21 @@ public class Router {
 		Spark.post("/wrong-user-or-pass", homeController::wrongLogin, engine);
   		
  		Spark.get("/empresas", empresasController::home,engine);
+ 		Spark.post("/empresas", empresasController::aplicar,engine);
   		
  		Spark.get("/metodologias", metodologiasController::home, engine);
+ 		Spark.post("/metodologias", metodologiasController::aplicar, engine);
  		Spark.get("/metodologias/nueva", metodologiasController::nueva, engine);
  		Spark.post("/metodologias/nueva", metodologiasController::crear, engine);
  		Spark.get("/metodologias/:id", metodologiasController::mostrar, engine);
   		
  		Spark.get("/indicadores", indicadoresController::home, engine);
+ 		Spark.post("/indicadores", indicadoresController::aplicar, engine);
  		Spark.get("/indicadores/nuevo", indicadoresController::nuevo, engine);
  		Spark.post("/indicadores/nuevo", indicadoresController::crear, engine);
+ 		
+		Spark.get("/condiciones", condicionesController::nueva, engine);
+		Spark.post("/condiciones", condicionesController::crear, engine);
 
 	}
 	
