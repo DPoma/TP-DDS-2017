@@ -2,15 +2,10 @@ package server;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import controllers.CondicionesController;
 import controllers.EmpresasController;
 import controllers.HomeController;
 import controllers.IndicadoresController;
 import controllers.MetodologiasController;
-import spark.Filter;
-import spark.Request;
-import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
@@ -40,9 +35,8 @@ public class Router {
  		Spark.get("/", homeController::home, engine);
  		Spark.get("/login", homeController::login, engine);
   		Spark.post("/login", homeController::newSession);
-		Spark.get("/wrong-user-or-pass", HomeController::wrongLogin, engine);
-		Spark.post("/wrong-user-or-pass", HomeController::wrongLogin, engine);
-
+		Spark.get("/wrong-user-or-pass", homeController::wrongLogin, engine);
+		Spark.post("/wrong-user-or-pass", homeController::wrongLogin, engine);
   		
  		Spark.get("/empresas", empresasController::home,engine);
   		

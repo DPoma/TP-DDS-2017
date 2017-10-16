@@ -23,7 +23,7 @@ public class HomeController implements WithGlobalEntityManager, TransactionalOps
 		return new ModelAndView(null, "home/login.hbs");
 	}
 	
-	public static ModelAndView wrongLogin (Request req, Response res){
+	public ModelAndView wrongLogin (Request req, Response res){
 		
 		return new ModelAndView(null, "home/wrongLogin.hbs");
 	}

@@ -21,8 +21,8 @@ public class IndicadoresController implements WithGlobalEntityManager, Transacti
 	
 	public ModelAndView home(Request req, Response res){
 		Map<String, Object> model=new HashMap<>();
-		Repositorios.repositorioIndicadores.obtenerIndicadores();
-		Repositorios.repositorioEmpresas.obtenerEmpresas();
+		//Repositorios.repositorioIndicadores.obtenerIndicadores();
+		//Repositorios.repositorioEmpresas.obtenerEmpresas();
 		model.put("empresas", Repositorios.repositorioEmpresas.getEmpresas());
 		model.put("indicadores",Repositorios.repositorioIndicadores.getIndicadores());
 		return new ModelAndView(model, "indicadores/home.hbs");
