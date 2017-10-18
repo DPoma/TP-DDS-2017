@@ -1,3 +1,6 @@
+{{#partial "titulo"}}
+Login
+{{/partial}}
 {{#partial "ancho"}}
 30%
 {{/partial}}
@@ -10,11 +13,12 @@
          <br />
         <label for="user" class="sr-only">Usuario</label>
         <input type="text" id="user" name="user" class="form-control" placeholder="Usuario" required autofocus>
-        <label for="password" class="sr-only">Contrasena</label>
+        <label for="password" class="sr-only">Contraseña</label>
         <br />
         <input type="password" id="password" name="password" class="form-control" placeholder="Contrasena" required>
         <br />
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+        {{#block "alerta"}}{{/block}}
       </form>
 
 

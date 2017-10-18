@@ -1,20 +1,22 @@
+{{#partial "titulo"}}
+Indicadores
+{{/partial}}
+
+{{#partial "activoIndicadores"}}
+active
+{{/partial}}
+
 {{#partial "contenido"}}
-
-<!DOCTYPE html>
-
-<head>
-	<meta charset="utf-8">
-	<title>Indicadores</title>
-</head>
 
 <body>
 	<div>
 	<h3>Indicadores</h3>
 	<form action="/indicadores" method="POST">
+	<div class="container" style="width:30%">
 		<div class="form-group">		
-			<label for="nombre">Indicadores</label>
-			<select name="nombreIndicador" class="custom-select">
-				<option value="-1">Seleccione un indicador</option>
+			<label for="nombre">Indicador</label>
+			<select name="nombreIndicador" class="form-control" required>
+				<option value="">Seleccione un indicador</option>
 				{{#each indicadores}}
 				<option value= {{nombreIndicador}}> {{nombreIndicador}}</option>
 				{{/each}}
@@ -22,9 +24,9 @@
 		</div>
 
 		<div class="form-group">		
-			<label for="nombre">Empresas</label>
-			<select name="nombreEmpresa" class="custom-select">
-				<option value="-1">Seleccione una empresa</option>
+			<label for="nombre">Empresa</label>
+			<select name="nombreEmpresa" class="form-control" required>
+				<option value="">Seleccione una empresa</option>
 				{{#each empresas}}
 				<option value= {{nombre}}> {{nombre}}</option>
 				{{/each}}
@@ -32,45 +34,39 @@
 		</div>
 
 		<div class="form-group">
-			<label for="nombre">Año inicial</label>
-			<input type="text" placeholder="Ingrese un año" name="anio">
+			<label for="nombre">Año</label>
+			<input type="text" placeholder="Ingrese un año" name="anio" class="form-control" required>
 		</div>
-
-	<div class="container">
-		<label for="nombre">Empresa:</label>
-		<option value= {{nombreEmpresa}}> {{nombreEmpresa}}</option>
-	</div>
-	<p></p>
-	<div class="container">
-		<label for="nombre">Indicador:</label>
-		<option value= {{nombreIndicador}}> {{nombreIndicador}}</option>
-	</div>
-	<p></p>
-		<div class="container">
-		<label for="nombre">Año:</label>
-		<option value= {{anio}}> {{anio}}</option>
-	</div>
-	<p></p>
-	<div class="container">
-		<label for="nombre">Resultado:</label>
-		<option value= {{resultado}}> {{resultado}}</option>
-	</div>
-	<p></p>
-		<div class="form-group">
-			<input class="btn btn-primary btn-lg" type="submit" value="Aplicar">
+		<input class="btn btn-primary" type="submit" value="Aplicar">
 		</div>
 	</form>
+	<div class="container" style="width:30%">
+		<label for="nombre">Empresa:</label>
+		<option value= {{nombreEmpresa}}> {{nombreEmpresa}}</option>
+
+	<p></p>
+
+		<label for="nombre">Indicador:</label>
+		<option value= {{nombreIndicador}}> {{nombreIndicador}}</option>
+
+	<p></p>
+		<label for="nombre">Año:</label>
+		<option value= {{anio}}> {{anio}}</option>
+
+	<p></p>
+		<label for="nombre">Resultado:</label>
+		<option value= {{resultado}}> {{resultado}}</option>
+
+	<p></p>
+
+
 	</div>
 
 	<div>
-    	<a href="indicadores/nuevo"><input class="btn btn-primary btn-lg" type="submit" value="Crear indicador"></a>
-  	</div>
-<p></p>
-	  <div>
-    	<a href="../"><input class="btn btn-primary btn-lg" type="submit" value="Ir al menu principal"></a>
+    	<a href="indicadores/nuevo"><input class="btn btn-success" type="submit" value="Crear indicador"></a>
   	</div>
 </body>
 {{/partial}}
-{{>layout.hbs}}
+{{>mainLayout.hbs}}
 
 

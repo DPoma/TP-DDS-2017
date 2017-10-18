@@ -1,5 +1,7 @@
 package controllers;
 
+import javax.persistence.NoResultException;
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
@@ -32,11 +34,17 @@ public class HomeController implements WithGlobalEntityManager, TransactionalOps
 		
 		String username = req.queryParams("user");
 		String pass = req.queryParams("password");
-		Console.println(pass);
-		Usuario user = Repositorios.repositorioUsuarios.buscarUsuario(username);
+		Usuario user = new Usuario();
+		try
+		{
+		user = Repositorios.repositorioUsuarios.buscarUsuario(username);
+		}
+		catch (NoResultException e)
+		{
+			res.redirect("/wrong-user-or-pass");
+		}
 		if(user.loginCorrecto(pass))
 		{
-			Console.println("COREC");
 			Session sesion = req.session(true);
 			sesion.attribute("user", username);
 			res.redirect("/");

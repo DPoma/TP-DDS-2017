@@ -1,15 +1,22 @@
+{{#partial "titulo"}}
+Condiciones
+{{/partial}}
+
+{{#partial "activoMetodologias"}}
+active
+{{/partial}}
 {{#partial "contenido"}}
-	
+	<h2>Crear Metodologia - Condiciones</h2>
 	<form action="/condiciones/nueva" method="POST">
+	<div class="container" style="width:60%">
 		
-		<div class="form-group">
-			<label for="nombre">Para crear una metodologia primero agregue las condiciones que desee</label>
-		</div>
+		
+			<p><b>Para crear una metodologia primero agregue las condiciones que desee</b></p>
 	
 		<div class="form-group">		
-			<label for="nombre">Condiciones</label>
-			<select name="nombreCondicion" class="custom-select">
-				<option value="-1">Seleccione una condicion</option>
+			<label for="nombre">Condicion</label>
+			<select name="nombreCondicion" class="form-control" required>
+				<option value="">Seleccione una condicion</option>
 				<option value="Analizar indicador en los ultimos anios">Analizar indicador en los ultimos años</option>
 				<option value="Analizar indicadores entre empresas">Analizar indicadores entre empresas</option>
 				<option value="Analizar historia del indicador">Analizar historia del indicador</option>
@@ -17,16 +24,12 @@
 			</select>
 		</div>
 
-		<input class="btn btn-primary btn-lg" type="submit" value="Configurar condicion">
+		<input class="btn btn-primary"" type="submit" value="Configurar condicion">
+			<a href="../metodologias/nueva"><input class="btn btn-primary" value="Configurar metodologia"></a>
+			</div>
 	</form>
 
-	<div>
-	<a href="../metodologias/nueva"><input class="btn btn-primary btn-lg" type="submit" value="Configurar metodologia"></a>
-	</div>
 
-	<div>
-    	<a href="../"><input class="btn btn-primary btn-lg" type="submit" value="Ir al menu principal"></a>
-  	</div>
 
 {{/partial}}
-{{>layout.hbs}}
+{{>mainLayout.hbs}}

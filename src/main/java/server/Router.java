@@ -39,8 +39,8 @@ public class Router {
 		Spark.get("/wrong-user-or-pass", homeController::wrongLogin, engine);
 		Spark.post("/wrong-user-or-pass", homeController::wrongLogin, engine);
   		
-		Spark.get("/cargar", empresasController::verArchivos,engine);
-		Spark.post("/cargar", empresasController::cargarArchivos,engine);
+		Spark.get("/cuentas", empresasController::verArchivos,engine);
+		Spark.post("/cuentas", empresasController::cargarArchivos,engine);
 		
  		Spark.get("/empresas", empresasController::home,engine);
  		Spark.post("/empresas", empresasController::aplicar,engine);
@@ -75,6 +75,7 @@ public class Router {
 	
 	private static void setPublicRoutes(Set<String> publicRoutes){
 		publicRoutes.add("/login");
+		publicRoutes.add("/wrong-user-or-pass");
 	}
 
 }
