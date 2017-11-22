@@ -20,9 +20,22 @@ public class Metodologia {
 	
 	@OneToMany(mappedBy = "metodologia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Condicion> condiciones;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 
 	//----------------------------------- CONSTRUCTORES --------------------------------
 	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public Metodologia(String nombre, List<Condicion> condiciones) {
 		this.nombre = nombre;
 		this.condiciones = condiciones;

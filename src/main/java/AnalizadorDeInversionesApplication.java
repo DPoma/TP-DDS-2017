@@ -6,6 +6,7 @@ import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import repositories.Repositorios;
 import windows.PrincipalWindow;
 
 public class AnalizadorDeInversionesApplication extends Application{
@@ -15,6 +16,7 @@ public class AnalizadorDeInversionesApplication extends Application{
 			EntityManager entity = PerThreadEntityManagers.getEntityManager();
 			new AnalizadorDeInversionesApplication().start();
 		}
+		
 		
 		@Override
 		protected Window<?> createMainWindow() {

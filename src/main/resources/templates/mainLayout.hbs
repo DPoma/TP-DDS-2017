@@ -4,16 +4,16 @@
 {{#partial "navbar"}}
  <ul class="nav navbar-nav">
       <li class="nav-item {{#block "activoEmpresas"}}{{/block}}">
-        <a class="nav-link" href="/empresas">Empresas</span></a>
+        <a class="nav-link" href="/empresas/{{usuario}}">Empresas</span></a>
       </li>
       <li class="nav-item {{#block "activoMetodologias"}}{{/block}}">
-        <a class="nav-link" href="/metodologias">Metodologias</a>
+        <a class="nav-link" href="/metodologias/{{usuario}}">Metodologias</a>
       </li>
       <li class="nav-item {{#block "activoIndicadores"}}{{/block}}">
-        <a class="nav-link" href="/indicadores">Indicadores</a>
+        <a class="nav-link" href="/indicadores/{{usuario}}">Indicadores</a>
       </li>
       <li class="nav-item {{#block "activoCuentas"}}{{/block}}">
-        <a class="nav-link" href="/cuentas">Cargar Cuentas</a>
+        <a class="nav-link" href="/cuentas/{{usuario}}">Cargar Cuentas</a>
    	</li>
  </ul>
 {{/partial}}

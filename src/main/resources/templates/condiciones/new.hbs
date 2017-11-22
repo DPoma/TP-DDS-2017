@@ -7,7 +7,7 @@ active
 {{/partial}}
 {{#partial "contenido"}}
 	<h2>Crear Metodologia - Condiciones</h2>
-	<form action="/condiciones/nueva" method="POST">
+	<form action="/condiciones/{{usuario}}/nueva" method="POST">
 	<div class="container" style="width:60%">
 		
 		
@@ -25,7 +25,7 @@ active
 		</div>
 
 		<input class="btn btn-primary"" type="submit" value="Configurar condicion">
-			<a href="../metodologias/nueva"><input class="btn btn-primary" value="Configurar metodologia"></a>
+			<a href="/metodologias/{{usuario}}/nueva"><input class="btn btn-primary" value="Configurar metodologia"></a>
 			</div>
 	</form>
 

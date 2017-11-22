@@ -4,8 +4,10 @@ package repositories;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import org.hibernate.HibernateException;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import model.Indicador;
 import model.Usuario;
 public class RepositorioUsuarios {
 
@@ -28,6 +30,14 @@ public class RepositorioUsuarios {
 		return result;
 	}
 	
+	public void persistirUsuario(Usuario usr)
+	{
+		entity.getTransaction().begin();
+		entity.persist(usr);
+		entity.getTransaction().commit();
+	}
+	
+
 
 	
 }

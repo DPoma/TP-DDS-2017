@@ -10,7 +10,7 @@ active
 <body>
 	<div>
 	<h2>Aplicar Metodologia</h2>
-	<form action ="/metodologias" method = "POST">
+	<form action ="/metodologias/{{usuario}}" method = "POST">
 		<div class="container" style="width:60%">
 		<div class="form-group col-md-6">		
 			<label for="nombre">Metodologias</label>
@@ -58,7 +58,7 @@ active
 	</div>
 
 	<div>
-    	<a href="condiciones/nueva"><input class="btn btn-success" type="submit" value="Crear metodologia"></a>
+    	<a href="/condiciones/{{usuario}}/nueva"><input class="btn btn-success" type="submit" value="Crear metodologia"></a>
   	</div>
 <p></p>
 
