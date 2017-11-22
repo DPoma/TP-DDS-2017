@@ -47,7 +47,7 @@ public class HomeController implements WithGlobalEntityManager, TransactionalOps
 		}
 		catch (NoResultException e)
 		{
-			res.redirect("/wrong-user-or-pass");
+			res.redirect("/archivo-incorrecto");
 		}
 		if(user.loginCorrecto(pass))
 		{

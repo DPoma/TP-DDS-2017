@@ -4,6 +4,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.PrintWriter;
+
+import javax.persistence.NoResultException;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
@@ -50,8 +58,27 @@ public class EmpresasController implements WithGlobalEntityManager, Transactiona
 		String ruta = req.queryParams("ruta");
 		String usuario = req.params("usuario");
 		FileHandler lector= new FileHandler();
+		if("csv".equals(getFileExtension(ruta))){
 		lector.importarArchivoCuentas(ruta);
 		res.redirect("/principal/"+ usuario);
+		}else{
+		res.redirect("/cuentas/"+usuario+"/archivo-invalido.hbs");
+		}
 		return null;
 	}
+	
+	public ModelAndView archivoInvalido (Request req, Response res){
+		String usuario = req.params("usuario");
+		Map<String, Object> model = new HashMap<>();
+		model.put("usuario", usuario);
+		return new ModelAndView(model, "empresas/archivo-invalido.hbs");
+	}
+	
+	public static String getFileExtension(String fullName) {
+	    String fileName = new File(fullName).getName();
+	    int dotIndex = fileName.lastIndexOf('.');
+	    return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
+	}
 }
+
+
