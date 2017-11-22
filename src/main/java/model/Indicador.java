@@ -62,19 +62,31 @@ public class Indicador implements OperandoDeIndicador {
 	
 	public BigDecimal calcularMonto(Empresa unaEmpresa, String anio)
 	{
-		try {
-			ParsearIndicador parser = new ParsearIndicador();
-			return parser.reducirIndicador(this.formula, unaEmpresa, anio);
+		try
+		{
+			return Repositorios.repositorioIndicadores.buscarPrecargado(this, unaEmpresa, anio);
 		}
-		catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
-			return new BigDecimal(0);
-		}
-		catch(ArithmeticException ae) {
-			return new BigDecimal(0);
+		catch (javax.persistence.NoResultException ex)
+		{
+			BigDecimal resultado;
+			try {
+				ParsearIndicador parser = new ParsearIndicador();
+				resultado = parser.reducirIndicador(this.formula, unaEmpresa, anio);
+				Repositorios.repositorioIndicadores.guardarPrecargado(this, unaEmpresa, anio, resultado);
+				return resultado;
+			}
+			catch(NullPointerException | NumberFormatException | NoSuchElementException e) {
+				return new BigDecimal(0);
+			}
+			catch(ArithmeticException ae) {
+				return new BigDecimal(0);
+			}
+
 		}
 
 	}
 	
+
 	public boolean montoCumpleOperacionEnPeriodo(OperacionIndicador operacion, Empresa unaEmpresa, Empresa otraEmpresa, List<String> anios)
 	{
 		Stream<Boolean> resultados = anios.stream().map(unAnio -> operacion.operar(this.calcularMonto(unaEmpresa, unAnio), this.calcularMonto(otraEmpresa, unAnio)));

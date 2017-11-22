@@ -1,4 +1,5 @@
 package repositories;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -9,13 +10,16 @@ import javax.persistence.EntityTransaction;
 import org.hibernate.HibernateException;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import model.Empresa;
 import model.Indicador;
+import model.IndicadorPrecargado;
 import model.MayorA;
 import model.MenorA;
 import model.Operacion;
 import model.OperacionIndicador;
 import model.Promedio;
 import model.Sumatoria;
+import javax.persistence.Query;
 
 public class RepositorioIndicadores {
 
@@ -24,6 +28,7 @@ public class RepositorioIndicadores {
 	private List<Indicador> indicadores;
 	private List<Operacion> operaciones;
 	private List<OperacionIndicador> operacionesIndicador;
+	private List<IndicadorPrecargado> indicadoresPrecargados;
 	private EntityManager entity;
 
 	//------------------------------------ CONSTRUCTORES --------------------------------
@@ -32,6 +37,7 @@ public class RepositorioIndicadores {
 		this.indicadores = new ArrayList<Indicador>();
 		this.operaciones = new ArrayList<Operacion>();
 		this.operacionesIndicador = new ArrayList<OperacionIndicador>();
+		this.indicadoresPrecargados = new ArrayList<IndicadorPrecargado>();
 		this.entity = PerThreadEntityManagers.getEntityManager();
 	}
 
@@ -53,6 +59,33 @@ public class RepositorioIndicadores {
 	
 	//------------------------------------ METODOS --------------------------------
 
+	public BigDecimal buscarPrecargado(Indicador indicador, Empresa empresa, String anio)
+	{
+		//return indicadoresPrecargados.stream().filter(indicadorPrecargado -> indicadorPrecargado.equals(indicadorBuscado)).findFirst();
+		@SuppressWarnings("unchecked")
+		Query query = entity.createQuery("FROM IndicadorPrecargado WHERE anio = :anio and empresa = :empresa and indicador = :indicador");
+		query.setParameter("indicador", indicador);
+		query.setParameter("empresa", empresa);
+		query.setParameter("anio", anio);
+		@SuppressWarnings("unchecked")
+		IndicadorPrecargado indicadorPrecargado = (IndicadorPrecargado) query.getSingleResult();
+		return indicadorPrecargado.getValor();
+		
+		
+	}
+	
+	public void guardarPrecargado(Indicador indicador, Empresa empresa, String anio, BigDecimal valor)
+	{
+		IndicadorPrecargado indicadorPrecargado = new IndicadorPrecargado(indicador, empresa, anio, valor);
+	    try {
+	    entity.getTransaction().begin();
+	    entity.persist(indicadorPrecargado);
+	    entity.getTransaction().commit();
+	    } catch(HibernateException e) {
+	    	entity.getTransaction().rollback();
+	    }
+	}
+	
 	public void agregarIndicador(Indicador indicador)
 	{
 		this.indicadores.add(indicador);
@@ -80,6 +113,8 @@ public class RepositorioIndicadores {
 		operacionesIndicador = (List<OperacionIndicador>)entity.createQuery("FROM OperacionIndicador").getResultList();
 	}
 	
+
+	
 	public void persistirIndicador(Indicador indicador) {
 	    try {
 	    entity.getTransaction().begin();
@@ -89,6 +124,7 @@ public class RepositorioIndicadores {
 	    	entity.getTransaction().rollback();
 	    }
 	}
+	
 	
 	public boolean hayOperacionesSinCargar() {
 		this.obtenerOperaciones();
