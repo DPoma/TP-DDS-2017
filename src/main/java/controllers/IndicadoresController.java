@@ -3,11 +3,13 @@ package controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import model.Empresa;
 import model.Indicador;
+import parserIndicador.ParsearIndicador;
 import repositories.Repositorios;
 import spark.ModelAndView;
 import spark.Request;
@@ -53,12 +55,28 @@ public class IndicadoresController implements WithGlobalEntityManager, Transacti
 	}
 	
 	public ModelAndView crear(Request req, Response res){
-		Indicador indicador = new Indicador(req.queryParams("nombre"), req.queryParams("formula"));
-		withTransaction(() ->{
-			Repositorios.repositorioIndicadores.persistirIndicador(indicador);
-		});
-		res.redirect("/indicadores");
+		String formula = req.queryParams("formula");
+		String nombre = req.queryParams("nombre");
+		try
+		{
+			ParsearIndicador parser = new ParsearIndicador();
+			if(formula.contains(nombre))
+				throw new ParseCancellationException("Se llama a si mismo");
+			parser.generarArbol(formula);
+			Indicador indicador = new Indicador(nombre, formula);
+			withTransaction(() ->{
+				Repositorios.repositorioIndicadores.persistirIndicador(indicador);
+			});
+			res.redirect("/indicadores");
+		}
+		catch(ParseCancellationException | NullPointerException e) {
+			res.redirect("/indicadores/error");
+		}
 		return null;
+	}
+	public ModelAndView error(Request req, Response res){
+	
+		return new ModelAndView(null, "indicadores/error.hbs");
 	}
 	
 }
