@@ -16,13 +16,14 @@ public class Indicador implements OperandoDeIndicador {
 	
 	//------------------------------------ ATRIBUTOS --------------------------------
 	
-	@Id
+	@Id @GeneratedValue
+	private long  id;
 	private String nombreIndicador;
 	
 	private String formula;
 	
 	@ManyToOne()
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
 	
 

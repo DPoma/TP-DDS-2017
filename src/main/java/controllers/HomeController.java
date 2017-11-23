@@ -59,4 +59,11 @@ public class HomeController implements WithGlobalEntityManager, TransactionalOps
 			res.redirect("/wrong-user-or-pass");
 		return null;
 	}
+	
+	public Void logout(Request req, Response res){
+		Session sesion = req.session(true);
+		sesion.invalidate();
+		return null;
+
+	}
 }
