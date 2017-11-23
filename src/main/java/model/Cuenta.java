@@ -78,6 +78,37 @@ public class Cuenta implements OperandoDeIndicador{
 	public boolean periodoEntre(int anioMin, int anioMax) {
 		return anio >= anioMin && anio <=anioMax;
 	}
+	
 
+	public boolean mismaPK(Cuenta otraCuenta)
+	{
+		return this.empresa.equals(otraCuenta.getEmpresa()) && this.anio == otraCuenta.getAnio() && this.nombre.equalsIgnoreCase(otraCuenta.getNombre());
+	}
+	
+	public boolean mismoMonto(Cuenta otraCuenta)
+	{
+		if(this.monto.compareTo(otraCuenta.getMonto()) == 0)
+		{
+
+			return true;
+		}
+		else
+			{
+			System.out.println(this);
+			System.out.println(otraCuenta);
+				return false;
+			}
+		
+	}
+	
+	public boolean cuentaActualizada(Cuenta otraCuenta)
+	{
+		return this.mismaPK(otraCuenta) && !this.mismoMonto(otraCuenta);
+	}
+
+	public boolean equals(Cuenta otraCuenta)
+	{
+		return this.mismaPK(otraCuenta) && this.mismoMonto(otraCuenta);
+	}
 
 }

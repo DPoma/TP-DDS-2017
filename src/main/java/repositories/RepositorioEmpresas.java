@@ -64,7 +64,7 @@ public class RepositorioEmpresas {
 		String montoCuenta = linea[4];
 		Empresa empresa = this.obtenerEmpresa(nombreEmpresa, anioFundacion);
 		Cuenta cuenta = new Cuenta(nombreCuenta, anioCuenta, montoCuenta, empresa);
-		empresa.agregarCuenta(cuenta);
+		empresa.agregarOActualizarSegunCorresponda(cuenta);
 	}
 	
 	public Empresa generarEmpresa(String nombreEmpresa, int anioFundacion) {

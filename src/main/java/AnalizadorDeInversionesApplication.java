@@ -18,9 +18,7 @@ public class AnalizadorDeInversionesApplication extends Application{
 		public static void main(String[] args) throws IOException {
 			EntityManager entity = PerThreadEntityManagers.getEntityManager();
 			new AnalizadorDeInversionesApplication().start();
-			TimerTask cargarEmpresasBatch = new TareaProgramada("");
-	        Timer timer = new Timer(true);
-	        timer.scheduleAtFixedRate(cargarEmpresasBatch, 0, 10*60*1000);	//esta en milisegundos, o sea 10 minutos
+		
 		}
 		
 		

@@ -22,7 +22,7 @@ public class Empresa {
 	
 	private String nombre;
 	
-	@OneToMany(mappedBy = "empresa", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "empresa", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval=true)
 	private List<Cuenta> cuentas;
 	
 	private int puntuacion;
@@ -80,6 +80,23 @@ public class Empresa {
 	}
 	
 	//------------------------------------ METODOS --------------------------------
+	
+	public void agregarOActualizarSegunCorresponda(Cuenta cuenta)
+	{
+		if(this.cuentas.removeIf(unaCuenta -> unaCuenta.cuentaActualizada(cuenta)))
+		{
+			cuentas.add(cuenta);
+			System.out.println("REMOVED");
+		}
+		else
+		{
+			if(!this.cuentas.stream().anyMatch(unaCuenta -> unaCuenta.equals(cuenta)))
+			{
+				cuentas.add(cuenta);
+				System.out.println("NEW");
+			}
+		}
+	}
 	
 	public void agregarCuenta(Cuenta cuenta){
 		cuentas.add(cuenta);

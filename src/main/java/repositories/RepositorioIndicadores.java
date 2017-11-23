@@ -161,4 +161,10 @@ public class RepositorioIndicadores {
 		entity.persist(ingresoNeto);
 		entity.getTransaction().commit();
 	}
+	public void eliminarPrecalculados()
+	{
+		entity.getTransaction().begin();
+		entity.createQuery("delete from IndicadorPrecargado").executeUpdate();
+		entity.getTransaction().commit();
+	}
 }
